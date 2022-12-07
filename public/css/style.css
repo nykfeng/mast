@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Azeret+Mono:wght@100;200;300;400;500&family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
+:root {
+  font-size: 62.5%;
+
+  --main-color: #00b4d8;
+  --secondary-color: #16e7dd;
+  --main-opacity: #70cce0;
+  --primary-gray-color: #eeeded;
+  --secondary-gray-color: #888888;
+
+  --variety-color-purple: #755eaa;
+  --background-blue: #e3ebfc;
+  --dark-blue: #1863fa;
+  --transparent-gray: rgba(105, 105, 105, 0.514);
+  --stock-green: #11b957;
+  --stock-red: #b33030;
+  --warning-red: #a10000;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* specific styles */
+header {
+  padding: 1rem;
+  height: 12rem;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  background-color: #381a39;
+}
+
+/* ---- START ---- header profile icon ---- */
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.user-profile .user-icon:hover {
+  opacity: 100%;
+}
+
+.user-profile .user-icon:active {
+  transform: scale(0.95);
+}
+
+.user-icon {
+  width: 4.5rem;
+  border-radius: 50%;
+  border: 0.3rem solid;
+  color: #fff;
+  opacity: 50%;
+}
+/* ---- END ---- header profile icon ---- */

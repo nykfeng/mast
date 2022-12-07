@@ -1,0 +1,49 @@
+/* Logo design */
+.logo {
+  padding: 0.7rem;
+
+  display: flex;
+  width: 30rem;
+  gap: 0.5rem;
+  align-content: flex-end;
+}
+
+.logo-svg {
+  display: flex;
+  flex-wrap: wrap;
+  width: 6rem;
+  background-color: #f25c05;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.5rem;
+}
+.logo-svg svg {
+  color: #fff;
+}
+
+.funnel-icon {
+  margin-top: -0.9rem;
+}
+
+.logo-text {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.logo-acronym {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 4.5rem;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 0.5rem solid #fff;
+  line-height: 0.85;
+}
+
+.logo-full-text {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.25px;
+
+  display: flex;
+  align-items: flex-end;
+}
