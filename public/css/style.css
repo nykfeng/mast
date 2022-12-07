@@ -2,7 +2,7 @@
 :root {
   font-size: 62.5%;
 
-  --main-color: #00b4d8;
+  /* --main-color: #00b4d8;
   --secondary-color: #16e7dd;
   --main-opacity: #70cce0;
   --primary-gray-color: #eeeded;
@@ -14,7 +14,7 @@
   --transparent-gray: rgba(105, 105, 105, 0.514);
   --stock-green: #11b957;
   --stock-red: #b33030;
-  --warning-red: #a10000;
+  --warning-red: #a10000; */
 }
 
 *,
