@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 app.get("/webStatus", async (req, res) => {
   const result = await webStatusCheck();
-  res.send(result);
+  res.json(result);
 });
 
 app.listen(PORT, () => {
