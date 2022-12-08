@@ -1,51 +1,108 @@
 <% layout("/layouts/boilerplateHome.ejs") %>
 
     <main id="home-content">
-        <h1>Welcome, XYZ</h1>
 
-        <section class="system-status">
-            <div class="system-status-title">
+
+        <section id="system-status" class="status-container">
+            <div class="status-title">
                 <h1>System Status:</h1>
             </div>
 
-            <button class="system-status-collapse">
+            <button class="min-max" state="to-min">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
                 </svg>
-
             </button>
 
-            <div class="system-alerts-grid">
-                <div class="system-alert">
-                    <div class="system-alert-status">
+            <div class="alerts-grid">
+                <div class="alert" type="database-connection">
+                    <div class="alert-status">
                         <div class="system-light system-light-red"></div>
                     </div>
-                    <div class="system-alert-type">
+                    <div class="system-alert-name">
                         Database Connection
                     </div>
                 </div>
 
-                <div class="system-alert">
-                    <div class="system-alert-status">
+                <div class="alert">
+                    <div class="alert-status" type="scraping-bot">
                         <div class="system-light system-light-green"></div>
                     </div>
-                    <div class="system-alert-type">
+                    <div class="system-alert-name">
                         Scraping Bot
                     </div>
                 </div>
 
-                <div class="system-alert">
-                    <div class="system-alert-status">
+                <div class="alert">
+                    <div class="alert-status" type="logging-system">
                         <div class="system-light system-light-yellow"></div>
                     </div>
-                    <div class="system-alert-type">
+                    <div class="system-alert-name">
                         Logging System
                     </div>
                 </div>
             </div>
 
+            <div class="status-updated-time">
+                <p>Last updated: 30 minutes ago</p>
+            </div>
+        </section>
 
+        <section id="source-website-status" class="status-container">
+            <div class="source-website-status-title status-title">
+                <h1>Source Website Status:</h1>
+            </div>
+
+            <button class="min-max" state="to-min">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                </svg>
+            </button>
+
+            <div class="alerts-grid" site="businesswire">
+                <div class="alert">
+                    <div class="alert-status">
+                        <div class="source-website-light source-website-light-red"></div>
+                    </div>
+                    <div class="source-website-alert-name">
+                        businesswire
+                    </div>
+                </div>
+
+                <div class="alert" site="globenewswire">
+                    <div class="alert-status">
+                        <div class="source-website-light source-website-light-green"></div>
+                    </div>
+                    <div class="source-website-alert-name">
+                        globenewswire
+                    </div>
+                </div>
+
+                <div class="alert" site="prnewswire">
+                    <div class="alert-status">
+                        <div class="source-website-light source-website-light-yellow"></div>
+                    </div>
+                    <div class="source-website-alert-name">
+                        prnewswire
+                    </div>
+                </div>
+
+                <div class="alert" site="seekingalpha">
+                    <div class="alert-status">
+                        <div class="source-website-light source-website-light-yellow"></div>
+                    </div>
+                    <div class="source-website-alert-name">
+                        seekingalpha
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-updated-time">
+                <p>Last updated: 30 minutes ago</p>
+            </div>
         </section>
     </main>

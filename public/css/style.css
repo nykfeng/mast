@@ -34,11 +34,16 @@ a:active {
   color: inherit;
 }
 
+/* specific styles */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* specific styles */
+body {
+  background-color: #f1f1f1;
+}
+
 header {
   padding: 1rem;
   height: 12rem;
@@ -52,13 +57,22 @@ header {
 
 main {
   padding: 1.5rem;
+  max-width: 120rem;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
 }
 
-/* ---- START ---- header profile icon ---- */
+/* ---- START ---- header profile  ---- */
 .user-profile {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  justify-content: center;
+  gap: 1rem;
+  
   margin-right: 1rem;
 }
 
@@ -76,5 +90,13 @@ main {
   border: 0.3rem solid;
   color: #fff;
   opacity: 50%;
+  cursor: pointer;
 }
-/* ---- END ---- header profile icon ---- */
+
+.user-profile p {
+  color: #fff;
+  font-size: 1.2rem;
+  padding-top: 0.2rem;
+}
+
+/* ---- END ---- header profile  ---- */
