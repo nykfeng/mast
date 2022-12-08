@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Azeret+Mono:wght@100;200;300;400;500&family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
 :root {
   font-size: 62.5%;
+  font-family: "Josefin Sans", sans-serif;
 
   /* --main-color: #00b4d8;
   --secondary-color: #16e7dd;
@@ -49,6 +50,10 @@ header {
   background-color: #381a39;
 }
 
+main {
+  padding: 1.5rem;
+}
+
 /* ---- START ---- header profile icon ---- */
 .user-profile {
   display: flex;
@@ -66,7 +71,7 @@ header {
 }
 
 .user-icon {
-  width: 4.5rem;
+  width: 4rem;
   border-radius: 50%;
   border: 0.3rem solid;
   color: #fff;
