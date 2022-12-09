@@ -1,35 +1,21 @@
 import status from "./request/getStatus.js";
 import render from "./render/renderHTML.js";
 import timer from "./utilities/timer.js";
-
-const sourceWebsiteStatusEl = document.querySelector(
-  "#source-website-status .alerts-grid"
-);
-const webStatusUpdateMinuteEl = document.querySelector(
-  "#source-website-status .status-updated-time .minute"
-);
+import create from "./utilities/create.js";
 
 async function init() {
-  const webStatusData = await status.getWebStatus();
-  const webStatusTimer = Date.now();
-
-  timer.webStatus(webStatusTimer, webStatusUpdateMinuteEl);
-  webStatusData.forEach((web) => {
-    sourceWebsiteStatusEl.insertAdjacentHTML(
-      "beforeend",
-      render.webStatus(web)
-    );
-  });
-
+  await initialDataFetch();
   listeners();
 }
 
 init();
 
 function listeners() {
-  const minMaxBtn = document.querySelectorAll("button.min-max");
-
-  minMaxBtn.forEach((btn) => {
+  // status bar minimize and maximize button
+  const minMaxBtns = document.querySelectorAll(
+    ".status-container button.min-max"
+  );
+  minMaxBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (btn.getAttribute("state") === "to-min") {
         btn.setAttribute("state", "to-max");
@@ -54,4 +40,25 @@ function listeners() {
       }
     });
   });
+
+  // status bar refresh button
+  const refreshBtns = document.querySelectorAll(
+    ".status-container button.refresh"
+  );
+  refreshBtns.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      if (btn.getAttribute("state") === "to-refresh") {
+        btn.setAttribute("state", "refreshed");
+        if (btn.getAttribute("type") === "website-status") {
+          await create.webStatus();
+          timer.allowRefreshAgain(btn);
+        }
+      }
+    });
+  });
+}
+
+async function initialDataFetch() {
+  await create.webStatus();
+  await create.systemStatus();
 }

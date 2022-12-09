@@ -12,6 +12,7 @@ module.exports = async () => {
       result.push({
         name: web.websiteName,
         status,
+        url: web.websiteEntryUrl
       });
     }
 

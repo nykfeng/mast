@@ -11,12 +11,12 @@ function webStatus(website) {
         }"></div>
     </div>
     <div class="source-website-alert-name">
-    ${website.name}
+   <a href="${website.url}" target="_blank">${website.name}</a>
     </div>
 </div>
     `;
   return html;
 }
 export default {
-    webStatus,
+  webStatus,
 };
