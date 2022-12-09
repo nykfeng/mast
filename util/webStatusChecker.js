@@ -5,8 +5,10 @@ module.exports = async () => {
   const result = [];
   try {
     for (let web of webConfig) {
-      const ping = await axios.get(web.websiteEntryUrl);
-      const { status } = ping;
+      const ping = await axios.get(web.websiteEntryUrl).catch(function (error) {
+        console.log(error);
+      });
+      const { status } = ping || { status: 403 };
       result.push({
         name: web.websiteName,
         status,
@@ -15,6 +17,6 @@ module.exports = async () => {
 
     return result;
   } catch (err) {
-    console.log(err);
+    console.log("try catch error log", err);
   }
 };

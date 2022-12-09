@@ -33,10 +33,31 @@
   color: rgb(70, 70, 70);
 }
 
+.status-container button.min-max[state="to-max"] {
+  transform: rotate(180deg);
+  transition: all 500ms ease-in;
+}
+
+.status-container button.min-max[state="to-min"] {
+  transition: all 500ms ease-in;
+}
+
 .alerts-grid {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.alerts-grid[state="collpased"] {
+  position: relative;
+  opacity: 0.5;
+  transform: translateY(-150%);
+  transition: all 500ms ease-in;
+}
+
+.alerts-grid[state="expanded"] {
+  position: relative;
+  opacity: 1;
 }
 
 .alert {
