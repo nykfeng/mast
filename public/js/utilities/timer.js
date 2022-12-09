@@ -1,22 +1,22 @@
 const intervalIds = [];
 
-function statusCheck(then, element, type) {
+function statusCheckElapsed(then, timeElement, type) {
   intervalIds.push({
     [type]: setInterval(() => {
       const now = Date.now();
       const minuteDiff = (now - then) / 60000;
-      element.innerHTML = Math.round(minuteDiff);
+      timeElement.innerHTML = Math.round(minuteDiff);
     }, 60000),
   });
 }
 
-function allowRefreshAgain(element) {
+function allowRefreshAgain(refreshBtnElement) {
   setTimeout(() => {
-    element.setAttribute("state", "to-refresh");
+    refreshBtnElement.setAttribute("state", "to-refresh");
   }, 30000);
 }
 
-function clearingIntervals(type) {
+function clearingSetIntervals(type) {
   intervalIds.forEach((id) => {
     // Eg. if id.webStatus
     // clearInterval(id.webStatus)
@@ -28,7 +28,7 @@ function clearingIntervals(type) {
 
 export default {
   intervalIds,
-  statusCheck,
+  statusCheckElapsed,
   allowRefreshAgain,
-  clearingIntervals,
+  clearingSetIntervals,
 };

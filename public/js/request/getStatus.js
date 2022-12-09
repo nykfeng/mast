@@ -1,4 +1,4 @@
-const getWebStatus = async () => {
+const webStatus = async () => {
   const url = `/webStatus`;
   const res = await fetch(url, {
     method: "GET",
@@ -11,5 +11,5 @@ const getWebStatus = async () => {
 };
 
 export default {
-  getWebStatus,
+  webStatus,
 };
