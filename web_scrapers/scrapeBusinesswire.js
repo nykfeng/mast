@@ -77,10 +77,11 @@ async function scrapeNews(url, maxPageNum) {
     const [newsItemObjectList, over] = grabNews;
     nextPageUrl = grabNews[2];
 
-    // console.log(newsItemObjectList);
-    // console.log(
-    //   `page${pageNum}===============================================================================================================================================`
-    // );
+
+    console.log(newsItemObjectList);
+    console.log(
+      `page${pageNum} ENDED===============================================================================================================================================`
+    );
 
     if (over) {
       console.log("over");

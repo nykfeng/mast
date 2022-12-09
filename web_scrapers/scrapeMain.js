@@ -10,6 +10,7 @@ const scrape = async () => {
     businesswire.url,
     businesswire.maxPageNum
   );
+  console.log("In main: ");
   console.log(newsItemObjectList);
 };
 

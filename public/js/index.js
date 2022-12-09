@@ -1,16 +1,16 @@
-import fetching from "./utilities/create.js";
+import fetchAndCreate from "./utilities/create.js";
 import listening from "./utilities/listeners.js";
 
 async function init() {
-  await initialDataFetch();
+  await initialDataFetchAndCreate();
   listeners();
 }
 
 init();
 
-async function initialDataFetch() {
-  await fetching.webStatus();
-  await fetching.systemStatus();
+async function initialDataFetchAndCreate() {
+  await fetchAndCreate.webStatus();
+  await fetchAndCreate.systemStatus();
 }
 
 function listeners() {

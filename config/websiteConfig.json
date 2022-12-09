@@ -1,14 +1,16 @@
 [
   {
-    "websiteName": "prnewswire",
-    "websiteEntryUrl": "https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/",
+    "name": "prnewswire",
+    "entryUrl": "https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/",
     " hasPagination": true,
     "hasForeignLanguage": true,
     "requireClickNextPage": false,
     "pagination": {
-      "baseUrl": "https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/",
-      " queryString": "page=",
-      "queryStringSize": "pagesize="
+      "queryString": {
+        "baseUrl": "https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/?",
+        "queryStringPage": "page=",
+        "queryStringSize": "pagesize="
+      }
     },
     "selectors": {
       "getSection": ".arabiclistingcards",
@@ -19,12 +21,18 @@
     "requireSiteSpecificOperations": true
   },
   {
-    "websiteName": "businesswire",
-    "websiteEntryUrl": "https://www.businesswire.com/portal/site/home/news/subject/?vnsId=31333",
+    "name": "businesswire",
+    "entryUrl": "https://www.businesswire.com/portal/site/home/news/subject/?vnsId=31333",
     " hasPagination": false,
     "hasForeignLanguage": true,
     "requireClickNextPage": true,
-    "pagination": "",
+    "pagination": {
+      "template": {
+        "baseUrl": "https://www.businesswire.com//portal/site/home/template.PAGE/news/subject/?javax.portlet.tpst=08c2aa13f2fe3d4dc1b6751ae1de75dd&amp;javax.portlet.prp_08c2aa13f2fe3d4dc1b6751ae1de75dd_vnsId=31333&amp;javax.portlet.prp_08c2aa13f2fe3d4dc1b6751ae1de75dd_viewID=MY_PORTAL_VIEW&amp;javax.portlet.prp_08c2aa13f2fe3d4dc1b6751ae1de75dd_ndmHsc=v2*A1667998800000*B1670614327244*DgroupByDate*G",
+        "templatePage": "",
+        "baseUrlEnd": "*"
+      }
+    },
     "selectors": {
       "getSection": ".bwNewsList li",
       "getHref": "a.bwTitleLink",
@@ -34,15 +42,17 @@
     "requireSiteSpecificOperations": true
   },
   {
-    "websiteName": "globenewswire",
-    "websiteEntryUrl": "https://www.globenewswire.com/en/search/subject/MNA",
+    "name": "globenewswire",
+    "entryUrl": "https://www.globenewswire.com/en/search/subject/MNA",
     "hasPagination": true,
     "hasForeignLanguage": true,
     "requireClickNextPage": false,
     "pagination": {
-      "baseUrl": "https://www.globenewswire.com/en/search/subject/MNA",
-      "queryStringPage": "page=",
-      "queryStringSize": "pageSize="
+      "queryString": {
+        "baseUrl": "https://www.globenewswire.com/en/search/subject/MNA?",
+        "queryStringPage": "page=",
+        "queryStringSize": "pageSize="
+      }
     },
     "selectors": {
       "getSection": ".pagnition-row",
@@ -53,19 +63,21 @@
     "requireSiteSpecificOperations": true
   },
   {
-    "websiteName": "seekingalpha",
-    "websiteEntryUrl": "https://seekingalpha.com/market-news/m-a",
+    "name": "seekingalpha",
+    "entryUrl": "https://seekingalpha.com/market-news/m-a",
     " hasPagination": true,
     "hasForeignLanguage": false,
     "requireClickNextPage": false,
     " pagination": {
-      "baseUrl": "https://seekingalpha.com/market-news/m-a",
-      " queryStringPage": "page=",
-      "queryStringSize": ""
+      "queryString": {
+        "baseUrl": "https://seekingalpha.com/market-news/m-a?",
+        "queryStringPage": "page=",
+        "queryStringSize": ""
+      }
     },
     " selectors": {
       "getSection": "[data-test-id=original-market-news-card] [data-test-id=post-list-item]",
-      " getHref": "a[data-test-id=post-list-item-title]",
+      "getHref": "a[data-test-id=post-list-item-title]",
       "getDate": "[data-test-id=post-list-date]",
       "getTitle": "[data-test-id=post-list-item-title]"
     },
