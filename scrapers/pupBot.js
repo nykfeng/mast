@@ -2,10 +2,10 @@ const puppeteer = require("puppeteer");
 const dataCleanser = require("../util/dataCleanser");
 const webConfig = require("../config/websiteConfig.json");
 
-const website = webConfig[1];
+const website = webConfig[0];
 
+// ==== testing code =====
 console.log(website);
-
 website.exclusionList.forEach((excludeType) => {
   console.log("excludeType: ", excludeType);
   console.log(
@@ -19,10 +19,16 @@ website.exclusionList.forEach((excludeType) => {
 });
 
 const pupScrape = async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  await page.goto(website.entryUrl);
+
   console.log("Accessing: ", website.entryUrl);
+  const response = await page.goto(website.entryUrl);
+
+  // if response.headers.status != 200
+  // stop operations
+  // await page.close()?
+
   page.waitForSelector(website.selectors.getSection);
 
   const scrapedData = await page.evaluate((website) => {
@@ -36,6 +42,7 @@ const pupScrape = async () => {
       let toExclude = false;
       website.exclusionList.forEach((excludeType) => {
         let getExcludeValue = "";
+        // if the element exists
         if (el.querySelector(website.exclusionSelectors[excludeType])) {
           getExcludeValue = el.querySelector(
             website.exclusionSelectors[excludeType]
@@ -53,7 +60,7 @@ const pupScrape = async () => {
 
       // determined this item is not wanted, skip this iteration of newsPieceEls
       if (toExclude) continue;
-      // grab the main three pieces of information
+      // if not, grab the main three pieces of information
       result.push({
         title:
           el.querySelector(website.selectors.getTitle)[
@@ -71,8 +78,9 @@ const pupScrape = async () => {
     }
     return result;
   }, website);
-  console.log("Out of evaluate");
 
+  // ==== testing code =====
+  console.log("Out of evaluate");
   console.log(scrapedData);
   console.log("Size: ", scrapedData.length);
 

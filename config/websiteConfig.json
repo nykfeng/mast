@@ -2,7 +2,7 @@
   {
     "name": "prnewswire",
     "entryUrl": "https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/",
-    " hasPagination": true,
+    "hasPagination": true,
     "hasForeignLanguage": true,
     "requireClickNextPage": false,
     "pagination": {
@@ -17,6 +17,21 @@
       "getHref": "a.newsreleaseconsolidatelink",
       "getDate": ".card h3 small",
       "getTitle": ".card h3"
+    },
+    "selectorAttributes": {
+      "getHref": "href",
+      "getDate": "textContent",
+      "getTitle": "innerHTML"
+    },
+    "exclusionList": ["language"],
+    "exclusionSelectors": {
+      "language": "[lang]"
+    },
+    "exclusionSelectorAttributes": {
+      "language": "lang"
+    },
+    "exclusionCriteria": {
+      "language": ["fr", "de", "pt", "es", "nl"]
     },
     "requireSiteSpecificOperations": true
   },

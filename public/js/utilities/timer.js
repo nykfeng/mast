@@ -1,11 +1,11 @@
 const intervalIds = [];
 
-function statusCheckElapsed(then, timeElement, type) {
+function statusCheckElapsed(then, timeElapsedElement, type) {
   intervalIds.push({
     [type]: setInterval(() => {
       const now = Date.now();
       const minuteDiff = (now - then) / 60000;
-      timeElement.innerHTML = Math.round(minuteDiff);
+      timeElapsedElement.innerHTML = Math.round(minuteDiff);
     }, 60000),
   });
 }
