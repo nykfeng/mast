@@ -23,7 +23,7 @@
       "getDate": "textContent",
       "getTitle": "innerHTML"
     },
-    "exclusionList": ["language"],
+    "exclusionTypeList": ["language"],
     "exclusionSelectors": {
       "language": "[lang]"
     },
@@ -59,7 +59,7 @@
       "getDate": "dateTime",
       "getTitle": "textContent"
     },
-    "exclusionList": ["language"],
+    "exclusionTypeList": ["language"],
     "exclusionSelectors": {
       "language": ".bwLanguage img"
     },
@@ -90,6 +90,34 @@
       "getDate": "[data-autid=article-published-date]",
       "getTitle": ".pagging-list-item-text-container [data-autid=article-url]"
     },
+    "selectorAttributes": {
+      "getHref": "href",
+      "getDate": "textContent",
+      "getTitle": "textContent"
+    },
+    "exclusionTypeList": ["source"],
+    "exclusionSelectors": {
+      "source": ".dashboard-organization-name"
+    },
+    "exclusionSelectorAttributes": {
+      "source": "textContent"
+    },
+    "exclusionCriteria": {
+      "source": [
+        "Rathbone Brothers Plc",
+        "Dimensional Fund Advisors Ltd",
+        "Investec Wealth & Investment Limited",
+        "Proactive",
+        "Fortune Business Insights",
+        "Market Research Future",
+        "PayPoint plc",
+        "Octopus Investments",
+        "Canaccord Genuity Wealth Limited",
+        "Invesco ltd",
+        "HSBC Bank Plc",
+        "Jupiter Asset Management"
+      ]
+    },
     "requireSiteSpecificOperations": true
   },
   {
@@ -105,12 +133,21 @@
         "queryStringSize": ""
       }
     },
-    " selectors": {
+    "selectors": {
       "getSection": "[data-test-id=original-market-news-card] [data-test-id=post-list-item]",
       "getHref": "a[data-test-id=post-list-item-title]",
       "getDate": "[data-test-id=post-list-date]",
       "getTitle": "[data-test-id=post-list-item-title]"
     },
+    "selectorAttributes": {
+      "getHref": "href",
+      "getDate": "textContent",
+      "getTitle": "textContent"
+    },
+    "exclusionTypeList": [],
+    "exclusionSelectors": null,
+    "exclusionSelectorAttributes": null,
+    "exclusionCriteria": null,
     "requireSiteSpecificOperations": true
   }
 ]

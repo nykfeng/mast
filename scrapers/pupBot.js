@@ -2,11 +2,11 @@ const puppeteer = require("puppeteer");
 const dataCleanser = require("../util/dataCleanser");
 const webConfig = require("../config/websiteConfig.json");
 
-const website = webConfig[0];
+const website = webConfig[3];
 
 // ==== testing code =====
 console.log(website);
-website.exclusionList.forEach((excludeType) => {
+website.exclusionTypeList.forEach((excludeType) => {
   console.log("excludeType: ", excludeType);
   console.log(
     "website.exclusionSelectors[excludeType] ",
@@ -19,7 +19,7 @@ website.exclusionList.forEach((excludeType) => {
 });
 
 const pupScrape = async () => {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   console.log("Accessing: ", website.entryUrl);
@@ -28,8 +28,7 @@ const pupScrape = async () => {
   // if response.headers.status != 200
   // stop operations
   // await page.close()?
-
-  page.waitForSelector(website.selectors.getSection);
+  await page.waitForSelector(website.selectors.getSection);
 
   const scrapedData = await page.evaluate((website) => {
     const result = [];
@@ -40,13 +39,13 @@ const pupScrape = async () => {
     for (let el of newsPieceEls) {
       // run exlcusion list to exclude unwanted items
       let toExclude = false;
-      website.exclusionList.forEach((excludeType) => {
+      website.exclusionTypeList.forEach((excludeType) => {
         let getExcludeValue = "";
         // if the element exists
         if (el.querySelector(website.exclusionSelectors[excludeType])) {
-          getExcludeValue = el.querySelector(
-            website.exclusionSelectors[excludeType]
-          )[website.exclusionSelectorAttributes[excludeType]];
+          getExcludeValue = el
+            .querySelector(website.exclusionSelectors[excludeType])
+            [website.exclusionSelectorAttributes[excludeType]].trim();
         }
         if (
           website.exclusionCriteria[excludeType].find(
