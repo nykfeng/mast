@@ -39,6 +39,21 @@
       "getDate": ".bwTimestamp [datetime]",
       "getTitle": ".bwTitleLink [itemprop=headline]"
     },
+    "selectorAttributes": {
+      "getHref": "href",
+      "getDate": "dateTime",
+      "getTitle": "textContent"
+    },
+    "exclusionList": ["language"],
+    "exclusionSelectors": {
+      "language": ".bwLanguage img"
+    },
+    "exclusionSelectorAttributes": {
+      "language": "title"
+    },
+    "exclusionCriteria": {
+      "language": ["Translations available"]
+    },
     "requireSiteSpecificOperations": true
   },
   {
