@@ -1,10 +1,13 @@
 const puppeteer = require("puppeteer");
 
-async function scrapeNews(url, maxPageNum) {
+const scrapeNews = async (url, maxPageNum) => {
   //open the page
   const browser = await puppeteer.launch(); //{headless: false} for seeing the action
   let page = await browser.newPage();
   await page.goto(url);
+
+  //to be returned
+  const newsItemObjectListAllPages = [];
 
   let nextPageUrl = null;
 
@@ -18,7 +21,7 @@ async function scrapeNews(url, maxPageNum) {
     //since it's like frontend, backend feature is not valid here, no require(), and consoloe.log() will be on the browser, not in the terminal
     //and this function scope can't interact with anything outside of the scope, we have to pass argument like https://stackoverflow.com/questions/46088351/how-can-i-pass-variable-into-an-evaluate-function
     const grabNews = await page.evaluate((pageNum) => {
-      const newsItemObjectList = [];
+      const newsItemObjectListOnePage = [];
       const today = new Date();
 
       //get all the relavant headline <li>s
@@ -50,15 +53,14 @@ async function scrapeNews(url, maxPageNum) {
           });
 
           //newUrl for object
-          let newsUrl = null;
           let anchorElement = li.querySelector("a.bwTitleLink");
-          newsUrl = anchorElement.href;
+          let newsUrl = anchorElement.href;
 
           //title for object
           const title = anchorElement.children[0].innerText;
 
-          //create object of class NewsItem
-          newsItemObjectList.push({ date, imgUrlList, newsUrl, title });
+          //create object
+          newsItemObjectListOnePage.push({ date, imgUrlList, newsUrl, title });
         } else {
           over = true;
           break;
@@ -70,26 +72,27 @@ async function scrapeNews(url, maxPageNum) {
         `#paging div :nth-child(${pageNum + 1})`
       ).href;
 
-      return [newsItemObjectList, over, nextPageUrl];
+      return [newsItemObjectListOnePage, over, nextPageUrl];
     }, pageNum);
     //===================================================================================================================================================================================
 
-    const [newsItemObjectList, over] = grabNews;
+    const [newsItemObjectListOnePage, over] = grabNews;
     nextPageUrl = grabNews[2];
 
+    newsItemObjectListAllPages.push(...newsItemObjectListOnePage);
 
-    console.log(newsItemObjectList);
-    console.log(
-      `page${pageNum} ENDED===============================================================================================================================================`
-    );
+    // console.log(newsItemObjectList);
+    // console.log(
+    //   `page${pageNum}===============================================================================================================================================`
+    // );
 
     if (over) {
       console.log("over");
       await browser.close();
-      return newsItemObjectList;
+      return newsItemObjectListAllPages;
     }
   }
   //end of page-scraping loop
-}
+};
 
 module.exports = scrapeNews;
