@@ -1,24 +1,20 @@
 const puppeteer = require("puppeteer");
-const dataCleanser = require("../util/dataCleanser");
-const webConfig = require("../config/websiteConfig.json");
 
-const website = webConfig[3];
+module.exports.pupBot = async (website) => {
+  // ==== testing code =====
+  console.log(website);
+  website.exclusionTypeList.forEach((excludeType) => {
+    console.log("excludeType: ", excludeType);
+    console.log(
+      "website.exclusionSelectors[excludeType] ",
+      website.exclusionSelectors[excludeType]
+    );
+    console.log(
+      "website.exclusionSelectorAttributes[excludeType]: ",
+      website.exclusionSelectorAttributes[excludeType]
+    );
+  });
 
-// ==== testing code =====
-console.log(website);
-website.exclusionTypeList.forEach((excludeType) => {
-  console.log("excludeType: ", excludeType);
-  console.log(
-    "website.exclusionSelectors[excludeType] ",
-    website.exclusionSelectors[excludeType]
-  );
-  console.log(
-    "website.exclusionSelectorAttributes[excludeType]: ",
-    website.exclusionSelectorAttributes[excludeType]
-  );
-});
-
-const pupScrape = async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
@@ -27,10 +23,11 @@ const pupScrape = async () => {
 
   // if response.headers.status != 200
   // stop operations
-  // await page.close()?
+  // await page.close()? return
+
   await page.waitForSelector(website.selectors.getSection);
 
-  const scrapedData = await page.evaluate((website) => {
+  const obtainedData = await page.evaluate((website) => {
     const result = [];
     const newsPieceEls = document.querySelectorAll(
       website.selectors.getSection
@@ -80,10 +77,10 @@ const pupScrape = async () => {
 
   // ==== testing code =====
   console.log("Out of evaluate");
-  console.log(scrapedData);
-  console.log("Size: ", scrapedData.length);
+  console.log(obtainedData);
+  console.log("Size: ", obtainedData.length);
 
   await browser.close();
-};
 
-pupScrape();
+  return obtainedData;
+};
