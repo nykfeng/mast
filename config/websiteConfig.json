@@ -5,11 +5,12 @@
     "hasPagination": true,
     "hasForeignLanguage": true,
     "requireClickNextPage": false,
+    "paginationType": "queryString",
     "pagination": {
       "queryString": {
         "baseUrl": "https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/?",
-        "queryStringPage": "page=",
-        "queryStringSize": "pagesize="
+        "pageNumber": "page=",
+        "pageSize": "pagesize="
       }
     },
     "selectors": {
@@ -38,13 +39,14 @@
   {
     "name": "businesswire",
     "entryUrl": "https://www.businesswire.com/portal/site/home/news/subject/?vnsId=31333",
-    " hasPagination": false,
+    "hasPagination": false,
     "hasForeignLanguage": true,
     "requireClickNextPage": true,
+    "paginationType": "template",
     "pagination": {
       "template": {
         "baseUrl": "https://www.businesswire.com//portal/site/home/template.PAGE/news/subject/?javax.portlet.tpst=08c2aa13f2fe3d4dc1b6751ae1de75dd&amp;javax.portlet.prp_08c2aa13f2fe3d4dc1b6751ae1de75dd_vnsId=31333&amp;javax.portlet.prp_08c2aa13f2fe3d4dc1b6751ae1de75dd_viewID=MY_PORTAL_VIEW&amp;javax.portlet.prp_08c2aa13f2fe3d4dc1b6751ae1de75dd_ndmHsc=v2*A1667998800000*B1670614327244*DgroupByDate*G",
-        "templatePage": "",
+        "pageNumber": "",
         "baseUrlEnd": "*"
       }
     },
@@ -77,11 +79,12 @@
     "hasPagination": true,
     "hasForeignLanguage": true,
     "requireClickNextPage": false,
+    "paginationType": "queryString",
     "pagination": {
       "queryString": {
         "baseUrl": "https://www.globenewswire.com/en/search/subject/MNA?",
-        "queryStringPage": "page=",
-        "queryStringSize": "pageSize="
+        "pageNumber": "page=",
+        "pageSize": "pageSize="
       }
     },
     "selectors": {
@@ -126,11 +129,12 @@
     " hasPagination": true,
     "hasForeignLanguage": false,
     "requireClickNextPage": false,
-    " pagination": {
+    "paginationType": "queryString",
+    "pagination": {
       "queryString": {
         "baseUrl": "https://seekingalpha.com/market-news/m-a?",
-        "queryStringPage": "page=",
-        "queryStringSize": ""
+        "pageNumber": "page=",
+        "pageSize": ""
       }
     },
     "selectors": {

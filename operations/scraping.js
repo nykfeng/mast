@@ -3,8 +3,7 @@ const dataCleanser = require("../util/dataCleanser");
 const scraper = require("../scrapers/pupBot");
 
 // load config
-const website = webConfig[1];
-await scraper.pupBot(website);
+const website = webConfig[0];
 
 // get selected date (max 10 days ago)
 
@@ -13,6 +12,12 @@ await scraper.pupBot(website);
 // start bot in loop (first websites then pages), criteria = date !end, max day diff = 10
 
 // receive data
+let pageNum = 2;
+(async () => {
+  const data = await scraper.pupBot(website, pageNum);
+  console.log(data);
+  console.log("Number of qualified transactions: ", data.length);
+})();
 
 // end loop on meeting criteria
 

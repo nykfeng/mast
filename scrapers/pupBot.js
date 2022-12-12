@@ -1,31 +1,19 @@
 const puppeteer = require("puppeteer");
 
-module.exports.pupBot = async (website) => {
-  // ==== testing code =====
-  console.log(website);
-  website.exclusionTypeList.forEach((excludeType) => {
-    console.log("excludeType: ", excludeType);
-    console.log(
-      "website.exclusionSelectors[excludeType] ",
-      website.exclusionSelectors[excludeType]
-    );
-    console.log(
-      "website.exclusionSelectorAttributes[excludeType]: ",
-      website.exclusionSelectorAttributes[excludeType]
-    );
-  });
-
+module.exports.pupBot = async (website, pageNum) => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  console.log("Accessing: ", website.entryUrl);
-  const response = await page.goto(website.entryUrl);
+  page.setDefaultTimeout(60000);
 
-  // if response.headers.status != 200
-  // stop operations
-  // await page.close()? return
+  const { paginationType, pagination } = website;
+  const url = getPageUrl(pageNum, { paginationType, pagination });
+
+  console.log("Accessing: ", url);
+  await page.goto(url);
 
   await page.waitForSelector(website.selectors.getSection);
+  console.log("Section selector loaded successful");
 
   const obtainedData = await page.evaluate((website) => {
     const result = [];
@@ -75,12 +63,15 @@ module.exports.pupBot = async (website) => {
     return result;
   }, website);
 
-  // ==== testing code =====
-  console.log("Out of evaluate");
-  console.log(obtainedData);
-  console.log("Size: ", obtainedData.length);
-
   await browser.close();
 
   return obtainedData;
 };
+
+function getPageUrl(pageNum, options) {
+  const pagination = options.pagination[options.paginationType];
+
+  // base url + page number query + page number
+  const pageUrl = pagination.baseUrl + pagination.pageNumber + pageNum;
+  return pageUrl;
+}
