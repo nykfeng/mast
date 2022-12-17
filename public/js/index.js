@@ -9,8 +9,12 @@ async function init() {
 init();
 
 async function initialDataFetchAndCreate() {
+  // status
   await fetchAndCreate.webStatus();
   await fetchAndCreate.systemStatus();
+
+  // stats
+  await fetchAndCreate.graphStatsDailyTransactionNumber();
 }
 
 function listeners() {

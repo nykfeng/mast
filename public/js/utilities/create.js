@@ -1,4 +1,5 @@
-import get from "../request/getStatus.js";
+import getStatus from "../request/getStatus.js";
+import getStats from "../request/getStatistics.js";
 import render from "../render/renderHTML.js";
 import timer from "./timer.js";
 
@@ -12,7 +13,7 @@ async function webStatus() {
   }
 
   // getting source website status from server
-  const webStatusData = await get.webStatus();
+  const webStatusData = await getStatus.webStatus();
   // updating these status as HTML
   webStatusData.forEach((web) => {
     sourceWebsiteStatusEl.insertAdjacentHTML(
@@ -29,7 +30,7 @@ async function webStatus() {
   webStatusUpdateMinuteEl.innerHTML = 0;
 
   // Check if there are previous intervals, clear them all
-  timer.clearingSetIntervals("webStatus")
+  timer.clearingSetIntervals("webStatus");
 
   const statusTimer = Date.now();
   timer.statusCheckElapsed(statusTimer, webStatusUpdateMinuteEl, "webStatus");
@@ -46,12 +47,24 @@ async function systemStatus() {
   systemStatusUpdateMinuteEl.innerHTML = 0;
 
   // Check if there are previous intervals, clear them all
-  timer.clearingSetIntervals("systemStatus")
+  timer.clearingSetIntervals("systemStatus");
 
   const statusTimer = Date.now();
-  timer.statusCheckElapsed(statusTimer, systemStatusUpdateMinuteEl, "systemStatus");
+  timer.statusCheckElapsed(
+    statusTimer,
+    systemStatusUpdateMinuteEl,
+    "systemStatus"
+  );
 }
+
+async function graphStatsDailyTransactionNumber() {
+  // getting transaction number from server
+  const dailyTransactionNumberData =
+    await getStats.graphStatsDailyTransactionNumber();
+}
+
 export default {
   webStatus,
   systemStatus,
+  graphStatsDailyTransactionNumber,
 };

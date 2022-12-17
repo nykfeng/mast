@@ -5,7 +5,9 @@ const ejsMate = require("ejs-mate");
 
 const PORT = process.env.PORT || 4080;
 
+// importing from other modules
 const webStatusCheck = require("./util/webStatusChecker");
+const transactionNumberForGraph = require("./seeding/transactionNumberByDate.json");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +23,10 @@ app.get("/", (req, res) => {
 app.get("/webStatus", async (req, res) => {
   const result = await webStatusCheck();
   res.json(result);
+});
+
+app.get("/graphStatsDailyTransactionNumber", async (req, res) => {
+  res.json(transactionNumberForGraph);
 });
 
 app.listen(PORT, () => {
