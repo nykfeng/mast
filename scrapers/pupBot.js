@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 
 module.exports.pupBot = async (website, pageNum) => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   page.setDefaultTimeout(60000);
@@ -10,10 +10,20 @@ module.exports.pupBot = async (website, pageNum) => {
   const url = getPageUrl(pageNum, { paginationType, pagination });
 
   console.log("Accessing: ", url);
-  await page.goto(url);
+  await page.goto(url, { waitUntil: "networkidle0" });
 
-  await page.waitForSelector(website.selectors.getSection);
-  console.log("Section selector loaded successful");
+  await page.setJavaScriptEnabled(true);
+  try {
+    await page.waitForSelector(website.selectors.getSection);
+    console.log("Section selector loaded successful");
+  } catch (err) {
+    console.log(err.message);
+    const data = await page.evaluate(
+      () => document.querySelector("*").outerHTML
+    );
+
+    console.log(data);
+  }
 
   const obtainedData = await page.evaluate((website) => {
     const result = [];
@@ -22,7 +32,7 @@ module.exports.pupBot = async (website, pageNum) => {
     );
 
     for (let el of newsPieceEls) {
-      // run exlcusion list to exclude unwanted items
+      // 1. ---- run exlcusion list to exclude unwanted items
       let toExclude = false;
       website.exclusionTypeList.forEach((excludeType) => {
         let getExcludeValue = "";
@@ -42,9 +52,9 @@ module.exports.pupBot = async (website, pageNum) => {
         }
       });
 
-      // determined this item is not wanted, skip this iteration of newsPieceEls
+      // 2. ---- determined this item is not wanted, skip this iteration of newsPieceEls
       if (toExclude) continue;
-      // if not, grab the main three pieces of information
+      // 3. ---- if not, grab the main three pieces of information
       result.push({
         title:
           el.querySelector(website.selectors.getTitle)[
