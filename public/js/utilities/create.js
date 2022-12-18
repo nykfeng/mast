@@ -2,6 +2,7 @@ import getStatus from "../request/getStatus.js";
 import getStats from "../request/getStatistics.js";
 import render from "../render/renderHTML.js";
 import timer from "./timer.js";
+import calendar from "./calendar.js";
 
 async function webStatus() {
   const sourceWebsiteStatusEl = document.querySelector(
@@ -70,8 +71,21 @@ async function graphStatsDailyTransactionNumber() {
     await getStats.graphStatsDailyTransactionNumber();
 }
 
+function calendarMonthCard() {
+  const monthEl = document.querySelector("#calendar .month");
+  const calendarCard = calendar.daysInMonthCard(new Date());
+  const numberOfRows = Math.ceil(calendarCard.length / 7);
+  for (let i = 0; i < numberOfRows; i++) {
+    monthEl.insertAdjacentHTML(
+      "beforeend",
+      render.calendarWeek(calendarCard, i)
+    );
+  }
+}
+
 export default {
   webStatus,
   systemStatus,
   graphStatsDailyTransactionNumber,
+  calendarMonthCard,
 };

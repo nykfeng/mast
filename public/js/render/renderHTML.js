@@ -17,6 +17,27 @@ function webStatus(website) {
     `;
   return html;
 }
+
+function calendarWeek(monthArr, index) {
+  let localIndex = index * 7;
+  // const maxIndex = (index + 1) * 7;
+
+  let weekdayStr = "";
+
+  for (let i = 0; i < 7; i++) {
+    weekdayStr += `<span>${monthArr[localIndex]}</span>`;
+    localIndex++;
+  }
+
+  const html = `
+  <div class="day" row="1">
+    ${weekdayStr}
+  </div>
+  `;
+  return html;
+}
+
 export default {
   webStatus,
+  calendarWeek,
 };
