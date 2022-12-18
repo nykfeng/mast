@@ -31,8 +31,6 @@ function toExpandContainer(el) {
   toBeExpandedEl.setAttribute("state", "expanded");
 }
 
-
-
 export default {
   toCollapseContainer,
   toExpandContainer,

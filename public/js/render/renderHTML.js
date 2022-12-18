@@ -18,19 +18,18 @@ function webStatus(website) {
   return html;
 }
 
-function calendarWeek(monthArr, index) {
+function calendarWeek(tileData, index) {
   let localIndex = index * 7;
-  // const maxIndex = (index + 1) * 7;
 
   let weekdayStr = "";
 
   for (let i = 0; i < 7; i++) {
-    weekdayStr += `<span>${monthArr[localIndex]}</span>`;
+    weekdayStr += `<span localDate="${tileData[localIndex].dateData}">${tileData[localIndex].tileData}</span>`;
     localIndex++;
   }
 
   const html = `
-  <div class="day" row="1">
+  <div class="day" row="${index + 1}">
     ${weekdayStr}
   </div>
   `;

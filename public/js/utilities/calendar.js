@@ -1,62 +1,109 @@
 function daysInMonthCard(selectedDay) {
-//   const selectedDay = new Date();
-  const hr = selectedDay.getHours();
-  const min = selectedDay.getMinutes();
-  const sec = selectedDay.getSeconds();
-  const d = selectedDay.getDate();
-  const y = selectedDay.getFullYear();
+  const dateObj = dateObject(selectedDay);
 
-  const firstDayOfMonth = new Date(selectedDay.getFullYear(), selectedDay.getMonth(), 1);
-  const lastDayOfMonth = new Date(selectedDay.getFullYear(), selectedDay.getMonth() + 1, 0);
-  const numberOfDaysInMonth = new Date(
-    selectedDay.getFullYear(),
-    selectedDay.getMonth() + 1,
-    0
-  ).getDate();
+  // const numberOfDaysInCard =
+  //   dateObj.numberOfDaysInMonth +
+  //   dateObj.firstDayOfMonth.getDay() +
+  //   (6 - dateObj.lastDayOfMonth.getDay());
 
-  //   const wd = weekday[selectedDay.getDay()];
-  //   const mt = month[selectedDay.getMonth()];
-  console.log("d :", d);
-  console.log("y :", y);
+  // console.log("numberOfDaysInCard: ", numberOfDaysInCard);
 
-  console.log("selectedDay.getDay(): ", selectedDay.getDay());
-  console.log("selectedDay.getMonth(): ", selectedDay.getMonth());
+  let dayToDisplayOnCard = [];
 
-  const numberOfDaysInCard =
-    numberOfDaysInMonth +
-    firstDayOfMonth.getDay() +
-    (6 - lastDayOfMonth.getDay());
+  for (let i = 0; i < dateObj.firstDayOfMonth.getDay(); i++) {
+    let localDate = new Date(
+      dateObj.y,
+      dateObj.m,
+      i + 1 - dateObj.firstDayOfMonth.getDay()
+    );
+    dayToDisplayOnCard.push({ tileData: "-", dateData: localDate });
+  }
 
-  console.log("numberOfDaysInCard: ", numberOfDaysInCard);
+  for (let i = 1; i < dateObj.numberOfDaysInMonth + 1; i++) {
+    let localDate = new Date(dateObj.y, dateObj.m, i);
+    dayToDisplayOnCard.push({ tileData: i, dateData: localDate });
+  }
 
-  const dayToDisplayOnCard = fillDaysInMonthCard(
-    firstDayOfMonth,
-    numberOfDaysInMonth,
-    lastDayOfMonth
-  );
-  console.log("dayToDisplayOnCard: ");
-  console.log(dayToDisplayOnCard);
+  for (let i = 0; i < 6 - dateObj.lastDayOfMonth.getDay(); i++) {
+    let localDate = new Date(dateObj.y, dateObj.m + 1, i + 1);
+    dayToDisplayOnCard.push({ tileData: "-", dateData: localDate });
+  }
+
   return dayToDisplayOnCard;
 }
 
-function fillDaysInMonthCard(
-  firstDayOfMonth,
-  numberOfDaysInMonth,
-  lastDayOfMonth
-) {
-  let dayToDisplayOnCard = [];
-  for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
-    dayToDisplayOnCard.push("-");
-  }
-  for (let i = 1; i < numberOfDaysInMonth + 1; i++) {
-    dayToDisplayOnCard.push(i);
-  }
-  for (let i = 0; i < 6 - lastDayOfMonth.getDay(); i++) {
-    dayToDisplayOnCard.push("-");
-  }
-  return dayToDisplayOnCard;
+function textInDateCard(selectedDate) {
+  const obj = dateObject(selectedDate);
+  const { y, d, monthName, weekdayName } = obj;
+  return { y, d, monthName, weekdayName };
+}
+
+function monthWeekdayString(date) {
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const wd = weekday[date.getDay()];
+  const mt = month[date.getMonth()];
+
+  return { monthName: mt, weekdayName: wd };
+}
+
+function dateObject(date) {
+  const hr = date.getHours();
+  const min = date.getMinutes();
+  const sec = date.getSeconds();
+  const m = date.getMonth();
+  const d = date.getDate();
+  const y = date.getFullYear();
+
+  const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+  const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  const numberOfDaysInMonth = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
+
+  const { monthName, weekdayName } = monthWeekdayString(date);
+
+  return {
+    y,
+    m,
+    d,
+    hr,
+    min,
+    sec,
+    monthName,
+    weekdayName,
+    firstDayOfMonth,
+    lastDayOfMonth,
+    numberOfDaysInMonth,
+  };
 }
 
 export default {
   daysInMonthCard,
+  textInDateCard,
 };

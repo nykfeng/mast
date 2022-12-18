@@ -12,7 +12,8 @@
   display: flex;
   flex-wrap: wrap;
   width: 6rem;
-  background-color: #f25c05;
+  /* background-color: #f25c05; */
+  background-color: var(--main-orange);
   padding: 0.1rem 0.3rem;
   border-radius: 0.5rem;
 }

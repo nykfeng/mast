@@ -17,8 +17,9 @@ async function initialDataFetchAndCreate() {
   // stats
   await fetchAndCreate.graphStatsDailyTransactionNumber();
 
-  // results
+  // results section
   fetchAndCreate.calendarMonthCard();
+  fetchAndCreate.calendarDateCard();
 }
 
 function listeners() {

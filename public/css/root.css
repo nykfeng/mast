@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Azeret+Mono:wght@100;200;300;400;500&family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
+
+:root {
+  font-size: 62.5%;
+  font-family: "Josefin Sans", sans-serif;
+
+  --main-orange: #f25c05;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}

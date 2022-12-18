@@ -72,15 +72,30 @@ async function graphStatsDailyTransactionNumber() {
 }
 
 function calendarMonthCard() {
-  const monthEl = document.querySelector("#calendar .month");
-  const calendarCard = calendar.daysInMonthCard(new Date());
-  const numberOfRows = Math.ceil(calendarCard.length / 7);
+  const monthCardEl = document.querySelector("#calendar .month");
+  const monthCardData = calendar.daysInMonthCard(new Date());
+  const numberOfRows = Math.ceil(monthCardData.length / 7);
   for (let i = 0; i < numberOfRows; i++) {
-    monthEl.insertAdjacentHTML(
+    monthCardEl.insertAdjacentHTML(
       "beforeend",
-      render.calendarWeek(calendarCard, i)
+      render.calendarWeek(monthCardData, i)
     );
   }
+}
+
+function calendarDateCard() {
+  const dateEl = document.querySelector("#calendar .date");
+  const monthTextEl = dateEl.querySelector("#monthName");
+  const dayTextEl = dateEl.querySelector("#day");
+  const weekdayTextEl = dateEl.querySelector("#weekdayName");
+  const yearTextEl = dateEl.querySelector("#year");
+
+  const selectedDate = new Date();
+
+  monthTextEl.textContent = calendar.textInDateCard(selectedDate).monthName;
+  weekdayTextEl.textContent = calendar.textInDateCard(selectedDate).weekdayName;
+  dayTextEl.textContent = calendar.textInDateCard(selectedDate).d;
+  yearTextEl.textContent = calendar.textInDateCard(selectedDate).y;
 }
 
 export default {
@@ -88,4 +103,5 @@ export default {
   systemStatus,
   graphStatsDailyTransactionNumber,
   calendarMonthCard,
+  calendarDateCard,
 };
