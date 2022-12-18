@@ -1,5 +1,6 @@
 import timer from "./timer.js";
 import fetching from "./create.js";
+import animate from "./animation.js";
 
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
@@ -10,20 +11,10 @@ function statusMinimizeAndMaximizeBtns() {
     btn.addEventListener("click", () => {
       if (btn.getAttribute("state") === "to-min") {
         btn.setAttribute("state", "to-max");
-        const toBeCallapedEl = btn.nextElementSibling;
-        const toBeHiddenEl = toBeCallapedEl.nextElementSibling;
-        toBeCallapedEl.setAttribute("state", "collpased");
-        toBeHiddenEl.style.display = "none";
-        setTimeout(() => {
-          toBeCallapedEl.style.display = "none";
-        }, 250);
+        animate.toCollapseContainer(btn);
       } else {
         btn.setAttribute("state", "to-min");
-        const toBeExpandedEl = btn.nextElementSibling;
-        const toBeUnhiddenEl = toBeExpandedEl.nextElementSibling;
-        toBeUnhiddenEl.style.display = "flex";
-        toBeExpandedEl.style.display = "flex";
-        toBeExpandedEl.setAttribute("state", "expanded");
+        animate.toExpandContainer(btn);
       }
     });
   });
@@ -38,6 +29,7 @@ function statusRefreshBtns() {
     btn.addEventListener("click", async () => {
       if (btn.getAttribute("state") === "to-refresh") {
         btn.setAttribute("state", "refreshed");
+        btn.querySelector("svg").setAttribute("allow-spin", "false");
         if (btn.getAttribute("type") === "website-status") {
           await fetching.webStatus();
           // cannot re-refresh again until 30 seconds later

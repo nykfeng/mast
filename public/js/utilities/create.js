@@ -14,6 +14,13 @@ async function webStatus() {
 
   // getting source website status from server
   const webStatusData = await getStatus.webStatus();
+
+  // stop refresh icon spinning
+  sourceWebsiteStatusEl
+    .closest(".content-container")
+    .querySelector("button.refresh svg")
+    .setAttribute("allow-spin", "true");
+
   // updating these status as HTML
   webStatusData.forEach((web) => {
     sourceWebsiteStatusEl.insertAdjacentHTML(

@@ -1,0 +1,24 @@
+/* ---- START ---- shared graph ---- */
+.results-container {
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+  }
+  
+  #transaction-results .results-title {
+    width: 99%;
+  }
+  
+  #transaction-results{
+    grid-column: 1 / -1;
+  }
+  
+  #transaction-results .results-title {
+    transform: translateX(-1.25%);
+  }
+  
+  #transaction-results .results-title h1 {
+    padding-left: 1.5rem;
+  }
+  
+  /* ---- END ---- shared graph ---- */

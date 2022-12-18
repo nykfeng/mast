@@ -2,31 +2,31 @@
 
     <main id="home-content">
 
-
+        <!-- system status -->
         <section id="system-status" class="status-container content-container">
             <div class="content-container-title status-title ">
                 <h1>System Status:</h1>
             </div>
 
-            <button class="refresh left-right" state="to-refresh" type="system-status">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                </svg>
-            </button>
+            <div class="content-container-btns">
+                <button class="refresh left-right" state="to-refresh" type="system-status">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                </button>
 
-            <button class="min-max left-right" state="to-min">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                </svg>
-            </button>
+                <button class="min-max left-right" state="to-min">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
 
-
-
-            <div class="alerts-grid">
+            <div class="alerts-grid container-collapsible">
                 <div class="alert" type="database-connection">
                     <div class="alert-status">
                         <div class="system-light system-light-red"></div>
@@ -60,28 +60,32 @@
             </div>
         </section>
 
+        <!-- source website status -->
         <section id="source-website-status" class="status-container content-container">
             <div class="content-container-title status-title ">
                 <h1>Source Website Status:</h1>
             </div>
 
-            <button class="refresh right-left" state="to-refresh" type="website-status">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                </svg>
-            </button>
+            <div class="content-container-btns">
+                <button class="refresh right-left" state="to-refresh" type="website-status">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                </button>
 
-            <button class="min-max right-left" state="to-min">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                </svg>
-            </button>
+                <button class="min-max right-left" state="to-min">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
 
-            <div class="alerts-grid">
+
+            <div class="alerts-grid container-collapsible">
 
             </div>
 
@@ -90,9 +94,45 @@
             </div>
         </section>
 
+        <!-- daily transaction graph -->
         <section id="daily-transaction-graph" class="graph-container content-container ">
             <div class="graph-title content-container-title">
                 <h1>Daily Transaction Number:</h1>
+            </div>
+
+            <div class="content-container-btns">
+                <button class="refresh left-right" state="to-refresh" type="system-status">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                </button>
+
+                <button class="min-max left-right" state="to-min">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
+
+
+            <div class="daily-transaction container-collapsible">
+
+            </div>
+
+            <div class="status-updated-time">
+                <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
+            </div>
+
+        </section>
+
+        <!-- Results -->
+        <section id="transaction-results" class="results-container content-container">
+            <div class="results-title content-container-title">
+                <h1>M&A Transactions:</h1>
             </div>
 
             <button class="refresh left-right" state="to-refresh" type="system-status">
@@ -111,13 +151,6 @@
                 </svg>
             </button>
 
-            <div class="daily-transaction">
-
-            </div>
-
-            <div class="status-updated-time">
-                <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
-            </div>
 
         </section>
 

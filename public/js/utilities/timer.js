@@ -13,6 +13,7 @@ function statusCheckElapsed(then, timeElapsedElement, type) {
 function allowRefreshAgain(refreshBtnElement) {
   setTimeout(() => {
     refreshBtnElement.setAttribute("state", "to-refresh");
+    refreshBtnElement.children[0].setAttribute("allow-spin", false);
   }, 30000);
 }
 

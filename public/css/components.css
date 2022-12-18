@@ -26,6 +26,36 @@
   color: rgb(70, 70, 70);
 }
 
+.content-container button.min-max[state="to-max"] {
+  transform: rotate(180deg);
+  transition: all 500ms ease-in;
+}
+
+.content-container button.min-max[state="to-min"] {
+  transition: all 500ms ease-in;
+}
+
+.content-container:has(.alerts-grid[state="collpased"]) {
+  height: 4rem;
+}
+
+.content-container button.refresh[state="refreshed"] svg[allow-spin="false"] {
+  animation: rotate360 1s linear infinite;
+}
+
+.content-container button.refresh svg[allow-spin="true"] {
+  animation-play-state: paused;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 button.min-max.left-right {
   top: 0.7rem;
   right: 0.9rem;

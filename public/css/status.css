@@ -7,19 +7,6 @@
   flex-direction: column;
 }
 
-.status-container button.min-max[state="to-max"] {
-  transform: rotate(180deg);
-  transition: all 500ms ease-in;
-}
-
-.status-container button.min-max[state="to-min"] {
-  transition: all 500ms ease-in;
-}
-
-.status-container:has(.alerts-grid[state="collpased"]) {
-  height: 4rem;
-}
-
 .alerts-grid {
   display: flex;
   flex-direction: column;
