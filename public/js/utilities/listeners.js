@@ -4,7 +4,7 @@ import fetching from "./create.js";
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
   const minMaxBtns = document.querySelectorAll(
-    ".status-container button.min-max"
+    ".content-container button.min-max"
   );
   minMaxBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -32,7 +32,7 @@ function statusMinimizeAndMaximizeBtns() {
 // status bar refresh buttons
 function statusRefreshBtns() {
   const refreshBtns = document.querySelectorAll(
-    ".status-container button.refresh"
+    ".content-container button.refresh"
   );
   refreshBtns.forEach((btn) => {
     btn.addEventListener("click", async () => {

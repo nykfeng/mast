@@ -1,0 +1,48 @@
+/* ---- START ---- Content Container style */
+.content-container {
+  padding: 0.75rem;
+  background-color: rgb(209, 209, 209);
+  display: flex;
+}
+
+.content-container-title {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  background-color: rgb(70, 70, 70);
+  width: 97%;
+}
+
+.content-container-title h1 {
+  color: #fff;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.content-container button {
+  width: 3.6rem;
+  height: 3.9rem;
+  position: absolute;
+  cursor: pointer;
+  color: rgb(70, 70, 70);
+}
+
+button.min-max.left-right {
+  top: 0.7rem;
+  right: 0.9rem;
+}
+
+button.refresh.left-right {
+  top: 0.7rem;
+  right: 5.2rem;
+}
+
+button.min-max.right-left {
+  top: 0.7rem;
+  left: 0.9rem;
+}
+
+button.refresh.right-left {
+  top: 0.7rem;
+  left: 5.2rem;
+}
+/* ---- END ---- Content Container style */

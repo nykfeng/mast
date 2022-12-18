@@ -35,13 +35,21 @@ a:active {
 }
 
 /* specific styles */
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
+  background: linear-gradient(
+    178.6deg,
+    rgb(20, 36, 50) 11.8%,
+    rgb(124, 143, 161) 83.8%
+  );
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
 header {
@@ -51,7 +59,6 @@ header {
 
   display: flex;
   justify-content: space-between;
-
   background-color: #381a39;
 }
 
@@ -63,6 +70,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
+  row-gap: 8rem;
 }
 
 /* ---- START ---- header profile  ---- */
@@ -72,7 +80,7 @@ main {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  
+
   margin-right: 1rem;
 }
 
