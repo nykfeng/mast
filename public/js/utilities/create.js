@@ -3,6 +3,7 @@ import getStats from "../request/getStatistics.js";
 import render from "../render/renderHTML.js";
 import timer from "./timer.js";
 import calendar from "./calendar.js";
+import style from "./dynamicStyleChange.js"
 
 async function webStatus() {
   const sourceWebsiteStatusEl = document.querySelector(
@@ -71,9 +72,9 @@ async function graphStatsDailyTransactionNumber() {
     await getStats.graphStatsDailyTransactionNumber();
 }
 
-function calendarMonthCard() {
+function calendarMonthCard(selectedDate = new Date()) {
   const monthCardEl = document.querySelector("#calendar .month");
-  const monthCardData = calendar.daysInMonthCard(new Date());
+  const monthCardData = calendar.daysInMonthCard(selectedDate);
   const numberOfRows = Math.ceil(monthCardData.length / 7);
   for (let i = 0; i < numberOfRows; i++) {
     monthCardEl.insertAdjacentHTML(
@@ -81,21 +82,33 @@ function calendarMonthCard() {
       render.calendarWeek(monthCardData, i)
     );
   }
+  monthCardEl.insertAdjacentHTML(
+    "beforeend",
+    render.calendarMonthSelectorRow(
+      selectedDate,
+      calendar.monthString(selectedDate)
+    )
+  );
 }
 
-function calendarDateCard() {
+function calendarDateCard(selectedDate = new Date()) {
   const dateEl = document.querySelector("#calendar .date");
   const monthTextEl = dateEl.querySelector("#monthName");
   const dayTextEl = dateEl.querySelector("#day");
   const weekdayTextEl = dateEl.querySelector("#weekdayName");
   const yearTextEl = dateEl.querySelector("#year");
 
-  const selectedDate = new Date();
-
   monthTextEl.textContent = calendar.textInDateCard(selectedDate).monthName;
   weekdayTextEl.textContent = calendar.textInDateCard(selectedDate).weekdayName;
   dayTextEl.textContent = calendar.textInDateCard(selectedDate).d;
   yearTextEl.textContent = calendar.textInDateCard(selectedDate).y;
+
+  style.adjustDateHeightToMonthCard();
+}
+
+export function updateCalendar(selectedDate) {
+  calendarMonthCard(selectedDate);
+  calendarDateCard(selectedDate);
 }
 
 export default {
@@ -104,4 +117,5 @@ export default {
   graphStatsDailyTransactionNumber,
   calendarMonthCard,
   calendarDateCard,
+  updateCalendar,
 };

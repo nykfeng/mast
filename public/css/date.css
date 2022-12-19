@@ -2,13 +2,17 @@
   display: flex;
   gap: 2rem;
   position: relative;
+
+  margin: 1rem;
 }
 
 /* ---- START ---- calendar  ---- */
 #calendar {
-  background-color: #121115;
+  background-color: var(--background-black);
   padding: 1rem;
   margin-right: 14rem;
+
+  font-family: "Inter", sans-serif;
 }
 
 #calendar .card {
@@ -22,16 +26,22 @@
   width: 35rem;
 }
 
-#calendar .month .day span {
+#calendar .month .weekday span {
   cursor: pointer;
 }
 
-#calendar .month .day span:hover {
-  color: #fff;
+#calendar .month .weekday span:hover {
+  color: var(--white);
+}
+
+#calendar .month .weekday span[selected="true"] {
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--main-orange);
 }
 
 .month .weekday-header,
-.month .day {
+.month .weekday {
   display: flex;
   justify-content: space-between;
 }
@@ -40,28 +50,61 @@
   color: var(--main-orange);
 }
 
-.month .day {
-  color: rgb(186, 184, 184);
+.month .weekday {
+  color: var(--gray-on-black);
 }
 
 .weekday-header span,
-.month .day span {
+.month .weekday span {
   padding: 0.3rem 0;
   width: 5.5rem;
   text-align: center;
 }
 
+#calendar .month-selector {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--main-orange);
+}
+
+.month-selector button {
+  min-width: 7rem;
+  border: none;
+  cursor: pointer;
+  background-color: var(--main-orange);
+  display: flex;
+  justify-content: center;
+}
+
+.month-selector button:hover {
+  color: var(--white);
+}
+
+.month-selector button:active {
+  transform: scale(0.97);
+}
+
+.month-selector button svg {
+  height: 2rem;
+  align-self: center;
+}
+
 #calendar .date {
   padding: 1.7rem 1rem;
-  min-width: 10rem;
+  width: 15rem;
   font-size: 2rem;
   text-align: center;
   background-color: var(--main-orange);
-  color: #fff;
+  color: var(--white);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   position: absolute;
   left: 37rem;
-  top: -1rem;
+  top: -3.5%;
 }
 
 #calendar #monthName {
@@ -82,9 +125,6 @@
 /* ---- START ---- date selector container  ---- */
 .date-selector-container {
   min-width: 10rem;
-}
-
-.selected-date {
 }
 
 .selected-date-btns {

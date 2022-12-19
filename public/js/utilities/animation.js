@@ -31,7 +31,28 @@ function toExpandContainer(el) {
   toBeExpandedEl.setAttribute("state", "expanded");
 }
 
+function removeCalendarDayAndMonthSelectors() {
+  const monthCardEl = document.querySelector("#calendar .month");
+  const weekdayRowEls = monthCardEl.querySelectorAll(".weekday");
+  const monthSelectorRowEl = monthCardEl.querySelector(".month-selector");
+  weekdayRowEls.forEach((row) => {
+    row.remove();
+  });
+  monthSelectorRowEl.remove();
+}
+
+function highlightSelectedDate(cellDate) {
+  const weekdayCellEls = document.querySelectorAll(".weekday span");
+  weekdayCellEls.forEach((day) => {
+    if (day.getAttribute("localdate") === cellDate) {
+      day.setAttribute("selected", "true");
+    }
+  });
+}
+
 export default {
   toCollapseContainer,
   toExpandContainer,
+  removeCalendarDayAndMonthSelectors,
+  highlightSelectedDate
 };

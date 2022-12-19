@@ -25,6 +25,8 @@ async function initialDataFetchAndCreate() {
 function listeners() {
   listening.statusMinimizeAndMaximizeBtns();
   listening.statusRefreshBtns();
+
+  // calendar
+  listening.calendarDayClick();
+  listening.calendarPrevNextBtns();
 }
-
-

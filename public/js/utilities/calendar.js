@@ -11,22 +11,26 @@ function daysInMonthCard(selectedDay) {
   let dayToDisplayOnCard = [];
 
   for (let i = 0; i < dateObj.firstDayOfMonth.getDay(); i++) {
-    let localDate = new Date(
+    const localDate = new Date(
       dateObj.y,
       dateObj.m,
       i + 1 - dateObj.firstDayOfMonth.getDay()
     );
-    dayToDisplayOnCard.push({ tileData: "-", dateData: localDate });
+
+    const mmddyy = getMMDDYY(localDate);
+    dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyy });
   }
 
   for (let i = 1; i < dateObj.numberOfDaysInMonth + 1; i++) {
-    let localDate = new Date(dateObj.y, dateObj.m, i);
-    dayToDisplayOnCard.push({ tileData: i, dateData: localDate });
+    const localDate = new Date(dateObj.y, dateObj.m, i);
+    const mmddyy = getMMDDYY(localDate);
+    dayToDisplayOnCard.push({ tileData: i, dateData: mmddyy });
   }
 
   for (let i = 0; i < 6 - dateObj.lastDayOfMonth.getDay(); i++) {
-    let localDate = new Date(dateObj.y, dateObj.m + 1, i + 1);
-    dayToDisplayOnCard.push({ tileData: "-", dateData: localDate });
+    const localDate = new Date(dateObj.y, dateObj.m + 1, i + 1);
+    const mmddyy = getMMDDYY(localDate);
+    dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyy });
   }
 
   return dayToDisplayOnCard;
@@ -38,17 +42,7 @@ function textInDateCard(selectedDate) {
   return { y, d, monthName, weekdayName };
 }
 
-function monthWeekdayString(date) {
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
+function monthString(date) {
   const month = [
     "January",
     "February",
@@ -63,11 +57,20 @@ function monthWeekdayString(date) {
     "November",
     "December",
   ];
+  return month[date.getMonth()];
+}
 
-  const wd = weekday[date.getDay()];
-  const mt = month[date.getMonth()];
-
-  return { monthName: mt, weekdayName: wd };
+function weekdayString(date) {
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return weekday[date.getDay()];
 }
 
 function dateObject(date) {
@@ -86,7 +89,8 @@ function dateObject(date) {
     0
   ).getDate();
 
-  const { monthName, weekdayName } = monthWeekdayString(date);
+  const monthName = monthString(date);
+  const weekdayName = weekdayString(date);
 
   return {
     y,
@@ -103,7 +107,13 @@ function dateObject(date) {
   };
 }
 
+function getMMDDYY(date) {
+  return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+}
+
 export default {
   daysInMonthCard,
   textInDateCard,
+  monthString,
+  weekdayString,
 };
