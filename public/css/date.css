@@ -1,16 +1,21 @@
 .date-container {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  justify-content: space-evenly;
   position: relative;
 
-  margin: 1rem;
+  margin: 0 1rem;
+}
+
+.date-container > div {
+  width: 100%;
 }
 
 /* ---- START ---- calendar  ---- */
 #calendar {
   background-color: var(--background-black);
   padding: 1rem;
-  margin-right: 14rem;
+  margin-right: 15rem;
 
   font-family: "Inter", sans-serif;
 }
@@ -93,6 +98,7 @@
 #calendar .date {
   padding: 1.7rem 1rem;
   width: 15rem;
+  min-height: 15.1rem;
   font-size: 2rem;
   text-align: center;
   background-color: var(--main-orange);
@@ -104,7 +110,7 @@
 
   position: absolute;
   left: 37rem;
-  top: -3.5%;
+  top: 10.5%;
 }
 
 #calendar #monthName {
@@ -120,6 +126,11 @@
   margin-bottom: 1rem;
 }
 
+.date-to-action-container .calendar-title {
+  transform: translateX(-0.75%);
+  width: 100.95%;
+}
+
 /* ---- END ---- calendar  ---- */
 
 /* ---- START ---- date selector container  ---- */
@@ -133,9 +144,28 @@
   gap: 1rem;
 }
 
+.selected-date-btns .btn-outter {
+  display: flex;
+  align-items: center;
+  background-color: rgb(137, 137, 137);
+  height: 4rem;
+  position: relative;
+}
+
 .selected-date-btns button {
   padding: 0.5em;
+  width: 100%;
+  border: black 0.1rem solid;
+  color: var(--white);
+  font-weight: bold;
+
+  background: none;
   cursor: pointer;
+  position: absolute;
+  left: -5%;
+}
+
+.selected-date-btns button:hover {
 }
 
 /* ---- END ---- date selector container  ---- */

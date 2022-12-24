@@ -153,43 +153,72 @@
                 </button>
             </div>
 
-            <!-- date selection container -->
-            <div class="date-container">
-                <div id="calendar">
-                    <div class="card">
-                        <div class="month">
-                            <div class="weekday-header">
-                                <span>SUN</span>
-                                <span>MON</span>
-                                <span>TUE</span>
-                                <span>WED</span>
-                                <span>THU</span>
-                                <span>FRI</span>
-                                <span>SAT</span>
-                            </div>
-                        </div>
-                        <div class="date">
-                            <div id="monthName"></div>
-                            <div id="day"></div>
-                            <div class="date-bottom-field">
-                                <div id="weekdayName"></div>
-                                <div id="year"></div>
-                            </div>
-                        </div>
+
+            <div class="date-to-action-container">
+                <!-- date selection container -->
+                <div class="date-container">
+                    <div class="sub-title calendar-title">
+                        Select a date to start:
                     </div>
 
-                </div>
+                    <div id="calendar">
+                        <div class="card">
+                            <div class="month">
+                                <div class="weekday-header">
+                                    <span>SUN</span>
+                                    <span>MON</span>
+                                    <span>TUE</span>
+                                    <span>WED</span>
+                                    <span>THU</span>
+                                    <span>FRI</span>
+                                    <span>SAT</span>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div id="monthName"></div>
+                                <div id="day"></div>
+                                <div class="date-bottom-field">
+                                    <div id="weekdayName"></div>
+                                    <div id="year"></div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="date-selector-container">
-                    <div class="selected-date">
-                        <p class="label">Current Selection:</p>
-                        <p class="selected-datedisplay">12/18/2022</p>
                     </div>
+
+                    <!-- <div class="date-selector-container">
                     <div class="selected-date-btns">
-                        <button class="run-scraper">Run Scraper</button>
-                        <button class="get-from-database">Fetch DB</button>
+                        <div class="btn-outter"><button class="run-scraper">Run Scraper</button></div>
+                        <div class="btn-outter"><button class="get-from-database">Fetch DB</button></div>
                     </div>
+                    <div class="btn-labels">
+                        <div class="run-scraper-label">for selected date.</div> 
+                    </div>
+                </div> -->
                 </div>
+
+
+                <!-- action selection container -->
+                <div class="action-control-container">
+                    <div class="sub-title action-title">
+                        Select an action to view:
+                    </div>
+
+                    <div class="action-control">
+                        <div>
+                            <p>Run scraper for the selected date</p>
+                            <div class="btn-outter"><button class="run-scraper">Run Scraper</button></div>
+                        </div>
+
+                        <div>
+                            <p>Pull from database for the selected date</p>
+                            <div class="btn-outter"><button class="from-database">Fetch DB</button></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
             <div class="display-results">

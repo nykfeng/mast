@@ -1,13 +1,6 @@
 function daysInMonthCard(selectedDay) {
   const dateObj = dateObject(selectedDay);
 
-  // const numberOfDaysInCard =
-  //   dateObj.numberOfDaysInMonth +
-  //   dateObj.firstDayOfMonth.getDay() +
-  //   (6 - dateObj.lastDayOfMonth.getDay());
-
-  // console.log("numberOfDaysInCard: ", numberOfDaysInCard);
-
   let dayToDisplayOnCard = [];
 
   for (let i = 0; i < dateObj.firstDayOfMonth.getDay(); i++) {

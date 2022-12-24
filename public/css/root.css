@@ -1,13 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Azeret+Mono:wght@100;200;300;400;500&family=Inter:wght@300;500;600;700;800&family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Azeret+Mono:wght@100;200;300;400;500&family=Inter:wght@300;500;600;700;800&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
 :root {
   font-size: 62.5%;
-  font-family: "Josefin Sans", sans-serif;
+  /* font-family: "Josefin Sans", sans-serif; */
+  font-family: "Ubuntu", sans-serif;
 
   --main-orange: #f25c05;
   --gray-on-black: rgb(186, 184, 184);
   --white: #fff;
   --background-black: #121115;
+  --title-gray: #464646;
+  --subtitle-gray: #898989;
+  --container-bg: #d1d1d1;
 }
 
 *,
