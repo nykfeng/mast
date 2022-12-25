@@ -10,19 +10,19 @@ function daysInMonthCard(selectedDay) {
       i + 1 - dateObj.firstDayOfMonth.getDay()
     );
 
-    const mmddyy = getMMDDYY(localDate);
+    const mmddyy = getMMDDYYYY(localDate);
     dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyy });
   }
 
   for (let i = 1; i < dateObj.numberOfDaysInMonth + 1; i++) {
     const localDate = new Date(dateObj.y, dateObj.m, i);
-    const mmddyy = getMMDDYY(localDate);
+    const mmddyy = getMMDDYYYY(localDate);
     dayToDisplayOnCard.push({ tileData: i, dateData: mmddyy });
   }
 
   for (let i = 0; i < 6 - dateObj.lastDayOfMonth.getDay(); i++) {
     const localDate = new Date(dateObj.y, dateObj.m + 1, i + 1);
-    const mmddyy = getMMDDYY(localDate);
+    const mmddyy = getMMDDYYYY(localDate);
     dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyy });
   }
 
@@ -100,7 +100,7 @@ function dateObject(date) {
   };
 }
 
-function getMMDDYY(date) {
+function getMMDDYYYY(date) {
   return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
 }
 

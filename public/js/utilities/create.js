@@ -3,7 +3,8 @@ import getStats from "../request/getStatistics.js";
 import render from "../render/renderHTML.js";
 import timer from "./timer.js";
 import calendar from "./calendar.js";
-import style from "./dynamicStyleChange.js"
+import style from "./dynamicStyleChange.js";
+import animate from "./animation.js";
 
 async function webStatus() {
   const sourceWebsiteStatusEl = document.querySelector(
@@ -88,6 +89,14 @@ function calendarMonthCard(selectedDate = new Date()) {
       selectedDate,
       calendar.monthString(selectedDate)
     )
+  );
+  animate.highlightSelectedDate(
+    selectedDate.getMonth() +
+      1 +
+      "/" +
+      selectedDate.getDate() +
+      "/" +
+      selectedDate.getFullYear()
   );
 }
 

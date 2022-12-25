@@ -8,6 +8,7 @@
 .date-to-action-container {
   display: flex;
   gap: 2rem;
+  margin: 1rem 0 2.5rem;
 }
 
 .action-control-container {
@@ -30,6 +31,9 @@
   padding-left: 1.5rem;
 }
 
+/* ---- END ---- M&A transactions results container ---- */
+
+/* ---- START ---- action control buttons for the selected date ---- */
 .action-control {
   padding: 1rem;
   display: flex;
@@ -72,4 +76,49 @@
   transform: scale(0.97);
 }
 
-/* ---- END ---- M&A transactions results container ---- */
+/* ---- END ---- action control buttons for the selected date ---- */
+
+/* ---- START ---- transaction list item ---- */
+.display-results {
+}
+
+.display-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  font-size: 1.6rem;
+}
+
+.display-results-list .list-item {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr;
+  width: 85rem;
+  padding: 0.3rem;
+}
+
+.transaction-site {
+  grid-row: 1 / -1;
+  font-size: 4rem;
+  width: 5rem;
+  align-self: center;
+  text-align: center;
+}
+
+.transaction-title,
+.transaction-date {
+  grid-column: 2 / 3;
+  width: 75rem;
+}
+
+.transaction-link {
+  grid-column: 3 / 4;
+  grid-row: 1 / -1;
+  font-size: 3rem;
+  width: 5rem;
+  align-self: center;
+  text-align: center;
+
+}
+/* ---- END ---- transaction list item ---- */

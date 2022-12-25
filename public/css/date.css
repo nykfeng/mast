@@ -4,7 +4,7 @@
   justify-content: space-evenly;
   position: relative;
 
-  margin: 0 1rem;
+  margin: 0 5rem 0 1rem;
 }
 
 .date-container > div {
@@ -97,7 +97,7 @@
 
 #calendar .date {
   padding: 1.7rem 1rem;
-  width: 15rem;
+  width: 16rem;
   min-height: 15.1rem;
   font-size: 2rem;
   text-align: center;
@@ -128,7 +128,7 @@
 
 .date-to-action-container .calendar-title {
   transform: translateX(-0.75%);
-  width: 100.95%;
+  width: 102.75%;
 }
 
 /* ---- END ---- calendar  ---- */
@@ -163,9 +163,6 @@
   cursor: pointer;
   position: absolute;
   left: -5%;
-}
-
-.selected-date-btns button:hover {
 }
 
 /* ---- END ---- date selector container  ---- */
