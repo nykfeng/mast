@@ -24,7 +24,8 @@ header {
 
   display: flex;
   justify-content: space-between;
-  background-color: #381a39;
+  /* background-color: #381a39; */
+  background: linear-gradient(to LEFT, rgb(173, 83, 137), rgb(60, 16, 83));
 }
 
 main {
