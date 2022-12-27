@@ -29,9 +29,9 @@ app.get("/graphStatsDailyTransactionNumber", async (req, res) => {
   res.json(transactionNumberForGraph);
 });
 
-app.get("/scrape-now", async (req, res)=> {
-  
-})
+app.get("/scrape-now", async (req, res) => {
+  console.log(req.query.date);
+});
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

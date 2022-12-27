@@ -109,4 +109,5 @@ export default {
   textInDateCard,
   monthString,
   weekdayString,
+  getMMDDYYYY
 };

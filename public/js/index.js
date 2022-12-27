@@ -29,4 +29,6 @@ function listeners() {
   // calendar
   listening.calendarDayClick();
   listening.calendarPrevNextBtns();
+
+  listening.scraper();
 }

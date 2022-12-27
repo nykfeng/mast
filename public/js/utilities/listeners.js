@@ -82,9 +82,21 @@ function calendarPrevNextBtns() {
   });
 }
 
+function scraper() {
+  const runBtn = document.querySelector(
+    "#transaction-results button.run-scraper"
+  );
+  runBtn.addEventListener("click", async () => {
+    const dateEl = document.querySelector("#calendar .date");
+    const currentDateStr = dateEl.getAttribute("date");
+    await fetching.scraper(currentDateStr);
+  });
+}
+
 export default {
   statusMinimizeAndMaximizeBtns,
   statusRefreshBtns,
   calendarDayClick,
   calendarPrevNextBtns,
+  scraper,
 };

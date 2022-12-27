@@ -1,5 +1,6 @@
 import getStatus from "../request/getStatus.js";
 import getStats from "../request/getStatistics.js";
+import getResults from "../request/getResults.js";
 import render from "../render/renderHTML.js";
 import timer from "./timer.js";
 import calendar from "./calendar.js";
@@ -90,14 +91,7 @@ function calendarMonthCard(selectedDate = new Date()) {
       calendar.monthString(selectedDate)
     )
   );
-  animate.highlightSelectedDate(
-    selectedDate.getMonth() +
-      1 +
-      "/" +
-      selectedDate.getDate() +
-      "/" +
-      selectedDate.getFullYear()
-  );
+  animate.highlightSelectedDate(calendar.getMMDDYYYY(selectedDate));
 }
 
 function calendarDateCard(selectedDate = new Date()) {
@@ -107,6 +101,7 @@ function calendarDateCard(selectedDate = new Date()) {
   const weekdayTextEl = dateEl.querySelector("#weekdayName");
   const yearTextEl = dateEl.querySelector("#year");
 
+  dateEl.setAttribute("date", calendar.getMMDDYYYY(selectedDate));
   monthTextEl.textContent = calendar.textInDateCard(selectedDate).monthName;
   weekdayTextEl.textContent = calendar.textInDateCard(selectedDate).weekdayName;
   dayTextEl.textContent = calendar.textInDateCard(selectedDate).d;
@@ -120,6 +115,19 @@ export function updateCalendar(selectedDate) {
   calendarDateCard(selectedDate);
 }
 
+async function scraper(dateStr) {
+  if (!dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)) {
+    console.log("Date string error");
+    return;
+  }
+  console.log("dateStr: ", dateStr);
+  const queryStr = "?date=" + dateStr;
+
+  const data = await getResults.transactionResults(queryStr);
+  console.log("Data: ");
+  console.log(data);
+}
+
 export default {
   webStatus,
   systemStatus,
@@ -127,4 +135,5 @@ export default {
   calendarMonthCard,
   calendarDateCard,
   updateCalendar,
+  scraper,
 };
