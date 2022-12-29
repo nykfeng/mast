@@ -50,11 +50,11 @@ function calendarDayClick() {
 
   weekdayCellEls.forEach((cell) => {
     cell.addEventListener("click", () => {
-      const cellDate = cell.getAttribute("localdate");
-      const selectedDate = new Date(cellDate);
+      const cellDateStr = cell.getAttribute("localdate");
+      const selectedDate = new Date(cellDateStr);
       animate.removeCalendarDayAndMonthSelectors();
       updateCalendar(selectedDate);
-      animate.highlightSelectedDate(cellDate);
+      animate.highlightSelectedDate(cellDateStr);
       calendarDayClick();
       calendarPrevNextBtns();
     });
@@ -72,17 +72,17 @@ function calendarPrevNextBtns() {
   [prevBtn, nextBtn].forEach((btn) => {
     btn.addEventListener("click", () => {
       const selectedDate = new Date(btn.getAttribute("month"));
-      const btnDate = btn.getAttribute("month");
+      const btnDateStr = btn.getAttribute("month");
       animate.removeCalendarDayAndMonthSelectors();
       updateCalendar(selectedDate);
-      animate.highlightSelectedDate(btnDate);
+      animate.highlightSelectedDate(btnDateStr);
       calendarDayClick();
       calendarPrevNextBtns();
     });
   });
 }
 
-function scraper() {
+function runScraperBtn() {
   const runBtn = document.querySelector(
     "#transaction-results button.run-scraper"
   );
@@ -98,5 +98,5 @@ export default {
   statusRefreshBtns,
   calendarDayClick,
   calendarPrevNextBtns,
-  scraper,
+  runScraperBtn,
 };

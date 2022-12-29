@@ -30,5 +30,5 @@ function listeners() {
   listening.calendarDayClick();
   listening.calendarPrevNextBtns();
 
-  listening.scraper();
+  listening.runScraperBtn();
 }
