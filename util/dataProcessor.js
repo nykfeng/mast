@@ -6,34 +6,40 @@
 // ===== news date string formatters
 module.exports.newsDate = function (newsDateString) {
   // to store the date object converted from news piece data string
-  let newsDate = new Date();
+  let newsDate = null;
 
-  //   1) test if the date string contains a year number
+  // \b: This specifies a word boundary.
+  // [0-9]{4}: This matches any four-digit number.
+  // \b: This again specifies a word boundary.
   let fourDigitYearRegex = /\b[0-9]{4}\b/;
   let hourColonMinuteRegex = /\b([01]?[0-9]|2[0-3]):[0-5][0-9]\b/;
   let dayRegex =
     /\b(sun(day)?|mon(day)?|tue(s(day)?)?|wed(nesday)?|thu(rs(day)?)?|fri(day)?|sat(urday)?|(today)|(yesterday))\b/i;
-  // \b: This specifies a word boundary.
-  // [0-9]{4}: This matches any four-digit number.
-  // \b: This again specifies a word boundary.
 
+  //  1) test if the date string contains a year number, if it does NOT
   if (!fourDigitYearRegex.test(newsDateString)) {
-    // 2) test if the date string contains keywords like "today", "yesterday", "friday"
+    //  1.1) test if the date string contains keywords like "today", "yesterday", "friday"
     if (dayRegex.test(newsDateString)) {
       newsDate = processDayToDateObject(newsDateString.toLowerCase());
+      if (newsDate) return newsDate;
     }
 
-    // 3) test if the date string contains hours: minutes
-    if (hourColonMinuteRegex.test(newsDateString)) {
-    } else {
+    //  1.2) test if the date string contains hours: minutes
+    else if (hourColonMinuteRegex.test(newsDateString)) {
+      newsDate = processHourMinuteTimeString(newsDateString);
+      if (newsDate) return newsDate;
     }
+  }
+  //  2) if it does contain full year, then we can try to interpret the date and convert to date object
+  else {
+    
   }
 
   return newsDate;
 };
 
 function processDayToDateObject(dayStr) {
-  let date = new Date();
+  let date = null;
   let currentDay = date.getDay();
 
   // Example, if currentDay is 4 = Thursday, today's date is 12/29
@@ -45,53 +51,69 @@ function processDayToDateObject(dayStr) {
   // date.setDate(25-6) = 12/19
   switch (true) {
     case dayStr.includes("mon"):
-      date.setDate(
-        date.getDate() +
-          -Math.abs(currentDay < 1 ? 7 - 1 + currentDay : 1 - currentDay)
-      );
+      date = new Date();
+      date.setDate(date.getDate() + dayDifferences(1, currentDay));
       break;
     case dayStr.includes("tue"):
-      date.setDate(
-        date.getDate() +
-          -Math.abs(currentDay < 2 ? 7 - 2 + currentDay : 2 - currentDay)
-      );
+      date = new Date();
+      date.setDate(date.getDate() + dayDifferences(2, currentDay));
       break;
     case dayStr.includes("wed"):
-      date.setDate(
-        date.getDate() +
-          -Math.abs(currentDay < 3 ? 7 - 3 + currentDay : 3 - currentDay)
-      );
+      date = new Date();
+      date.setDate(date.getDate() + dayDifferences(3, currentDay));
       break;
     case dayStr.includes("thu"):
-      date.setDate(
-        date.getDate() +
-          -Math.abs(currentDay < 4 ? 7 - 4 + currentDay : 4 - currentDay)
-      );
+      date = new Date();
+      date.setDate(date.getDate() + dayDifferences(4, currentDay));
       break;
     case dayStr.includes("fri"):
-      date.setDate(
-        date.getDate() +
-          -Math.abs(currentDay < 5 ? 7 - 5 + currentDay : 5 - currentDay)
-      );
+      date = new Date();
+      date.setDate(date.getDate() + dayDifferences(5, currentDay));
       break;
     case dayStr.includes("sat"):
-      date.setDate(
-        date.getDate() +
-          -Math.abs(currentDay < 6 ? 7 - 6 + currentDay : 6 - currentDay)
-      );
+      date = new Date();
+      date.setDate(date.getDate() + dayDifferences(6, currentDay));
       break;
     case dayStr.includes("sun"):
+      date = new Date();
       date.setDate(date.getDate() + -Math.abs(0 - currentDay));
       break;
     case dayStr.includes("today"):
+      date = new Date();
       break;
     case dayStr.includes("yesterday"):
+      date = new Date();
       date.setDate(date.getDate() - 1);
       break;
     default:
-      // If the input keyword is not recognized, throw an error
-      throw new Error(`Invalid input: ${dayStr}`);
+    // If the input keyword is not recognized, throw an error
+    // throw new Error(`Invalid input: ${dayStr}`);
   }
+  return date;
+}
+
+function dayDifferences(weekdayNumber, currentDayNumber) {
+  return -Math.abs(
+    currentDayNumber < weekdayNumber
+      ? 7 - weekdayNumber + currentDayNumber
+      : weekdayNumber - currentDayNumber
+  );
+}
+
+function processHourMinuteTimeString(timeStr) {
+  // Get the current date
+  const today = new Date();
+
+  const sanitizedTimeStr = timeStr.replace(/[a-zA-Z]/g, "").trim();
+
+  // Get the year, month, and day of the current date
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const day = today.getDate();
+
+  // Parse the time string and create a date object for today's date
+  const date = new Date(`${year}-${month + 1}-${day}T${sanitizedTimeStr}`);
+
   return date;
 }
 
