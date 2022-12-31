@@ -68,6 +68,7 @@ module.exports.pupBot = async (website, pageNum) => {
           el.querySelector(website.selectors.getHref)[
             website.selectorAttributes.getHref
           ] || "",
+        hostName: window.location.host,
       });
     }
     return result;

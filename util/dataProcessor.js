@@ -139,9 +139,30 @@ function processFullDateString(dateStr) {
 }
 
 // ===== news title string formatter
-module.exports.newsTitle = function (newsTitleString) {
-  // remove \t \n empty space trim, etc. other html tag
-  // return newsTitleCleansed;
+module.exports.newsTitle = function (newsTitleStr) {
+  // remove \t \n from the string
+  newsTitleStr = newsTitleStr.replace(/[\n\t]/g, "");
+  // remove any HTML tag and the text content within the tag
+  newsTitleStr = removedNewlineAndTabStr.replace(/<[^>]*>.*<\/[^>]*>/g, "");
+  return newsTitleStr;
 };
 
-//
+// ===== host name string formatter
+module.exports.newsHostname = function (newsHostnameStr) {
+  const sanitizedHostname = newsHostnameStr.replace(/^www\./, "");
+  return sanitizedHostname;
+};
+
+// ===== determine if the news is in English
+module.exports.isNewsInEnglish = function (newsTitleStr) {
+  // Create a new instance of the LanguageDetect class
+  const detector = new LanguageDetect();
+
+  // Detect the language of the string
+  const language = detector.detect(newsTitleStr, 1)[0][0];
+
+  // Determine if the string is in English
+  const isEnglish = language === "english";
+
+  return isEnglish;
+};
