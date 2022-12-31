@@ -106,9 +106,11 @@ function dayDifferences(weekdayNumber, currentDayNumber) {
 }
 
 function processHourMinuteTimeString(timeStr) {
-  // Get the current date
+  // Get today's date, if only hour:minutes were provided
+  // the default should be the current day, today
   const today = new Date();
 
+  // remove all letters
   const sanitizedTimeStr = timeStr.replace(/[a-zA-Z]/g, "").trim();
 
   // Get the year, month, and day of the current date
@@ -129,7 +131,8 @@ function processFullDateString(dateStr) {
   // 2) '2022-12-22T12:49:00Z'
   // 3) 'December 29, 2022 17:00 ET'
 
-  // Remove the letters at the end and after the last space
+  // Remove the letters at the end and after the last space of the string
+  // Convert 'December 29, 2022 17:00 ET' to 'December 29, 2022 17:00'
   const sanitizedDateStr = dateStr.replace(/\s*[a-zA-Z]*$/, "").trim();
   // The regular expression /\s*[a-zA-Z]*$/ will match zero or more spaces followed by zero or more letters at the end of the string.
   // the 's' character is used to match any white space character, including the space, tab, and newline characters.
@@ -141,25 +144,30 @@ function processFullDateString(dateStr) {
 // ===== news title string formatter
 module.exports.newsTitle = function (newsTitleStr) {
   // remove \t \n from the string
-  newsTitleStr = newsTitleStr.replace(/[\n\t]/g, "");
+  let sanitizedNewsTitleStr = newsTitleStr.replace(/[\n\t]/g, "");
   // remove any HTML tag and the text content within the tag
-  newsTitleStr = removedNewlineAndTabStr.replace(/<[^>]*>.*<\/[^>]*>/g, "");
-  return newsTitleStr;
+  sanitizedNewsTitleStr = sanitizedNewsTitleStr.replace(/<[^>]*>.*<\/[^>]*>/g, "");
+  return sanitizedNewsTitleStr;
 };
 
 // ===== host name string formatter
 module.exports.newsHostname = function (newsHostnameStr) {
+  // remove any www. from the host name to make it easier to read
   const sanitizedHostname = newsHostnameStr.replace(/^www\./, "");
   return sanitizedHostname;
 };
 
 // ===== determine if the news is in English
 module.exports.isNewsInEnglish = function (newsTitleStr) {
+  // Using the 'languagedetect' library
   // Create a new instance of the LanguageDetect class
   const detector = new LanguageDetect();
 
   // Detect the language of the string
   const language = detector.detect(newsTitleStr, 1)[0][0];
+  // we are only interested in the first language detected,
+  // so we access the first element of the array ([0])
+  // and the first element of that element ([0]) to get the language code.
 
   // Determine if the string is in English
   const isEnglish = language === "english";

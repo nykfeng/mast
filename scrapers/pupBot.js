@@ -34,6 +34,8 @@ module.exports.pupBot = async (website, pageNum) => {
     for (let el of newsPieceEls) {
       // 1. ---- run exlcusion list to exclude unwanted items
       let toExclude = false;
+      // exclusionTypeList could contain "language", "source"
+      // We don't want foreign language news, and from certain sources
       website.exclusionTypeList.forEach((excludeType) => {
         let getExcludeValue = "";
         // if the element exists
@@ -52,9 +54,9 @@ module.exports.pupBot = async (website, pageNum) => {
         }
       });
 
-      // 2. ---- determined this item is not wanted, skip this iteration of newsPieceEls
+      // 2. ---- determined this item is not wanted (toExclude), skip this iteration of newsPieceEls
       if (toExclude) continue;
-      // 3. ---- if not, grab the main three pieces of information
+      // 3. ---- if not, grab the different pieces of information
       result.push({
         title:
           el.querySelector(website.selectors.getTitle)[

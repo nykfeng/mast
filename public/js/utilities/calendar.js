@@ -10,20 +10,20 @@ function daysInMonthCard(selectedDay) {
       i + 1 - dateObj.firstDayOfMonth.getDay()
     );
 
-    const mmddyy = getMMDDYYYY(localDate);
-    dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyy });
+    const mmddyyyy = getMMDDYYYY(localDate);
+    dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyyyy });
   }
 
   for (let i = 1; i < dateObj.numberOfDaysInMonth + 1; i++) {
     const localDate = new Date(dateObj.y, dateObj.m, i);
-    const mmddyy = getMMDDYYYY(localDate);
-    dayToDisplayOnCard.push({ tileData: i, dateData: mmddyy });
+    const mmddyyyy = getMMDDYYYY(localDate);
+    dayToDisplayOnCard.push({ tileData: i, dateData: mmddyyyy });
   }
 
   for (let i = 0; i < 6 - dateObj.lastDayOfMonth.getDay(); i++) {
     const localDate = new Date(dateObj.y, dateObj.m + 1, i + 1);
-    const mmddyy = getMMDDYYYY(localDate);
-    dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyy });
+    const mmddyyyy = getMMDDYYYY(localDate);
+    dayToDisplayOnCard.push({ tileData: "-", dateData: mmddyyyy });
   }
 
   return dayToDisplayOnCard;
