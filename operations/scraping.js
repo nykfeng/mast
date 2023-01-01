@@ -3,45 +3,33 @@ const dataProcessor = require("../util/dataProcessor");
 const scraper = require("../scrapers/pupBot");
 const timer = require("../util/timer");
 
-const toBeStored = [];
-
-const selectedDate = new Date();
-selectedDate.setDate(selectedDate.getDate() - 3);
-
-// load config
-
-
-// get selected date (max 10 days ago)
-
-// choose bot
-
-// start bot in loop (first websites, then pages), criteria = date !end, max day diff = 10
-let transactionNumber = 0;
-
-(async () => {
+async function scraping(selectedDate) {
+  const toBeStored = [];
+  let numberOfTransactionsRead = 0;
+  const MAX_PAGE_NUMBER_TO_VISIT = 10;
+  // To loop through all the websites
   for (let website of webConfig) {
     let stopConditionForCurrentSite = false;
-    for (let pageNum = 1; pageNum <= 3; pageNum++) {
+
+    // always start at page 1, this is how information is organized on these sites
+    // These sites don't store all the information there, for good measure, set max to 10 pages
+    for (let pageNum = 1; pageNum <= MAX_PAGE_NUMBER_TO_VISIT; pageNum++) {
+      // Visiting one website one page at a time
       const data = await scraper.pupBot(website, pageNum);
 
-      transactionNumber += data.length;
+      numberOfTransactionsRead += data.length;
 
+      // if we have not met the stop condition,
+      // AKA, an article date older than the selected date
       if (!stopConditionForCurrentSite) {
+        // Go through the data obtained so far, to sanitize and organize data
         for (let eachNews of data) {
           const title = dataProcessor.newsTitle(eachNews.title);
           const date = dataProcessor.newsDate(eachNews.date);
           const hostName = dataProcessor.newsHostname(eachNews.hostName);
           const href = eachNews.href;
 
-          console.log("news date: ", date.toDateString());
-          console.log("selected date: ", selectedDate.toDateString());
-          console.log("isEnglish: ", dataProcessor.isNewsInEnglish(title));
-
-          if (date.getDate() < selectedDate.getDate()) {
-            stopConditionForCurrentSite = true;
-            break;
-          }
-
+          // if article date is equal to the selected date, that is the news we want
           if (
             date.toDateString() === selectedDate.toDateString() &&
             dataProcessor.isNewsInEnglish(title)
@@ -53,20 +41,36 @@ let transactionNumber = 0;
               hostName,
             });
           }
+
+          // If we found an article with an older date than the selected date
+          // stop condition for the current site is met
+          if (date - selectedDate < 0) {
+            stopConditionForCurrentSite = true;
+            break;
+          }
         }
       }
 
-      if (stopConditionForCurrentSite) break;
+      // if we stop condition has met for the current site,
+      // break out of the loop for going through the pages on the current site
+      if (stopConditionForCurrentSite) {
+        console.log(
+          "Went through all qualified transactions of the current page"
+        );
+        console.log("================ Leaving current site ================");
+        break;
+      }
+
+      // used to set a timeout in between page visit of the same site
       await timer.waitFor(5000);
     }
   }
-  console.log("toBeStored: ", toBeStored.length, " transactions");
   console.log(toBeStored);
-  console.log("Number of qualified transactions: ", transactionNumber);
-})();
+  console.log("Number of transactions read: ", numberOfTransactionsRead);
+  console.log(
+    "Number of transactions qualified to be stored: ",
+    toBeStored.length
+  );
+}
 
-// end loop on meeting criteria
-
-// cleanse and validate data; fix date data format, fix title format, remove foreign language
-
-// save data to db
+module.exports = scraping;

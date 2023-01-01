@@ -78,6 +78,7 @@ module.exports.pupBot = async (website, pageNum) => {
 
   await browser.close();
 
+  console.log("Data obtained from current page");
   return obtainedData;
 };
 

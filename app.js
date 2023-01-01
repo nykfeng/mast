@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 4080;
 // importing from other modules
 const webStatusCheck = require("./util/webStatusChecker");
 const transactionNumberForGraph = require("./seeding/transactionNumberByDate.json");
+const scraping = require("./operations/scraping");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -31,6 +32,8 @@ app.get("/graphStatsDailyTransactionNumber", async (req, res) => {
 
 app.get("/scrape-now", async (req, res) => {
   console.log(req.query.date);
+  const selectedDate = new Date(req.query.date);
+  await scraping(selectedDate);
 });
 
 app.listen(PORT, () => {
