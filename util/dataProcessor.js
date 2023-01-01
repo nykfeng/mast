@@ -1,3 +1,5 @@
+const LanguageDetect = require("languagedetect");
+
 // ===== date validation, day range must be today to max 10 days prior
 // validate if input date is within 10 days
 // this should be set up in middleware, so it doesn't have to pass over if the criteria
@@ -71,6 +73,7 @@ function processDayToDateObject(dayStr) {
       break;
     case dayStr.includes("sun"):
       date = new Date();
+      const currentDay = date.getDay();
       date.setDate(date.getDate() + -Math.abs(0 - currentDay));
       break;
     case dayStr.includes("today"):
@@ -146,7 +149,10 @@ module.exports.newsTitle = function (newsTitleStr) {
   // remove \t \n from the string
   let sanitizedNewsTitleStr = newsTitleStr.replace(/[\n\t]/g, "");
   // remove any HTML tag and the text content within the tag
-  sanitizedNewsTitleStr = sanitizedNewsTitleStr.replace(/<[^>]*>.*<\/[^>]*>/g, "");
+  sanitizedNewsTitleStr = sanitizedNewsTitleStr.replace(
+    /<[^>]*>.*<\/[^>]*>/g,
+    ""
+  );
   return sanitizedNewsTitleStr;
 };
 

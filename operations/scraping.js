@@ -3,8 +3,13 @@ const dataProcessor = require("../util/dataProcessor");
 const scraper = require("../scrapers/pupBot");
 const timer = require("../util/timer");
 
+const toBeStored = [];
+
+const selectedDate = new Date();
+selectedDate.setDate(selectedDate.getDate() - 3);
+
 // load config
-const website = webConfig[0];
+
 
 // get selected date (max 10 days ago)
 
@@ -12,26 +17,53 @@ const website = webConfig[0];
 
 // start bot in loop (first websites, then pages), criteria = date !end, max day diff = 10
 let transactionNumber = 0;
-let pageNum = 1;
+
 (async () => {
-  for (let web of webConfig) {
-    for (let pageNum = 1; pageNum <= 2; pageNum++) {
-      const data = await scraper.pupBot(web, pageNum);
-      console.log(data);
+  for (let website of webConfig) {
+    let stopConditionForCurrentSite = false;
+    for (let pageNum = 1; pageNum <= 3; pageNum++) {
+      const data = await scraper.pupBot(website, pageNum);
+
       transactionNumber += data.length;
 
+      if (!stopConditionForCurrentSite) {
+        for (let eachNews of data) {
+          const title = dataProcessor.newsTitle(eachNews.title);
+          const date = dataProcessor.newsDate(eachNews.date);
+          const hostName = dataProcessor.newsHostname(eachNews.hostName);
+          const href = eachNews.href;
+
+          console.log("news date: ", date.toDateString());
+          console.log("selected date: ", selectedDate.toDateString());
+          console.log("isEnglish: ", dataProcessor.isNewsInEnglish(title));
+
+          if (date.getDate() < selectedDate.getDate()) {
+            stopConditionForCurrentSite = true;
+            break;
+          }
+
+          if (
+            date.toDateString() === selectedDate.toDateString() &&
+            dataProcessor.isNewsInEnglish(title)
+          ) {
+            toBeStored.push({
+              title,
+              date,
+              href,
+              hostName,
+            });
+          }
+        }
+      }
+
+      if (stopConditionForCurrentSite) break;
       await timer.waitFor(5000);
     }
   }
+  console.log("toBeStored: ", toBeStored.length, " transactions");
+  console.log(toBeStored);
   console.log("Number of qualified transactions: ", transactionNumber);
 })();
-// receive data
-// let pageNum = 2;
-// (async () => {
-//   const data = await scraper.pupBot(website, pageNum);
-//   console.log(data);
-//   console.log("Number of qualified transactions: ", data.length);
-// })();
 
 // end loop on meeting criteria
 
