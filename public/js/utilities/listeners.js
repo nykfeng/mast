@@ -56,6 +56,7 @@ function calendarDayClick() {
       animate.removeCalendarDayAndMonthSelectors();
       updateCalendar(selectedDate);
       animate.highlightSelectedDate(cellDateStr);
+      state.updateSelectedDateOnBtnDescription(cellDateStr);
       calendarDayClick();
       calendarPrevNextBtns();
     });
@@ -77,6 +78,7 @@ function calendarPrevNextBtns() {
       animate.removeCalendarDayAndMonthSelectors();
       updateCalendar(selectedDate);
       animate.highlightSelectedDate(btnDateStr);
+      state.updateSelectedDateOnBtnDescription(btnDateStr);
       calendarDayClick();
       calendarPrevNextBtns();
     });
@@ -92,7 +94,6 @@ function runScraperBtn() {
     const dateEl = document.querySelector("#calendar .date");
     const currentDateStr = dateEl.getAttribute("date");
     const data = await fetching.scraper(currentDateStr);
-
     // create the list of transaction
     createTransactionList(data);
     state.enableTransactionBtns(runBtn);
@@ -108,9 +109,7 @@ function downloadResultBtn() {
     // if there are no results yet, no download
     const resultListEl = document.querySelector("ul.display-results-list");
     if (!resultListEl.children) return;
-
     state.disableTransactionBtns(downloadBtn);
-
     await timer.waitFor(5000);
     state.enableTransactionBtns(downloadBtn);
   });

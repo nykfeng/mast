@@ -22,7 +22,17 @@ function enableTransactionBtns(specificBtn) {
   animate.enableCurrentBtnWithoutLoadingBar(specificBtn);
 }
 
+function updateSelectedDateOnBtnDescription(dateStr) {
+  const btnDescriptionEls = document.querySelectorAll(
+    ".action-control span.selected-date"
+  );
+  btnDescriptionEls.forEach((description) => {
+    description.textContent = ": " + dateStr;
+  });
+}
+
 export default {
   disableTransactionBtns,
   enableTransactionBtns,
+  updateSelectedDateOnBtnDescription,
 };

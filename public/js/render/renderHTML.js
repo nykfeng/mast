@@ -65,19 +65,24 @@ function calendarMonthSelectorRow(date, monthString) {
 }
 
 function transactionResultListItem(transaction) {
+  // Generate the Google search URL
+  const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(
+    transaction.title
+  )}`;
   const html = `
     <li class="list-item" site="${transaction.hostName}">
       <div class="transaction-site">${
         transaction.hostName.toUpperCase().substr(0, 1) || ""
       }</div>
-      <div class="transaction-title" site="${transaction.hostName}"><a href="${transaction.href}">${
-    transaction.title
-  }</a></div>
+      <div class="transaction-title" site="${transaction.hostName}"><a href="${
+    transaction.href
+  }">${transaction.title}</a></div>
       <div class="transaction-date">${transaction.date}</div>
       <div class="transaction-link">
           <a href="${
             transaction.href
           }"><i class="fa-solid fa-right-to-bracket"></i></a>
+          <a href="${googleSearchURL}" target="_blank"><i class="fa-brands fa-google"></i></a>
       </div>
     </li>
  `;

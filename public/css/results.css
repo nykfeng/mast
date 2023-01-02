@@ -162,7 +162,7 @@
   grid-column: 3 / 4;
   grid-row: 1 / -1;
   font-size: 4.5rem;
-  width: 5rem;
+  width: 11rem;
   height: 5rem;
   align-self: center;
   text-align: center;
@@ -170,9 +170,25 @@
   color: rgb(28, 65, 97);
 
   border: 0.1rem solid black;
+
+  display: flex;
+  /* justify-content: space-evenly; */
 }
 
-.transaction-link:hover {
+.transaction-link a {
+  width: 50%;
+}
+
+.transaction-link a:first-child {
+  border-right: 0.1rem solid black;
+}
+
+.transaction-link a:first-child:hover {
   background-color: aquamarine;
+}
+
+.transaction-link a:last-child:hover {
+  background-color: darkcyan;
+  color: aliceblue;
 }
 /* ---- END ---- transaction list item ---- */
