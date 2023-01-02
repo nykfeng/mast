@@ -4,6 +4,7 @@ import { updateCalendar } from "./create.js";
 import { createTransactionList } from "./create.js";
 import animate from "./animation.js";
 import state from "../state/state.js";
+import validate from "./validate.js";
 
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
@@ -90,9 +91,14 @@ function runScraperBtn() {
     "#transaction-results button.run-scraper"
   );
   runBtn.addEventListener("click", async () => {
-    state.disableTransactionBtns(runBtn);
     const dateEl = document.querySelector("#calendar .date");
     const currentDateStr = dateEl.getAttribute("date");
+
+    // if the date is not validated, stop
+    if (!validate.date(currentDateStr)) return;
+
+    // otherwise, run scraper and disable other buttons
+    state.disableTransactionBtns(runBtn);
     const data = await fetching.scraper(currentDateStr);
     // create the list of transaction
     createTransactionList(data);
@@ -115,6 +121,18 @@ function downloadResultBtn() {
   });
 }
 
+function modalOpen() {
+  window.addEventListener("error-modal", (event) => {
+    console.error(event.detail.message);
+    const modal = document.getElementById("modal");
+    modal.style.display = "flex";
+  });
+
+
+}
+
+function modalClose() {}
+
 export default {
   statusMinimizeAndMaximizeBtns,
   statusRefreshBtns,
@@ -122,4 +140,6 @@ export default {
   calendarPrevNextBtns,
   runScraperBtn,
   downloadResultBtn,
+  modalOpen,
+  modalClose,
 };

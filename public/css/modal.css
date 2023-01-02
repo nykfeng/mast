@@ -1,0 +1,99 @@
+#modal {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-container {
+  flex-direction: column;
+  width: 50%;
+  background-color: var(--container-bg);
+  margin: auto;
+  border: 0.1rem solid rgb(255, 255, 255);
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* modal error body with main message */
+.modal-content-container .modal-title {
+  font-weight: bold;
+  font-size: 2.5rem;
+
+  padding: 0.2rem;
+  background-color: var(--white);
+
+  display: flex;
+  justify-content: space-between;
+  width: 101.5%;
+  transform: translateX(-1.5%);
+}
+
+.modal-content-container .modal-title p {
+  padding-left: 0.5rem;
+}
+
+.modal-content-container .error-title {
+  color: #ff1100;
+}
+
+.modal-content-container .modal-title .cross-close-btn {
+  font-size: 3rem;
+  font-weight: bold;
+  width: 3.3rem;
+  height: 3.3rem;
+
+  color: var(--subtitle-gray);
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+}
+
+.modal-content-container .modal-title .cross-close-btn:hover {
+  color: var(--error);
+  background-color: var(--container-bg);
+}
+
+.modal-content-container .modal-detail {
+  background-color: var(--white);
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.modal-content-container .modal-detail span.date-range {
+  font-weight: 600;
+  color: var(--white);
+  background-color: var(--error-dark);
+  padding: 0 0.5rem;
+}
+
+/* Modal footer */
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.modal-footer button.close-modal-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--error);
+  border: none;
+  cursor: pointer;
+}
+
+.modal-footer button.close-modal-btn:hover {
+  background-color: var(--error-dark);
+}

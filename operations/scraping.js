@@ -57,9 +57,9 @@ async function scraping(selectedDate) {
       if (stopConditionForCurrentSite) {
         console.log("Went through all qualified transactions of the current page");
         console.log(
-          "================ ",
+          "================= ",
           chalk.black.bgYellow("Leaving current site"),
-          " ================", "\n"
+          " =================", "\n"
         );
         break;
       }

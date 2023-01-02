@@ -32,4 +32,7 @@ function listeners() {
 
   listening.runScraperBtn();
   listening.downloadResultBtn();
+
+  listening.modalOpen();
+  listening.modalClose();
 }

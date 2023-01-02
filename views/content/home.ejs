@@ -97,7 +97,7 @@
         <!-- daily transaction graph -->
         <section id="daily-transaction-graph" class="graph-container content-container ">
             <div class="graph-title content-container-title">
-                <h1>Daily Transaction Number:</h1>
+                <h1>Daily Transaction Graph:</h1>
             </div>
 
             <div class="content-container-btns">
@@ -230,6 +230,26 @@
                 </div>
             </div>
 
+        </section>
+
+
+        <section id="modal">
+            <div class="content-container modal-content-container error-modal-container">
+                <div class="content-container-title modal-title error-title">
+                    <p class="error-title-msg">Error: Date range out of bound.</p>
+                    <button class="cross-close-btn"><span class="close">&times;</span></button>
+                </div>
+
+                <div class="modal-detail">
+                    <p>When running the scraper, date should be within the last 7 days. </p>
+                    <p>From: <span class="date-lower-bound date-range">12/26/2022</span> to <span
+                            class="date-upper-bound date-range">1/3/2022</span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="close-modal-btn">Close</button>
+                </div>
+            </div>
         </section>
 
     </main>

@@ -12,6 +12,8 @@
   --title-gray: #464646;
   --subtitle-gray: #898989;
   --container-bg: #d1d1d1;
+  --error: #f44336;
+  --error-dark: #da190b;
 }
 
 *,
