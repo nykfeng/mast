@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const chalk = require("chalk");
 
 module.exports.pupBot = async (website, pageNum) => {
   const browser = await puppeteer.launch({ headless: false });
@@ -9,15 +10,15 @@ module.exports.pupBot = async (website, pageNum) => {
   const { paginationType, pagination } = website;
   const url = getPageUrl(pageNum, { paginationType, pagination });
 
-  console.log("Accessing: ", url);
+  console.log(chalk.bgGreen("Accessing: ", url));
   await page.goto(url, { waitUntil: "networkidle0" });
 
   await page.setJavaScriptEnabled(true);
   try {
     await page.waitForSelector(website.selectors.getSection);
-    console.log("Section selector loaded successful");
+    console.log("CSS section selector loaded successful");
   } catch (err) {
-    console.log(err.message);
+    console.log(chalk.bgRed(err.message));
     const data = await page.evaluate(
       () => document.querySelector("*").outerHTML
     );

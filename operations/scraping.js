@@ -2,6 +2,7 @@ const webConfig = require("../config/websiteConfig.json");
 const dataProcessor = require("../util/dataProcessor");
 const scraper = require("../scrapers/pupBot");
 const timer = require("../util/timer");
+const chalk = require("chalk");
 
 async function scraping(selectedDate) {
   const toBeStored = [];
@@ -54,10 +55,12 @@ async function scraping(selectedDate) {
       // if we stop condition has met for the current site,
       // break out of the loop for going through the pages on the current site
       if (stopConditionForCurrentSite) {
+        console.log("Went through all qualified transactions of the current page");
         console.log(
-          "Went through all qualified transactions of the current page"
+          "================ ",
+          chalk.black.bgYellow("Leaving current site"),
+          " ================", "\n"
         );
-        console.log("================ Leaving current site ================");
         break;
       }
 
@@ -65,10 +68,13 @@ async function scraping(selectedDate) {
       await timer.waitFor(5000);
     }
   }
-  console.log(toBeStored);
-  console.log("Number of transactions read: ", numberOfTransactionsRead);
+  // console.log(toBeStored);
   console.log(
-    "Number of transactions qualified to be stored: ",
+    chalk.bgGreen("Number of total transactions read: "),
+    numberOfTransactionsRead
+  );
+  console.log(
+    chalk.bgGreen("Number of transactions qualified: "),
     toBeStored.length
   );
   return toBeStored;
