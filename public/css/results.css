@@ -68,11 +68,11 @@
   left: -5%;
 }
 
-.action-control .btn-outter:hover {
+.action-control .btn-outter[state="active"]:hover {
   background-color: var(--title-gray);
 }
 
-.action-control button:active {
+.action-control .btn-outter[state="active"] button:active {
   transform: scale(0.97);
 }
 
@@ -115,9 +115,9 @@
   align-self: center;
   text-align: center;
 
-  background-color: aquamarine;
-
-  border: 0.1rem solid black;
+  background-color: var(--main-orange);
+  color: #fff;
+  border: 0.1rem solid var(--main-orange);
 }
 
 .transaction-title,
@@ -145,9 +145,10 @@
 }
 
 .transaction-title::before {
-  content: "businesswire.com";
+  content: attr(site);
   position: absolute;
-  transform: translate(-42%, -105%);
+  transform: translateY(-120%);
+  left: 3.2rem;
 }
 
 .transaction-date {

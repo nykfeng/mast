@@ -27,9 +27,14 @@ function clearingSetIntervals(type) {
   });
 }
 
+function waitFor(milliseconds = 3000) {
+  return new Promise((r) => setTimeout(r, milliseconds));
+}
+
 export default {
   intervalIds,
   statusCheckElapsed,
   allowRefreshAgain,
   clearingSetIntervals,
+  waitFor,
 };

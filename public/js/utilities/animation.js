@@ -50,9 +50,45 @@ function highlightSelectedDate(cellDate) {
   });
 }
 
+function disableTransactionBtns(btns) {
+  btns.forEach((btn) => {
+    btn.style.cursor = "wait";
+    btn.parentElement.setAttribute("state", "inactive");
+  });
+}
+
+function enableTransactionBtns(btns) {
+  btns.forEach((btn) => {
+    btn.style.cursor = "pointer";
+    btn.parentElement.setAttribute("state", "active");
+  });
+}
+
+function disableCurrentBtnWithLoadingBar(btn) {
+  btn.style.display = "none";
+  btn.parentElement.style.display = "none";
+  const loadingBarEl = btn
+    .closest(".btn-container")
+    .querySelector(".loading-bar");
+  loadingBarEl.setAttribute("state", "active");
+}
+
+function enableCurrentBtnWithoutLoadingBar(btn) {
+  btn.style.display = "block";
+  btn.parentElement.style.display = "flex";
+  const loadingBarEl = btn
+    .closest(".btn-container")
+    .querySelector(".loading-bar");
+  loadingBarEl.setAttribute("state", "inactive");
+}
+
 export default {
   toCollapseContainer,
   toExpandContainer,
   removeCalendarDayAndMonthSelectors,
-  highlightSelectedDate
+  highlightSelectedDate,
+  disableTransactionBtns,
+  enableTransactionBtns,
+  disableCurrentBtnWithLoadingBar,
+  enableCurrentBtnWithoutLoadingBar,
 };

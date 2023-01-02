@@ -70,7 +70,7 @@ function transactionResultListItem(transaction) {
       <div class="transaction-site">${
         transaction.hostName.toUpperCase().substr(0, 1) || ""
       }</div>
-      <div class="transaction-title"><a href="${transaction.href}">${
+      <div class="transaction-title" site="${transaction.hostName}"><a href="${transaction.href}">${
     transaction.title
   }</a></div>
       <div class="transaction-date">${transaction.date}</div>

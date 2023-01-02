@@ -3,7 +3,7 @@ import fetching from "./create.js";
 import { updateCalendar } from "./create.js";
 import { createTransactionList } from "./create.js";
 import animate from "./animation.js";
-import style from "./dynamicStyleChange.js";
+import state from "../state/state.js";
 
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
@@ -88,12 +88,31 @@ function runScraperBtn() {
     "#transaction-results button.run-scraper"
   );
   runBtn.addEventListener("click", async () => {
+    state.disableTransactionBtns(runBtn);
     const dateEl = document.querySelector("#calendar .date");
     const currentDateStr = dateEl.getAttribute("date");
     const data = await fetching.scraper(currentDateStr);
 
     // create the list of transaction
     createTransactionList(data);
+    state.enableTransactionBtns(runBtn);
+  });
+}
+
+function downloadResultBtn() {
+  const downloadBtn = document.querySelector(
+    "#transaction-results button.download"
+  );
+
+  downloadBtn.addEventListener("click", async () => {
+    // if there are no results yet, no download
+    const resultListEl = document.querySelector("ul.display-results-list");
+    if (!resultListEl.children) return;
+
+    state.disableTransactionBtns(downloadBtn);
+
+    await timer.waitFor(5000);
+    state.enableTransactionBtns(downloadBtn);
   });
 }
 
@@ -103,4 +122,5 @@ export default {
   calendarDayClick,
   calendarPrevNextBtns,
   runScraperBtn,
+  downloadResultBtn,
 };

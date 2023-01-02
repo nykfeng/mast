@@ -194,17 +194,20 @@
                         Select an action to view:
                     </div>
                     <div class="action-control">
-                        <div>
+                        <div class="btn-container">
                             <p><i class="fa-solid fa-circle-info"></i> Run scraper for the selected date</p>
-                            <div class="btn-outter"><button class="run-scraper">Run Scraper</button></div>
+                            <div class="btn-outter" state="active"><button class="run-scraper">Run Scraper</button></div>
+                            <div class="loading-bar" state="inactive"></div>
                         </div>
-                        <div>
+                        <div class="btn-container">
                             <p><i class="fa-solid fa-circle-info"></i> Pull from database for the selected date</p>
-                            <div class="btn-outter"><button class="from-database">Fetch DB</button></div>
+                            <div class="btn-outter" state="active"><button class="from-database">Fetch DB</button></div>
+                            <div class="loading-bar" state="inactive"></div>
                         </div>
-                        <div>
+                        <div class="btn-container">
                             <p><i class="fa-solid fa-circle-info"></i> Download the current transaction results</p>
-                            <div class="btn-outter"><button class="from-database">Download</button></div>
+                            <div class="btn-outter" state="active"><button class="download">Download</button></div>
+                            <div class="loading-bar" state="inactive"></div>
                         </div>
                     </div>
                 </div>

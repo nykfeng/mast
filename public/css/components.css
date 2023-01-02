@@ -84,3 +84,35 @@ button.refresh.right-left {
   left: 5.2rem;
 }
 /* ---- END ---- Content Container style */
+
+/* ---- START ---- loading bar style */
+.loading-bar[state="active"] {
+  width: 80%;
+  height: 4rem;
+  background: #ddd;
+  /* border-radius: 1rem; */
+  border: 0.2rem solid #fff;
+  overflow: hidden;
+}
+
+.loading-bar[state="active"]::before {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 100%;
+  /* border-radius: 0.8rem; */
+  background: linear-gradient(to right, rgb(60, 16, 83), rgb(173, 83, 137));
+  /* background: linear-gradient(to right, #39f436, #005e38); */
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* ---- END ---- loading bar style */

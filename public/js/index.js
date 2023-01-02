@@ -31,4 +31,5 @@ function listeners() {
   listening.calendarPrevNextBtns();
 
   listening.runScraperBtn();
+  listening.downloadResultBtn();
 }
