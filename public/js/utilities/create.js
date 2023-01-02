@@ -2,6 +2,7 @@ import getStatus from "../request/getStatus.js";
 import getStats from "../request/getStatistics.js";
 import getResults from "../request/getResults.js";
 import render from "../render/renderHTML.js";
+import renderModal from "../render/renderModal.js";
 import timer from "./timer.js";
 import calendar from "./calendar.js";
 import style from "./dynamicStyleChange.js";
@@ -142,6 +143,27 @@ export function createTransactionList(data) {
   });
 }
 
+export function createErrorModal(event) {
+  const { title, message, dateRangeFrom, dateRangeTo } = event.detail;
+
+  const modalEl = document.getElementById("modal");
+  modalEl.style.display = "flex";
+
+  const modalTitleEl = modalEl.querySelector(".modal-title");
+  // remove the title message if there is any
+  modalTitleEl.children[0].classList.contains("title-msg")
+    ? modalTitleEl.children[0].remove()
+    : "";
+  modalTitleEl.prepend(renderModal.errorTitle(title));
+
+  const modalDetailEl = modalEl.querySelector(".modal-detail");
+  // remove the modal body details, if there is any
+  modalDetailEl.innerHTML = "";
+  modalDetailEl.append(
+    ...renderModal.errorScraperDateRange(message, dateRangeFrom, dateRangeTo)
+  );
+}
+
 export default {
   webStatus,
   systemStatus,
@@ -149,4 +171,5 @@ export default {
   calendarMonthCard,
   calendarDateCard,
   scraper,
+  createErrorModal,
 };

@@ -27,6 +27,7 @@ function errorScraperDateRange(msg, dateStr1, dateStr2) {
 
 function errorTitle(msg) {
   const p = document.createElement("p");
+  p.classList.add("title-msg");
   p.textContent = "Error: " + msg;
   return p;
 }

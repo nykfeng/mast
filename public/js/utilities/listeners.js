@@ -2,9 +2,11 @@ import timer from "./timer.js";
 import fetching from "./create.js";
 import { updateCalendar } from "./create.js";
 import { createTransactionList } from "./create.js";
+import { createErrorModal } from "./create.js";
 import animate from "./animation.js";
 import state from "../state/state.js";
 import validate from "./validate.js";
+import renderModal from "../render/renderModal.js";
 
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
@@ -123,15 +125,29 @@ function downloadResultBtn() {
 
 function modalOpen() {
   window.addEventListener("error-modal", (event) => {
+    console.error(event.detail.title);
     console.error(event.detail.message);
-    const modal = document.getElementById("modal");
-    modal.style.display = "flex";
+    createErrorModal(event);
   });
-
-
 }
 
-function modalClose() {}
+function modalClose() {
+  const modalEl = document.getElementById("modal");
+  window.onclick = function (event) {
+    if (event.target == modalEl) {
+      modalEl.style.display = "none";
+    }
+  };
+
+  const modalTitleCloseEl = document.querySelector("#modal .cross-close-btn");
+  const modalFooterCloseBtn = document.querySelector("#modal .close-modal-btn");
+
+  [modalTitleCloseEl, modalFooterCloseBtn].forEach((btn) => {
+    btn.addEventListener("click", () => {
+      modalEl.style.display = "none";
+    });
+  });
+}
 
 export default {
   statusMinimizeAndMaximizeBtns,

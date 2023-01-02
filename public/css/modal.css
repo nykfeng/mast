@@ -18,7 +18,7 @@
   width: 50%;
   background-color: var(--container-bg);
   margin: auto;
-  border: 0.1rem solid rgb(255, 255, 255);
+  border: 0.1rem solid var(--white);
   width: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -42,7 +42,7 @@
 }
 
 .modal-content-container .error-title {
-  color: #ff1100;
+  color: var(--error-dark);
 }
 
 .modal-content-container .modal-title .cross-close-btn {
@@ -55,6 +55,10 @@
   cursor: pointer;
   border: none;
   background-color: inherit;
+}
+
+.modal-content-container .modal-title .cross-close-btn:active {
+  transform: scale(0.97);
 }
 
 .modal-content-container .modal-title .cross-close-btn:hover {
@@ -85,15 +89,31 @@
 }
 
 .modal-footer button.close-modal-btn {
-  padding: 10px 20px;
-  font-size: 14px;
+  height: 3rem;
+  width: 8rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #fff;
-  background-color: var(--error);
-  border: none;
+  color: var(--white);
+  background: none;
   cursor: pointer;
+  position: absolute;
+  border: var(--white) 0.1rem solid;
+  left: -5%;
 }
 
-.modal-footer button.close-modal-btn:hover {
+.modal-footer .btn-outter {
+  display: flex;
+  align-items: center;
+  background-color: var(--error);
+  height: 4rem;
+  width: 8rem;
+  position: relative;
+}
+
+.modal-footer .btn-outter:hover {
   background-color: var(--error-dark);
+}
+
+.modal-footer .btn-outter button:active {
+  transform: scale(0.97);
 }
