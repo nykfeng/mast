@@ -71,6 +71,7 @@ async function scraping(selectedDate) {
     "Number of transactions qualified to be stored: ",
     toBeStored.length
   );
+  return toBeStored;
 }
 
 module.exports = scraping;

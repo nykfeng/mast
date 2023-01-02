@@ -64,8 +64,30 @@ function calendarMonthSelectorRow(date, monthString) {
   return html;
 }
 
+function transactionResultListItem(transaction) {
+  const html = `
+    <li class="list-item" site="${transaction.hostName}">
+      <div class="transaction-site">${
+        transaction.hostName.toUpperCase().substr(0, 1) || ""
+      }</div>
+      <div class="transaction-title"><a href="${transaction.href}">${
+    transaction.title
+  }</a></div>
+      <div class="transaction-date">${transaction.date}</div>
+      <div class="transaction-link">
+          <a href="${
+            transaction.href
+          }"><i class="fa-solid fa-right-to-bracket"></i></a>
+      </div>
+    </li>
+ `;
+
+  return html;
+}
+
 export default {
   webStatus,
   calendarWeek,
   calendarMonthSelectorRow,
+  transactionResultListItem,
 };

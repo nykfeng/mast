@@ -94,6 +94,9 @@
 
   padding: 2rem 1rem;
   font-size: 1.6rem;
+
+  background-color: aliceblue;
+  min-height: 5rem;
 }
 
 .display-results-list .list-item {
@@ -128,7 +131,17 @@
 }
 
 .transaction-title {
-  background-color: aliceblue;
+  background-color: #d4e1ed;
+}
+
+.transaction-title a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transaction-title a:hover {
+  color: var(--main-orange);
 }
 
 .transaction-title::before {
@@ -138,7 +151,6 @@
 }
 
 .transaction-date {
-  font-style: italic;
   font-weight: 500;
   border-bottom: 0.1rem solid black;
 

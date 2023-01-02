@@ -1,6 +1,7 @@
 import timer from "./timer.js";
 import fetching from "./create.js";
 import { updateCalendar } from "./create.js";
+import { createTransactionList } from "./create.js";
 import animate from "./animation.js";
 import style from "./dynamicStyleChange.js";
 
@@ -89,7 +90,10 @@ function runScraperBtn() {
   runBtn.addEventListener("click", async () => {
     const dateEl = document.querySelector("#calendar .date");
     const currentDateStr = dateEl.getAttribute("date");
-    await fetching.scraper(currentDateStr);
+    const data = await fetching.scraper(currentDateStr);
+
+    // create the list of transaction
+    createTransactionList(data);
   });
 }
 

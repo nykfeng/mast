@@ -120,12 +120,26 @@ async function scraper(dateStr) {
     console.log("Date string error");
     return;
   }
-  console.log("dateStr: ", dateStr);
   const queryStr = "?date=" + dateStr;
 
   const data = await getResults.transactionResults(queryStr);
-  console.log("Data: ");
-  console.log(data);
+
+  return data;
+}
+
+export function createTransactionList(data) {
+  //remove current transaction list, if any
+  const transactionListEl = document.querySelector(".display-results-list");
+  transactionListEl.innerHTML = "";
+
+  // render each element on the list
+  data.forEach((transaction) => {
+    transaction.date = calendar.getMMDDYYYY(new Date(transaction.date));
+    transactionListEl.insertAdjacentHTML(
+      "beforeend",
+      render.transactionResultListItem(transaction)
+    );
+  });
 }
 
 export default {
@@ -134,6 +148,5 @@ export default {
   graphStatsDailyTransactionNumber,
   calendarMonthCard,
   calendarDateCard,
-  updateCalendar,
   scraper,
 };

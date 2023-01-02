@@ -33,7 +33,10 @@ app.get("/graphStatsDailyTransactionNumber", async (req, res) => {
 app.get("/scrape-now", async (req, res) => {
   console.log(req.query.date);
   const selectedDate = new Date(req.query.date);
-  await scraping(selectedDate);
+  const data = await scraping(selectedDate);
+  res.send(data);
+  // You can use the response.json() method to send a JSON response,
+  // which is equivalent to calling response.send() with a JSON-serialized value.
 });
 
 app.listen(PORT, () => {
