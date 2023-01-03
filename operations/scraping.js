@@ -4,10 +4,11 @@ const scraper = require("../scrapers/pupBot");
 const timer = require("../util/timer");
 const chalk = require("chalk");
 
-async function scraping(selectedDate) {
+async function scraping(selectedDate, socket) {
   const toBeStored = [];
   let numberOfTransactionsRead = 0;
   const MAX_PAGE_NUMBER_TO_VISIT = 10;
+
   // To loop through all the websites
   for (let website of webConfig) {
     let stopConditionForCurrentSite = false;
@@ -15,8 +16,10 @@ async function scraping(selectedDate) {
     // always start at page 1, this is how information is organized on these sites
     // These sites don't store all the information there, for good measure, set max to 10 pages
     for (let pageNum = 1; pageNum <= MAX_PAGE_NUMBER_TO_VISIT; pageNum++) {
+      socket.send("Visiting: " + website.name + " page " + pageNum);
+
       // Visiting one website one page at a time
-      const data = await scraper.pupBot(website, pageNum);
+      const data = await scraper.pupBot(website, pageNum, socket);
 
       numberOfTransactionsRead += data.length;
 
@@ -55,11 +58,23 @@ async function scraping(selectedDate) {
       // if we stop condition has met for the current site,
       // break out of the loop for going through the pages on the current site
       if (stopConditionForCurrentSite) {
-        console.log("Went through all qualified transactions of the current page");
+        console.log(
+          "Went through all qualified transactions from " + website.domain
+        );
+        socket.send(
+          "Went through all qualified transactions from " + website.domain
+        );
         console.log(
           "================= ",
-          chalk.black.bgYellow("Leaving current site"),
-          " =================", "\n"
+          chalk.black.bgYellow("Leaving " + website.domain),
+          " =================",
+          "\n"
+        );
+        socket.send(
+          "================= " +
+            chalk.white.bgYellow("Leaving " + website.domain) +
+            " =================" +
+            "\n"
         );
         break;
       }
@@ -73,10 +88,13 @@ async function scraping(selectedDate) {
     chalk.bgGreen("Number of total transactions read: "),
     numberOfTransactionsRead
   );
+  socket.send("Number of total transactions read: " + numberOfTransactionsRead);
   console.log(
     chalk.bgGreen("Number of transactions qualified: "),
     toBeStored.length
   );
+  socket.send("Number of transactions qualified: " + toBeStored.length);
+
   return toBeStored;
 }
 

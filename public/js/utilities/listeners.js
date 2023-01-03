@@ -7,6 +7,7 @@ import animate from "./animation.js";
 import state from "../state/state.js";
 import validate from "./validate.js";
 import renderModal from "../render/renderModal.js";
+import { wsConnect } from "../state/wsConnection.js";
 
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
@@ -98,6 +99,8 @@ function runScraperBtn() {
 
     // if the date is not validated, stop
     if (!validate.date(currentDateStr)) return;
+
+    wsConnect();
 
     // otherwise, run scraper and disable other buttons
     state.disableTransactionBtns(runBtn);

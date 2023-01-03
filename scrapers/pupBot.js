@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 const chalk = require("chalk");
 
-module.exports.pupBot = async (website, pageNum) => {
+module.exports.pupBot = async (website, pageNum, socket) => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
@@ -17,8 +17,12 @@ module.exports.pupBot = async (website, pageNum) => {
   try {
     await page.waitForSelector(website.selectors.getSection);
     console.log("CSS section selector loaded successful");
+    socket.send("CSS section selector loaded successful");
   } catch (err) {
     console.log(chalk.bgRed(err.message));
+    socket.send(
+      err.message || "error encountered while waiting for page CSS selector"
+    );
     const data = await page.evaluate(
       () => document.querySelector("*").outerHTML
     );
@@ -79,7 +83,8 @@ module.exports.pupBot = async (website, pageNum) => {
 
   await browser.close();
 
-  console.log("Data obtained from current page");
+  console.log("Finished reading current page" + "\n");
+  socket.send("Finished reading current page" + "\n");
   return obtainedData;
 };
 

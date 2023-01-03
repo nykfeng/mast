@@ -1,6 +1,5 @@
 import fetchAndCreate from "./utilities/create.js";
 import listening from "./utilities/listeners.js";
-import calendar from "./utilities/calendar.js";
 
 async function init() {
   await initialDataFetchAndCreate();
