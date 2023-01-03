@@ -164,6 +164,39 @@ export function createErrorModal(event) {
   );
 }
 
+export function createConsole() {
+  const consoleEl = document.querySelector("#console");
+  consoleEl.style.display = "block";
+}
+
+export function updateConsoleContent(msgOrigin, textLine) {
+  const consoleBodyEl = document.querySelector("#console .console-body");
+
+  // remove the cursor from the last p element in console body
+  const lastParagraphEl = consoleBodyEl.querySelector("p:last-child");
+  if (lastParagraphEl) {
+    const lastCursorSpan = lastParagraphEl.lastElementChild;
+    lastCursorSpan.remove();
+  }
+
+  const msgOriginSpan = document.createElement("span");
+  msgOriginSpan.textContent = msgOrigin;
+  msgOriginSpan.classList.add("msg-origin");
+
+  const cursorSpan = document.createElement("span");
+  cursorSpan.textContent = "|";
+  cursorSpan.classList.add("cursor");
+
+  // create the new paragraph element and add its content
+  const currentParagraphEl = document.createElement("p");
+  currentParagraphEl.appendChild(msgOriginSpan);
+  currentParagraphEl.appendChild(document.createTextNode(textLine));
+  currentParagraphEl.appendChild(cursorSpan);
+
+  // add it to the console body
+  consoleBodyEl.append(currentParagraphEl);
+}
+
 export default {
   webStatus,
   systemStatus,
@@ -172,4 +205,6 @@ export default {
   calendarDateCard,
   scraper,
   createErrorModal,
+  createConsole,
+  updateConsoleContent,
 };

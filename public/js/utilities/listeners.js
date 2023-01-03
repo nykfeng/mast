@@ -3,6 +3,7 @@ import fetching from "./create.js";
 import { updateCalendar } from "./create.js";
 import { createTransactionList } from "./create.js";
 import { createErrorModal } from "./create.js";
+import { createConsole } from "./create.js";
 import animate from "./animation.js";
 import state from "../state/state.js";
 import validate from "./validate.js";
@@ -100,6 +101,9 @@ function runScraperBtn() {
     // if the date is not validated, stop
     if (!validate.date(currentDateStr)) return;
 
+    // open console
+    createConsole();
+    // connect websocket and to display console text
     wsConnect();
 
     // otherwise, run scraper and disable other buttons

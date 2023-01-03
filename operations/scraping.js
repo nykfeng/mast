@@ -72,7 +72,7 @@ async function scraping(selectedDate, socket) {
         );
         socket.send(
           "================= " +
-            chalk.white.bgYellow("Leaving " + website.domain) +
+            ("Leaving " + website.domain) +
             " =================" +
             "\n"
         );
@@ -94,6 +94,11 @@ async function scraping(selectedDate, socket) {
     toBeStored.length
   );
   socket.send("Number of transactions qualified: " + toBeStored.length);
+
+  console.log("Finished current scraping session~!");
+  socket.send("Finished current scraping session~!");
+
+  socket.close();
 
   return toBeStored;
 }

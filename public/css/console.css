@@ -1,0 +1,62 @@
+#console {
+  height: 50rem;
+  margin-left: 0.75rem;
+  margin-bottom: 7rem;
+  position: relative;
+
+  display: none;
+}
+
+#console .console-body {
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  margin-left: 0.45rem;
+  overflow: auto;
+  padding: 0.5rem;
+  padding-right: 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: Consolas, monospace;
+  font-size: 1.5rem;
+  color: var(--console-text);
+}
+
+#console p.console-line {
+}
+
+#console .console-body::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+#console .console-body::-webkit-scrollbar-thumb {
+  background-color: var(--console-text);
+}
+
+#console .cursor {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    color: transparent;
+  }
+}
+
+#console button {
+  height: 3.9rem;
+}
+
+#console button.refresh.left-right {
+  top: 0;
+  right: 4.2rem;
+}
+
+#console button.min-max.left-right {
+  top: 0;
+  right: 0;
+}
