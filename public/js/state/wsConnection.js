@@ -14,9 +14,7 @@ export function wsConnect() {
   };
 
   ws.onmessage = function (event) {
-    console.log(event.data);
-    const textLine = event.data;
-    const msgOrigin = "M.A.S.T. Server:~ ";
-    updateConsoleContent(msgOrigin, textLine);
+    const { msgOrigin, message } = JSON.parse(event.data);
+    updateConsoleContent(msgOrigin, message);
   };
 }

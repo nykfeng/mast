@@ -2,6 +2,8 @@ const puppeteer = require("puppeteer");
 const chalk = require("chalk");
 
 module.exports.pupBot = async (website, pageNum, socket) => {
+  const msgOrigin = "pupBot:~ ";
+  let message = "";
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
@@ -10,24 +12,26 @@ module.exports.pupBot = async (website, pageNum, socket) => {
   const { paginationType, pagination } = website;
   const url = getPageUrl(pageNum, { paginationType, pagination });
 
-  console.log(chalk.bgGreen("Accessing: ", url));
-  await page.goto(url, { waitUntil: "networkidle0" });
-
-  await page.setJavaScriptEnabled(true);
   try {
+    console.log(chalk.bgGreen("Accessing: ", url));
+    await page.goto(url, { waitUntil: "networkidle0" });
+    await page.setJavaScriptEnabled(true);
     await page.waitForSelector(website.selectors.getSection);
-    console.log("CSS section selector loaded successful");
-    socket.send("CSS section selector loaded successful");
+    message = "CSS section selector loaded successfully";
+    console.log(message);
+    socket.send(JSON.stringify({ msgOrigin, message }));
   } catch (err) {
-    console.log(chalk.bgRed(err.message));
+    console.log(msgOrigin, chalk.bgRed(err.message));
     socket.send(
-      err.message || "error encountered while waiting for page CSS selector"
+      JSON.stringify({
+        msgOrigin,
+        message: err.message || `error encountered while accessing ${url}`,
+      })
     );
-    const data = await page.evaluate(
+    const htmlData = await page.evaluate(
       () => document.querySelector("*").outerHTML
     );
-
-    console.log(data);
+    console.log(htmlData);
   }
 
   const obtainedData = await page.evaluate((website) => {
@@ -83,8 +87,14 @@ module.exports.pupBot = async (website, pageNum, socket) => {
 
   await browser.close();
 
-  console.log("Finished reading current page" + "\n");
-  socket.send("Finished reading current page" + "\n");
+  message = "Finished reading current page";
+  console.log(msgOrigin, message);
+  socket.send(
+    JSON.stringify({
+      msgOrigin,
+      message,
+    })
+  );
   return obtainedData;
 };
 

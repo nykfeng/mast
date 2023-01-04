@@ -11,9 +11,15 @@ const server = new WebSocket.Server({ port: 8080 });
 let socket;
 
 server.on("connection", async function (ws) {
+  const msgOrigin = "M.A.S.T. Server:~ ";
   socket = ws;
-  console.log("Web Socket client connected!");
-  ws.send("WebSocket connection established to server");
+  console.log(msgOrigin, "Web Socket client connected!");
+  ws.send(
+    JSON.stringify({
+      msgOrigin,
+      message: "WebSocket connection established to server",
+    })
+  );
 
   ws.on("close", () => {
     console.log("Client has disconnected");

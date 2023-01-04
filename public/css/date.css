@@ -1,7 +1,6 @@
 .date-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   position: relative;
 
   margin: 0 5rem 0 1rem;
@@ -16,7 +15,6 @@
   background-color: var(--background-black);
   padding: 1rem;
   margin-right: 15rem;
-
   font-family: "Inter", sans-serif;
 }
 

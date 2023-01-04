@@ -8,6 +8,9 @@ async function scraping(selectedDate, socket) {
   const toBeStored = [];
   let numberOfTransactionsRead = 0;
   const MAX_PAGE_NUMBER_TO_VISIT = 10;
+  // For logging, console display
+  const msgOrigin = "Scraping Process:~ ";
+  let message = "";
 
   // To loop through all the websites
   for (let website of webConfig) {
@@ -16,7 +19,8 @@ async function scraping(selectedDate, socket) {
     // always start at page 1, this is how information is organized on these sites
     // These sites don't store all the information there, for good measure, set max to 10 pages
     for (let pageNum = 1; pageNum <= MAX_PAGE_NUMBER_TO_VISIT; pageNum++) {
-      socket.send("Visiting: " + website.name + " page " + pageNum);
+      message = "Visiting: " + website.name + " page " + pageNum;
+      socket.send(JSON.stringify({ msgOrigin, message }));
 
       // Visiting one website one page at a time
       const data = await scraper.pupBot(website, pageNum, socket);
@@ -58,24 +62,22 @@ async function scraping(selectedDate, socket) {
       // if we stop condition has met for the current site,
       // break out of the loop for going through the pages on the current site
       if (stopConditionForCurrentSite) {
-        console.log(
-          "Went through all qualified transactions from " + website.domain
-        );
-        socket.send(
-          "Went through all qualified transactions from " + website.domain
-        );
+        message =
+          "Went through all qualified transactions from " + website.domain;
+        console.log(msgOrigin, message);
+        socket.send(JSON.stringify({ msgOrigin, message }));
+
         console.log(
           "================= ",
           chalk.black.bgYellow("Leaving " + website.domain),
           " =================",
           "\n"
         );
-        socket.send(
+        message =
           "================= " +
-            ("Leaving " + website.domain) +
-            " =================" +
-            "\n"
-        );
+          ("Leaving " + website.domain) +
+          " =================";
+        socket.send(JSON.stringify({ msgOrigin, message }));
         break;
       }
 
@@ -83,20 +85,18 @@ async function scraping(selectedDate, socket) {
       await timer.waitFor(5000);
     }
   }
-  // console.log(toBeStored);
-  console.log(
-    chalk.bgGreen("Number of total transactions read: "),
-    numberOfTransactionsRead
-  );
-  socket.send("Number of total transactions read: " + numberOfTransactionsRead);
-  console.log(
-    chalk.bgGreen("Number of transactions qualified: "),
-    toBeStored.length
-  );
-  socket.send("Number of transactions qualified: " + toBeStored.length);
 
-  console.log("Finished current scraping session~!");
-  socket.send("Finished current scraping session~!");
+  message = "Number of total transactions read: " + numberOfTransactionsRead;
+  console.log(msgOrigin, message);
+  socket.send(JSON.stringify({ msgOrigin, message }));
+
+  message = "Number of transactions qualified: " + toBeStored.length;
+  console.log(msgOrigin, message);
+  socket.send(JSON.stringify({ msgOrigin, message }));
+
+  message = "Finished current scraping session~!";
+  console.log(msgOrigin, message);
+  socket.send(JSON.stringify({ msgOrigin, message }));
 
   socket.close();
 

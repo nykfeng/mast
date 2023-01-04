@@ -195,6 +195,9 @@ export function updateConsoleContent(msgOrigin, textLine) {
 
   // add it to the console body
   consoleBodyEl.append(currentParagraphEl);
+
+  // scroll to the bottom within the div
+  consoleBodyEl.scrollTop = consoleBodyEl.scrollHeight;
 }
 
 export default {

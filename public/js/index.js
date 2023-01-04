@@ -10,7 +10,7 @@ init();
 
 async function initialDataFetchAndCreate() {
   // status
-  await fetchAndCreate.webStatus();
+  // await fetchAndCreate.webStatus();
   await fetchAndCreate.systemStatus();
 
   // stats
