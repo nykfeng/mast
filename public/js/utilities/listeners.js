@@ -7,7 +7,7 @@ import { createConsole } from "./create.js";
 import animate from "./animation.js";
 import state from "../state/state.js";
 import validate from "./validate.js";
-import renderModal from "../render/renderModal.js";
+import renderGraph from "../render/renderGraph.js";
 import { wsConnect } from "../state/wsConnection.js";
 
 // status bar minimize and maximize buttons
@@ -132,8 +132,6 @@ function downloadResultBtn() {
 
 function modalOpen() {
   window.addEventListener("error-modal", (event) => {
-    console.error(event.detail.title);
-    console.error(event.detail.message);
     createErrorModal(event);
   });
 }
@@ -156,6 +154,9 @@ function modalClose() {
   });
 }
 
+
+
+
 export default {
   statusMinimizeAndMaximizeBtns,
   statusRefreshBtns,
@@ -165,4 +166,5 @@ export default {
   downloadResultBtn,
   modalOpen,
   modalClose,
+
 };

@@ -3,6 +3,7 @@ import getStats from "../request/getStatistics.js";
 import getResults from "../request/getResults.js";
 import render from "../render/renderHTML.js";
 import renderModal from "../render/renderModal.js";
+import renderGraph from "../render/renderGraph.js";
 import timer from "./timer.js";
 import calendar from "./calendar.js";
 import style from "./dynamicStyleChange.js";
@@ -122,7 +123,6 @@ async function scraper(dateStr) {
     return;
   }
   const queryStr = "?date=" + dateStr;
-
   const data = await getResults.transactionResults(queryStr);
 
   return data;
@@ -200,10 +200,17 @@ export function updateConsoleContent(msgOrigin, textLine) {
   consoleBodyEl.scrollTop = consoleBodyEl.scrollHeight;
 }
 
+async function dailyTransactionGraph() {
+  const dailyTransactionNumberData =
+    await getStats.graphStatsDailyTransactionNumber();
+  renderGraph.dailyTransaction(dailyTransactionNumberData);
+}
+
 export default {
   webStatus,
   systemStatus,
   graphStatsDailyTransactionNumber,
+  dailyTransactionGraph,
   calendarMonthCard,
   calendarDateCard,
   scraper,
