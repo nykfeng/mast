@@ -4,6 +4,7 @@ import getResults from "../request/getResults.js";
 import render from "../render/renderHTML.js";
 import renderModal from "../render/renderModal.js";
 import renderGraph from "../render/renderGraph.js";
+import renderDownload from "../render/renderDownload.js";
 import timer from "./timer.js";
 import calendar from "./calendar.js";
 import style from "./dynamicStyleChange.js";
@@ -124,7 +125,7 @@ async function scraper(dateStr) {
   }
   const queryStr = "?date=" + dateStr;
   const data = await getResults.transactionResults(queryStr);
-
+  renderDownload.storeDataToBeDownloaded(data, dateStr)
   return data;
 }
 

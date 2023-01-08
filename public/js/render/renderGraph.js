@@ -71,6 +71,8 @@ function dailyTransaction(data) {
     .selectAll("label")
     .data(data)
     .enter()
+    .append("g")
+    .attr("class", "data-label-containers")
     .append("text")
     .text((d) => d.transactionNumber)
     .attr("x", (d) => x(d.date))

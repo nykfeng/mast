@@ -7,7 +7,7 @@ import { createConsole } from "./create.js";
 import animate from "./animation.js";
 import state from "../state/state.js";
 import validate from "./validate.js";
-import renderGraph from "../render/renderGraph.js";
+import renderDownload from "../render/renderDownload.js";
 import { wsConnect } from "../state/wsConnection.js";
 
 // status bar minimize and maximize buttons
@@ -123,9 +123,16 @@ function downloadResultBtn() {
   downloadBtn.addEventListener("click", async () => {
     // if there are no results yet, no download
     const resultListEl = document.querySelector("ul.display-results-list");
-    if (!resultListEl.children) return;
+    if (!resultListEl.hasChildNodes()) return;
+
+    // if there are results to download
     state.disableTransactionBtns(downloadBtn);
-    await timer.waitFor(5000);
+    const { dataToBeDownloaded } = renderDownload.getDataToBeDownloaded();
+    renderDownload.transactionResult(
+      dataToBeDownloaded,
+      "transaction.csv",
+      "text/csv"
+    );
     state.enableTransactionBtns(downloadBtn);
   });
 }
@@ -154,9 +161,6 @@ function modalClose() {
   });
 }
 
-
-
-
 export default {
   statusMinimizeAndMaximizeBtns,
   statusRefreshBtns,
@@ -166,5 +170,4 @@ export default {
   downloadResultBtn,
   modalOpen,
   modalClose,
-
 };
