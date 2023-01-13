@@ -125,12 +125,18 @@ function downloadResultBtn() {
     const resultListEl = document.querySelector("ul.display-results-list");
     if (!resultListEl.hasChildNodes()) return;
 
+    // get the date of the transactions
+    let dateStr = document
+      .querySelector("#calendar .date")
+      .getAttribute("date");
+    dateStr = dateStr.replaceAll("/", "-");
+
     // if there are results to download
     state.disableTransactionBtns(downloadBtn);
     const { dataToBeDownloaded } = renderDownload.getDataToBeDownloaded();
     renderDownload.transactionResult(
       dataToBeDownloaded,
-      "transaction.csv",
+      `Transaction List ${dateStr}.csv`,
       "text/csv"
     );
     state.enableTransactionBtns(downloadBtn);

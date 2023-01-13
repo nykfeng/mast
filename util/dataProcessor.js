@@ -169,11 +169,21 @@ module.exports.isNewsInEnglish = function (newsTitleStr) {
   // Create a new instance of the LanguageDetect class
   const detector = new LanguageDetect();
 
-  // Detect the language of the string
-  const language = detector.detect(newsTitleStr, 1)[0][0];
-  // we are only interested in the first language detected,
-  // so we access the first element of the array ([0])
-  // and the first element of that element ([0]) to get the language code.
+  let language;
+  try {
+    // Detect the language of the string
+    language = detector.detect(newsTitleStr, 1)[0][0];
+    // we are only interested in the first language detected,
+    // so we access the first element of the array ([0])
+    // and the first element of that element ([0]) to get the language code.
+    //  [ [ 'english', 0.5969230769230769 ],  [ 'hungarian', 0.407948717948718 ],]
+  } catch (err) {
+    console.log("Error in detecting the news language");
+    console.log(err.message);
+    console.log("Error in reading: ", newsTitleStr);
+    console.log("language detect result: ", detector.detect(newsTitleStr, 1));
+    language = null;
+  }
 
   // Determine if the string is in English
   const isEnglish = language === "english";
