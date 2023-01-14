@@ -3,8 +3,22 @@
   margin-left: 0.75rem;
   margin-bottom: 7rem;
   position: relative;
-
+  padding: 0;
   display: none;
+}
+
+#console:has(.console-body[state="collpased"]) {
+  height: 5rem;
+  transition-property: height;
+  transition-duration: 1s;
+  transition-delay: 1s;
+}
+
+#console:has(.console-body[state="expand"]) {
+  height: 50rem;
+  transition-property: height;
+  transition-duration: 1s;
+  transition-delay: 1s;
 }
 
 #console .console-body {
@@ -21,6 +35,18 @@
   font-family: Consolas, monospace;
   font-size: 1.5rem;
   color: var(--console-text);
+}
+
+#console .console-body[state="collpased"] {
+  position: relative;
+  opacity: 0.5;
+  transform: translateY(-250%);
+  transition: all 1000ms ease-in;
+}
+
+#console .console-body[state="expanded"] {
+  position: relative;
+  opacity: 1;
 }
 
 #console .console-body::-webkit-scrollbar {
@@ -50,7 +76,7 @@
 
 #console button.refresh.left-right {
   top: 0;
-  right: 4.2rem;
+  right: 4.3rem;
 }
 
 #console button.min-max.left-right {

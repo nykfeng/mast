@@ -10,7 +10,10 @@ function toCollapseContainer(el) {
     .querySelector(".status-updated-time");
 
   toBeCallapedEl.setAttribute("state", "collpased");
-  toBeHiddenEl.style.display = "none";
+
+  if (toBeHiddenEl) {
+    toBeHiddenEl.style.display = "none";
+  }
   setTimeout(() => {
     toBeCallapedEl.style.display = "none";
   }, 250);
@@ -26,9 +29,12 @@ function toExpandContainer(el) {
   const toBeUnhiddenEl = toBeExpandedEl
     .closest(".content-container")
     .querySelector(".status-updated-time");
-  toBeUnhiddenEl.style.display = "flex";
-  toBeExpandedEl.style.display = "flex";
+  if (toBeUnhiddenEl) {
+    toBeUnhiddenEl.style.display = "flex";
+  }
+
   toBeExpandedEl.setAttribute("state", "expanded");
+  toBeExpandedEl.style.display = "flex";
 }
 
 function removeCalendarDayAndMonthSelectors() {
