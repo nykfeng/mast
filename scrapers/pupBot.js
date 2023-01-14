@@ -16,8 +16,11 @@ module.exports.pupBot = async (website, pageNum, socket) => {
     console.log(chalk.bgGreen("Accessing: ", url));
     await page.goto(url, { waitUntil: "networkidle0" });
     await page.setJavaScriptEnabled(true);
-    await page.waitForSelector(website.selectors.getSection);
-    message = "CSS section selector loaded successfully";
+    for (const [key, selector] of Object.entries(website.selectors)) {
+      await page.waitForSelector(selector);
+    }
+
+    message = "All CSS selectors loaded successfully";
     console.log(message);
     socket.send(JSON.stringify({ msgOrigin, message }));
   } catch (err) {
@@ -87,7 +90,7 @@ module.exports.pupBot = async (website, pageNum, socket) => {
 
   await browser.close();
 
-  message = "Finished reading current page";
+  message = `Finished reading current page with [${obtainedData.length}] transactions read`;
   console.log(msgOrigin, message);
   socket.send(
     JSON.stringify({

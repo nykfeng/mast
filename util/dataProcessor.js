@@ -39,6 +39,8 @@ module.exports.newsDate = function (newsDateString) {
     if (newsDate) return newsDate;
   }
 
+  console.log("newsDateString OUT <-", newsDate);
+
   return newsDate;
 };
 
@@ -117,12 +119,21 @@ function processHourMinuteTimeString(timeStr) {
   const sanitizedTimeStr = timeStr.replace(/[a-zA-Z]/g, "").trim();
 
   // Get the year, month, and day of the current date
+  // To use the Date constructor new Date('1995-12-17T03:24:00')
+  // month and day must be in two digit format, it must be padded
   const year = today.getFullYear();
-  const month = today.getMonth();
-  const day = today.getDate();
+  const month = (today.getMonth() + 1).toString().padStart(2, "0");
+  const day = today.getDate().toString().padStart(2, "0");
 
   // Parse the time string and create a date object for today's date
-  const date = new Date(`${year}-${month + 1}-${day}T${sanitizedTimeStr}`);
+  let date;
+  date = new Date(`${year}-${month}-${day}T${sanitizedTimeStr}`);
+
+  // test if there were error converting date, if there is default date to today
+  if (isNaN(date.getTime())) {
+    console.log("Error in converting HH:MM to date object.");
+    date = today;
+  }
 
   return date;
 }
@@ -180,7 +191,7 @@ module.exports.isNewsInEnglish = function (newsTitleStr) {
   } catch (err) {
     console.log("Error in detecting the news language");
     console.log(err.message);
-    console.log("Error in reading: ", newsTitleStr);
+    console.log("Error in reading news title: ", newsTitleStr);
     console.log("language detect result: ", detector.detect(newsTitleStr, 1));
     language = null;
   }

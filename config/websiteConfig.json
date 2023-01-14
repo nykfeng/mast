@@ -33,7 +33,7 @@
       "language": "lang"
     },
     "exclusionCriteria": {
-      "language": ["fr", "de", "pt", "es", "nl"]
+      "language": ["fr", "de", "pt", "es", "nl", "fi", "no", "sv", "da"]
     },
     "requireSiteSpecificOperations": true
   },

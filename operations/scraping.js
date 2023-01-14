@@ -15,6 +15,7 @@ async function scraping(selectedDate, socket) {
   // To loop through all the websites
   for (let website of webConfig) {
     let stopConditionForCurrentSite = false;
+    let qualifiedTransactionCount = 0;
 
     // always start at page 1, this is how information is organized on these sites
     // These sites don't store all the information there, for good measure, set max to 10 pages
@@ -48,6 +49,7 @@ async function scraping(selectedDate, socket) {
               href,
               hostName,
             });
+            qualifiedTransactionCount++;
           }
 
           // If we found an article with an older date than the selected date
@@ -62,8 +64,7 @@ async function scraping(selectedDate, socket) {
       // if we stop condition has met for the current site,
       // break out of the loop for going through the pages on the current site
       if (stopConditionForCurrentSite) {
-        message =
-          "Went through all qualified transactions from " + website.domain;
+        message = `Successfully scraped ${website.domain} with ${qualifiedTransactionCount} qualified transactions`;
         console.log(msgOrigin, message);
         socket.send(JSON.stringify({ msgOrigin, message }));
 
@@ -73,10 +74,7 @@ async function scraping(selectedDate, socket) {
           " =================",
           "\n"
         );
-        message =
-          "================= " +
-          ("Leaving " + website.domain) +
-          " =================";
+        message = `================= Leaving ${website.domain} =================`;
         socket.send(JSON.stringify({ msgOrigin, message }));
         break;
       }
