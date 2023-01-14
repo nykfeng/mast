@@ -24,8 +24,13 @@ async function scraping(selectedDate, socket) {
       socket.send(JSON.stringify({ msgOrigin, message }));
 
       // Visiting one website one page at a time
-      const data = await scraper.pupBot(website, pageNum, socket);
+      const { data, errorStopOutCondition } = await scraper.pupBot(
+        website,
+        pageNum,
+        socket
+      );
 
+      stopConditionForCurrentSite = errorStopOutCondition;
       numberOfTransactionsRead += data.length;
 
       // if we have not met the stop condition,
@@ -64,11 +69,16 @@ async function scraping(selectedDate, socket) {
       // if we stop condition has met for the current site,
       // break out of the loop for going through the pages on the current site
       if (stopConditionForCurrentSite) {
-        message = `Successfully scraped ${website.domain} with ${qualifiedTransactionCount} qualified transactions`;
+        message = `${
+          errorStopOutCondition ? "Failed to scrape" : "Successfully scraped"
+        } ${
+          website.domain
+        } with ${qualifiedTransactionCount} qualified transactions`;
         console.log(msgOrigin, message);
         socket.send(JSON.stringify({ msgOrigin, message }));
 
         console.log(
+          msgOrigin,
           "================= ",
           chalk.black.bgYellow("Leaving " + website.domain),
           " =================",
@@ -83,6 +93,11 @@ async function scraping(selectedDate, socket) {
       await timer.waitFor(5000);
     }
   }
+
+  message =
+    "---------------- That's a wrap. All sites finished. ----------------";
+  console.log(msgOrigin, message);
+  socket.send(JSON.stringify({ msgOrigin, message }));
 
   message = "Number of total transactions read: " + numberOfTransactionsRead;
   console.log(msgOrigin, message);

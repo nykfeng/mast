@@ -4,7 +4,9 @@ const chalk = require("chalk");
 module.exports.pupBot = async (website, pageNum, socket) => {
   const msgOrigin = "pupBot:~ ";
   let message = "";
-  const browser = await puppeteer.launch({ headless: false });
+  let errorStopOutCondition = false;
+
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   page.setDefaultTimeout(60000);
@@ -24,6 +26,7 @@ module.exports.pupBot = async (website, pageNum, socket) => {
     console.log(message);
     socket.send(JSON.stringify({ msgOrigin, message }));
   } catch (err) {
+    errorStopOutCondition = true;
     console.log(msgOrigin, chalk.bgRed(err.message));
     socket.send(
       JSON.stringify({
@@ -37,7 +40,7 @@ module.exports.pupBot = async (website, pageNum, socket) => {
     console.log(htmlData);
   }
 
-  const obtainedData = await page.evaluate((website) => {
+  const data = await page.evaluate((website) => {
     const result = [];
     const newsPieceEls = document.querySelectorAll(
       website.selectors.getSection
@@ -90,7 +93,7 @@ module.exports.pupBot = async (website, pageNum, socket) => {
 
   await browser.close();
 
-  message = `Finished reading current page with [${obtainedData.length}] transactions read`;
+  message = `Finished reading current page with [${data.length}] transactions read`;
   console.log(msgOrigin, message);
   socket.send(
     JSON.stringify({
@@ -98,7 +101,7 @@ module.exports.pupBot = async (website, pageNum, socket) => {
       message,
     })
   );
-  return obtainedData;
+  return { data, errorStopOutCondition };
 };
 
 function getPageUrl(pageNum, options) {
