@@ -3,6 +3,7 @@ const dataProcessor = require("../util/dataProcessor");
 const scraper = require("../scrapers/pupBot");
 const timer = require("../util/timer");
 const chalk = require("chalk");
+const logging = require("./logging");
 
 async function scraping(selectedDate, socket) {
   const toBeStored = [];
@@ -74,8 +75,10 @@ async function scraping(selectedDate, socket) {
         } ${
           website.domain
         } with ${qualifiedTransactionCount} qualified transactions`;
-        console.log(msgOrigin, message);
-        socket.send(JSON.stringify({ msgOrigin, message }));
+        // console.log(msgOrigin, message);
+        // socket.send(JSON.stringify({ msgOrigin, message }));
+
+        logging.message(msgOrigin, message, socket);
 
         console.log(
           msgOrigin,
@@ -94,22 +97,22 @@ async function scraping(selectedDate, socket) {
     }
   }
 
-  message =
-    "---------------- That's a wrap. All sites finished. ----------------";
-  console.log(msgOrigin, message);
-  socket.send(JSON.stringify({ msgOrigin, message }));
-
-  message = "Number of total transactions read: " + numberOfTransactionsRead;
-  console.log(msgOrigin, message);
-  socket.send(JSON.stringify({ msgOrigin, message }));
-
-  message = "Number of transactions qualified: " + toBeStored.length;
-  console.log(msgOrigin, message);
-  socket.send(JSON.stringify({ msgOrigin, message }));
-
-  message = "Finished current scraping session~!";
-  console.log(msgOrigin, message);
-  socket.send(JSON.stringify({ msgOrigin, message }));
+  logging.message(
+    msgOrigin,
+    "---------------- That's a wrap. All sites finished. ----------------",
+    socket
+  );
+  logging.message(
+    msgOrigin,
+    "Number of total transactions read: " + numberOfTransactionsRead,
+    socket
+  );
+  logging.message(
+    msgOrigin,
+    "Number of transactions qualified: " + toBeStored.length,
+    socket
+  );
+  logging.message(msgOrigin, "Finished current scraping session~!", socket);
 
   socket.close();
 

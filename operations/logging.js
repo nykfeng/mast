@@ -1,8 +1,4 @@
-
-
-// log system actions to console, to db
-// event log
-
-// log user actions to console, to db
-
-// log errors to console, to db, to frontend
+module.exports.message = function (msgOrigin, msg, socket) {
+  console.log(msgOrigin, msg);
+  socket.send(JSON.stringify({ msgOrigin, message: msg }));
+};

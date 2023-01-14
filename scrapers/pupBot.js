@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const logging = require("../operations/logging");
 const chalk = require("chalk");
 
 module.exports.pupBot = async (website, pageNum, socket) => {
@@ -18,13 +19,12 @@ module.exports.pupBot = async (website, pageNum, socket) => {
     console.log(chalk.bgGreen("Accessing: ", url));
     await page.goto(url, { waitUntil: "networkidle0" });
     await page.setJavaScriptEnabled(true);
-    for (const [key, selector] of Object.entries(website.selectors)) {
-      await page.waitForSelector(selector);
+    for (const key in website.selectors) {
+      await page.waitForSelector(website.selectors[key]);
     }
 
     message = "All CSS selectors loaded successfully";
-    console.log(message);
-    socket.send(JSON.stringify({ msgOrigin, message }));
+    logging.message(msgOrigin, message, socket);
   } catch (err) {
     errorStopOutCondition = true;
     console.log(msgOrigin, chalk.bgRed(err.message));
@@ -94,13 +94,8 @@ module.exports.pupBot = async (website, pageNum, socket) => {
   await browser.close();
 
   message = `Finished reading current page with [${data.length}] transactions read`;
-  console.log(msgOrigin, message);
-  socket.send(
-    JSON.stringify({
-      msgOrigin,
-      message,
-    })
-  );
+  logging.message(msgOrigin, message, socket);
+
   return { data, errorStopOutCondition };
 };
 
