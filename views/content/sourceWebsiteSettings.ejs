@@ -1,0 +1,23 @@
+<% layout("/layouts/boilerplateHome.ejs") %>
+
+    <section id="source-website-setting-content">
+
+        <div id="source-website-list">
+            <ul>
+                <% data.forEach((website)=> { %>
+                    <li class="list-item">
+                        <p class="website-name">
+                            <%= website.name%>
+                        </p>
+                    </li>
+                    <% }); %>
+            </ul>
+
+        </div>
+
+
+
+        <div id="source-website-settings"></div>
+
+
+    </section>

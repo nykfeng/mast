@@ -1,0 +1,22 @@
+[
+  {
+    "name": "prnewswire",
+    "domain": "prnewswire.com",
+    "entryUrl": "https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/"
+  },
+  {
+    "name": "businesswire",
+    "domain": "businesswire.com",
+    "entryUrl": "https://www.businesswire.com/portal/site/home/news/subject/?vnsId=31333"
+  },
+  {
+    "name": "globenewswire",
+    "domain": "globenewswire.com",
+    "entryUrl": "https://www.globenewswire.com/en/search/subject/MNA"
+  },
+  {
+    "name": "seekingalpha",
+    "domain": "seekingalpha.com",
+    "entryUrl": "https://seekingalpha.com/market-news/m-a"
+  }
+]

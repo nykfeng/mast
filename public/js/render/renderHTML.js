@@ -76,12 +76,12 @@ function transactionResultListItem(transaction) {
       }</div>
       <div class="transaction-title" site="${transaction.hostName}"><a href="${
     transaction.href
-  }">${transaction.title}</a></div>
+  }" target="_blank">${transaction.title}</a></div>
       <div class="transaction-date">${transaction.date}</div>
       <div class="transaction-link">
           <a href="${
             transaction.href
-          }"><i class="fa-solid fa-right-to-bracket"></i></a>
+          }" target="_blank"><i class="fa-solid fa-right-to-bracket"></i></a>
           <a href="${googleSearchURL}" target="_blank"><i class="fa-brands fa-google"></i></a>
       </div>
     </li>

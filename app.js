@@ -30,6 +30,8 @@ server.on("connection", async function (ws) {
 const webStatusCheck = require("./util/webStatusChecker");
 const transactionNumberForGraph = require("./seeding/transactionNumberByDate.json");
 const scraping = require("./operations/scraping");
+const websiteList = require("./config/websiteList.json");
+const webConfig = require("./config/websiteConfig.json");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -40,6 +42,17 @@ app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
   res.render("content/home");
+});
+
+app.get("/source-website-settings", (req, res) => {
+  res.render("content/sourceWebsiteSettings", {
+    title: "Website Resource Settings Page",
+    data: websiteList,
+  });
+});
+
+app.get("/websiteConfiguration", (req, res) => {
+  res.json(webConfig);
 });
 
 app.get("/webStatus", async (req, res) => {
