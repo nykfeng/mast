@@ -1,14 +1,29 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const WebSocket = require("ws");
 
 const PORT = process.env.PORT || 4080;
+// keep the local connection here in case, and we can still run tests
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/mast";
 
 // WebSocket connection
 const server = new WebSocket.Server({ port: 8080 });
 let socket;
+
+// mongo database connection
+mongoose.connect(dbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+mongoose.set("strictQuery", true);
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "Connection error:"));
+db.once("open", () => {
+  console.log("Database connected");
+});
 
 server.on("connection", async function (ws) {
   const msgOrigin = "M.A.S.T. Server:~ ";

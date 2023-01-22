@@ -45,6 +45,10 @@
   transform: scale(1.1);
 }
 
+#source-website-list ul li:active {
+  transform: scale(1.05);
+}
+
 #source-website-list ul li[active="true"] {
   background-color: rgb(115, 115, 115);
   transform: scale(1.1);
