@@ -84,7 +84,7 @@ app.get("/scrape-now", async (req, res) => {
   console.log(req.query.date);
   const selectedDate = new Date(req.query.date);
   const data = await scraping(selectedDate, socket);
-  transaction.createTransactions(data);
+  transaction.createTransactions(selectedDate, data);
   res.send(data);
   // You can use the response.json() method to send a JSON response,
   // which is equivalent to calling response.send() with a JSON-serialized value.

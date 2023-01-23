@@ -17,7 +17,7 @@ module.exports.newsDate = function (newsDateString) {
   let fourDigitYearRegex = /\b[0-9]{4}\b/;
   let hourColonMinuteRegex = /\b([01]?[0-9]|2[0-3]):[0-5][0-9]\b/;
   let dayRegex =
-    /\b(sun(day)?|mon(day)?|tue(s(day)?)?|wed(nesday)?|thu(rs(day)?)?|fri(day)?|sat(urday)?|(today)|(yesterday))\b/i;
+    /\b(sun(day)?|mon(day)?|tue(s(day)?)?|wed(nesday)?|thu(rs(day)?)?|fri(day)?|sat(urday)?|(today)|(yesterday)|(now))\b/i;
 
   //  1) test if the date string contains a year number, if it does NOT
   if (!fourDigitYearRegex.test(newsDateString)) {

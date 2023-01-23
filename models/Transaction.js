@@ -19,4 +19,8 @@ const TransactionSchema = new Schema({
   ],
 });
 
+TransactionSchema.post('save', function(doc) {
+    console.log("==== Finished saving transaction news ====");
+});
+
 module.exports = mongoose.model("Transaction", TransactionSchema);
