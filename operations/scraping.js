@@ -37,14 +37,14 @@ async function scraping(selectedDate, socket) {
       // if we have not met the stop condition,
       // AKA, an article date older than the selected date
       if (!stopConditionForCurrentSite) {
-        // Go through the data obtained so far, to sanitize and organize data
+        // Go through the data obtained so far, to sanitize and organize data with dataProcessor methods
         for (let eachNews of data) {
           const title = dataProcessor.newsTitle(eachNews.title);
           const date = dataProcessor.newsDate(eachNews.date);
           const hostName = dataProcessor.newsHostname(eachNews.hostName);
           const href = eachNews.href;
 
-          // if article date is equal to the selected date, that is the news we want
+          // if article date is equal to the selected date and isEnglish, that is the news we want
           if (
             date.toDateString() === selectedDate.toDateString() &&
             dataProcessor.isNewsInEnglish(title)
@@ -67,7 +67,7 @@ async function scraping(selectedDate, socket) {
         }
       }
 
-      // if we stop condition has met for the current site,
+      // if the stop condition has met for the current site,
       // break out of the loop for going through the pages on the current site
       if (stopConditionForCurrentSite) {
         message = `${
@@ -75,9 +75,6 @@ async function scraping(selectedDate, socket) {
         } ${
           website.domain
         } with ${qualifiedTransactionCount} qualified transactions`;
-        // console.log(msgOrigin, message);
-        // socket.send(JSON.stringify({ msgOrigin, message }));
-
         logging.message(msgOrigin, message, socket);
 
         console.log(

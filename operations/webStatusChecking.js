@@ -17,6 +17,6 @@ module.exports = async () => {
     }
     return result;
   } catch (err) {
-    console.log("try catch error log", err);
+    console.log("Error: ", err);
   }
 };

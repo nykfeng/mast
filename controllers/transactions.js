@@ -17,7 +17,7 @@ module.exports.createTransactions = async function (selectedDate, data) {
     data.forEach((newData) => {
       if (!titles.has(newData.title)) {
         dateExisted.news.push(newData);
-        console.log("To add to Mongo: ");
+        console.log("To add the following to ", selectedDate);
         console.log(newData);
       }
     });

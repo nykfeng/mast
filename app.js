@@ -4,15 +4,21 @@ const app = express();
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const WebSocket = require("ws");
+
+// importing from other modules
+const webStatusCheck = require("./operations/webStatusChecking");
+const transactionNumberForGraph = require("./seeding/transactionNumberByDate.json");
+const scraping = require("./operations/scraping");
+const websiteList = require("./config/websiteList.json");
+const webConfig = require("./config/websiteConfig.json");
+// controllers
 const transaction = require("./controllers/transactions");
+const transactionStat = require("./controllers/transactionStats")
 
 const PORT = process.env.PORT || 4080;
 // keep the local connection here in case, and we can still run tests
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/mast";
 
-// WebSocket connection
-const server = new WebSocket.Server({ port: 8080 });
-let socket;
 
 // mongo database connection
 mongoose.connect(dbUrl, {
@@ -25,6 +31,10 @@ db.on("error", console.error.bind(console, "Connection error:"));
 db.once("open", () => {
   console.log("Database connected");
 });
+
+// WebSocket connection
+const server = new WebSocket.Server({ port: 8080 });
+let socket;
 
 server.on("connection", async function (ws) {
   const msgOrigin = "M.A.S.T. Server:~ ";
@@ -42,12 +52,7 @@ server.on("connection", async function (ws) {
   });
 });
 
-// importing from other modules
-const webStatusCheck = require("./util/webStatusChecker");
-const transactionNumberForGraph = require("./seeding/transactionNumberByDate.json");
-const scraping = require("./operations/scraping");
-const websiteList = require("./config/websiteList.json");
-const webConfig = require("./config/websiteConfig.json");
+
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
