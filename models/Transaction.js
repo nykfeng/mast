@@ -1,25 +1,22 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema; 
+const Schema = mongoose.Schema;
 
 const TransactionSchema = new Schema({
-  title: {
+  _id: {
     type: String,
     required: true,
-    trim: true,
+    default: function () {
+      return new Date().toLocaleDateString();
+    },
   },
-  url: {
-    type: String,
-    trim: true,
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  hostName: {
-    type: String,
-    trim: true,
-  },
+  news: [
+    {
+      title: { type: String, required: true },
+      href: { type: String },
+      hostName: { type: String },
+      date: { type: Date, required: true },
+    },
+  ],
 });
-
 
 module.exports = mongoose.model("Transaction", TransactionSchema);

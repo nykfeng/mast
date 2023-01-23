@@ -7,7 +7,7 @@ module.exports.pupBot = async (website, pageNum, socket) => {
   let message = "";
   let errorStopOutCondition = false;
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   page.setDefaultTimeout(60000);

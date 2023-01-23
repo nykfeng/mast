@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const ejsMate = require("ejs-mate");
 const WebSocket = require("ws");
+const transaction = require("./controllers/transactions");
 
 const PORT = process.env.PORT || 4080;
 // keep the local connection here in case, and we can still run tests
@@ -83,6 +84,7 @@ app.get("/scrape-now", async (req, res) => {
   console.log(req.query.date);
   const selectedDate = new Date(req.query.date);
   const data = await scraping(selectedDate, socket);
+  transaction.createTransactions(data);
   res.send(data);
   // You can use the response.json() method to send a JSON response,
   // which is equivalent to calling response.send() with a JSON-serialized value.

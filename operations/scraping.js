@@ -116,6 +116,7 @@ async function scraping(selectedDate, socket) {
 
   socket.close();
 
+  console.log(toBeStored);
   return toBeStored;
 }
 
