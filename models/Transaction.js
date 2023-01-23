@@ -20,7 +20,7 @@ const TransactionSchema = new Schema({
 });
 
 TransactionSchema.post('save', function(doc) {
-    console.log("==== Finished saving transaction news ====");
+    console.log("==== Finished saving transaction news to database ====");
 });
 
 module.exports = mongoose.model("Transaction", TransactionSchema);

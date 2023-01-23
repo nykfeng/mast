@@ -81,6 +81,9 @@ function processDayToDateObject(dayStr) {
     case dayStr.includes("today"):
       date = new Date();
       break;
+    case dayStr.includes("now"):
+      date = new Date();
+      break;
     case dayStr.includes("yesterday"):
       date = new Date();
       date.setDate(date.getDate() - 1);

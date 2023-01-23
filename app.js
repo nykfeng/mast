@@ -6,19 +6,19 @@ const ejsMate = require("ejs-mate");
 const WebSocket = require("ws");
 
 // importing from other modules
+const websiteList = require("./config/websiteList.json");
+const webConfig = require("./config/websiteConfig.json");
 const webStatusCheck = require("./operations/webStatusChecking");
 const transactionNumberForGraph = require("./seeding/transactionNumberByDate.json");
 const scraping = require("./operations/scraping");
-const websiteList = require("./config/websiteList.json");
-const webConfig = require("./config/websiteConfig.json");
+
 // controllers
-const transaction = require("./controllers/transactions");
-const transactionStat = require("./controllers/transactionStats")
+const transactions = require("./controllers/transactions");
+const transactionStat = require("./controllers/transactionStats");
 
 const PORT = process.env.PORT || 4080;
 // keep the local connection here in case, and we can still run tests
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/mast";
-
 
 // mongo database connection
 mongoose.connect(dbUrl, {
@@ -51,8 +51,6 @@ server.on("connection", async function (ws) {
     console.log("Client has disconnected");
   });
 });
-
-
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -89,7 +87,8 @@ app.get("/scrape-now", async (req, res) => {
   console.log(req.query.date);
   const selectedDate = new Date(req.query.date);
   const data = await scraping(selectedDate, socket);
-  transaction.createTransactions(selectedDate, data);
+  transactions.createTransactions(selectedDate, data);
+  transactionStat.createTransactionStat(selectedDate, data);
   res.send(data);
   // You can use the response.json() method to send a JSON response,
   // which is equivalent to calling response.send() with a JSON-serialized value.

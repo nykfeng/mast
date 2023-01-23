@@ -1,16 +1,25 @@
 // ===== put together the number of transaction by site
 module.exports.numberOfTransactionBySite = function (dailyData) {
-  let groupData = dailyData.reduce((groups, dailydata) => {
-    let hostName = dailyData.hostName;
+  const groupedData = dailyData.reduce((groups, eachDailyData) => {
+    let hostName = eachDailyData.hostName;
     if (!groups[hostName]) {
       groups[hostName] = [];
     }
-    groups[hostName].push(dailydata);
+    groups[hostName].push(eachDailyData);
     return groups;
   }, {});
 
-  console.log("groupData: ");
-  console.log(groupData);
+  console.log("groupedData: ");
+  console.log(groupedData);
 
-  return groupData;
+  const siteBreakdownArray = [];
+
+  for (const key in groupedData) {
+    siteBreakdownArray.push({
+      siteDomain: key,
+      number: groupedData[key].length,
+    });
+  }
+
+  return siteBreakdownArray;
 };

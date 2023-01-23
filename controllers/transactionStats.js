@@ -1,4 +1,5 @@
 const TransactionStat = require("../models/TransactionStat");
+const dataAggregator = require("../util/dataAggregator");
 
 // -=-=-=-=-=-=-=-=-=-=- CRUD actions -=-=-=-=-=-=-=-=-=-=-=-
 module.exports.createTransactionStat = async function (selectedDate, data) {
@@ -7,14 +8,14 @@ module.exports.createTransactionStat = async function (selectedDate, data) {
   );
 
   if (dateExisted) {
-    dateExisted.totalNumber = data.totalNumber;
-    dateExisted.siteBreakdown = data.siteBreakdown;
+    dateExisted.totalNumber = data.length;
+    dateExisted.siteBreakdown = dataAggregator.numberOfTransactionBySite(data);
     await dateExisted.save();
   } else {
     const transactionStat = new TransactionStat({
       _id: new Date(selectedDate).toLocaleDateString(),
-      totalNumber: data.totalNumber,
-      siteBreakdown: data.siteBreakdown,
+      totalNumber: data.length,
+      siteBreakdown: dataAggregator.numberOfTransactionBySite(data),
     });
     transactionStat
       .save()

@@ -27,6 +27,8 @@ module.exports.createTransactions = async function (selectedDate, data) {
       _id: new Date(selectedDate).toLocaleDateString(),
       news: data,
     });
+    console.log("new transaction mongo object------");
+    console.log(transaction);
     transaction
       .save()
       .then(() => {
