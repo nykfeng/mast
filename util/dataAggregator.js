@@ -9,11 +9,7 @@ module.exports.numberOfTransactionBySite = function (dailyData) {
     return groups;
   }, {});
 
-  console.log("groupedData: ");
-  console.log(groupedData);
-
   const siteBreakdownArray = [];
-
   for (const key in groupedData) {
     siteBreakdownArray.push({
       siteDomain: key,

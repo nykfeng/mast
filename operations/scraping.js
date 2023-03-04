@@ -59,8 +59,9 @@ async function scraping(selectedDate, socket) {
           }
 
           // If we found an article with an older date than the selected date
+          // Or if we reach the maximum allowed page visit per site
           // stop condition for the current site is met
-          if (date - selectedDate < 0) {
+          if (date - selectedDate < 0 || pageNum === MAX_PAGE_NUMBER_TO_VISIT) {
             stopConditionForCurrentSite = true;
             break;
           }

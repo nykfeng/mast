@@ -24,4 +24,8 @@ const TransactionStatSchema = new Schema({
   ],
 });
 
+TransactionStatSchema.post('save', function(doc) {
+  console.log("==== Finished saving transaction Stats to database ====");
+});
+
 module.exports = mongoose.model("TransactionStat", TransactionStatSchema);
