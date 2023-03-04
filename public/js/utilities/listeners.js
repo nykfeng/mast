@@ -10,6 +10,7 @@ import validate from "./validate.js";
 import renderDownload from "../render/renderDownload.js";
 import { wsConnect } from "../state/wsConnection.js";
 
+
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
   const minMaxBtns = document.querySelectorAll(
@@ -35,7 +36,10 @@ function statusRefreshBtns() {
   );
   refreshBtns.forEach((btn) => {
     btn.addEventListener("click", async () => {
-      if (btn.getAttribute("state") === "to-refresh") {
+      if (
+        btn.getAttribute("web-request") === "true" &&
+        btn.getAttribute("state") === "to-refresh"
+      ) {
         btn.setAttribute("state", "refreshed");
         btn.querySelector("svg").setAttribute("allow-spin", "false");
         if (btn.getAttribute("type") === "website-status") {
@@ -43,6 +47,16 @@ function statusRefreshBtns() {
           // cannot re-refresh again until 30 seconds later
           // prevent continuous requests to server via btn clicking
           timer.allowRefreshAgain(btn);
+        }
+      } else if (
+        btn.getAttribute("web-request") === "false" &&
+        btn.getAttribute("state") === "to-refresh"
+      ) {
+        btn.setAttribute("state", "refreshed");
+        btn.querySelector("svg").setAttribute("allow-spin", "false");
+        if (btn.getAttribute("type") === "console") {
+          animate.removeConsoleContent();
+          btn.querySelector("svg").setAttribute("allow-spin", "true");
         }
       }
     });

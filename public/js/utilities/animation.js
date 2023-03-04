@@ -88,6 +88,13 @@ function enableCurrentBtnWithoutLoadingBar(btn) {
   loadingBarEl.setAttribute("state", "inactive");
 }
 
+function removeConsoleContent() {
+  const consoleBodyEl = document.querySelector("#console .console-body");
+  while (consoleBodyEl.firstChild) {
+    consoleBodyEl.removeChild(consoleBodyEl.firstChild);
+  }
+}
+
 export default {
   toCollapseContainer,
   toExpandContainer,
@@ -97,5 +104,5 @@ export default {
   enableTransactionBtns,
   disableCurrentBtnWithLoadingBar,
   enableCurrentBtnWithoutLoadingBar,
+  removeConsoleContent,
 };
-
