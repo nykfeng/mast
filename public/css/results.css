@@ -88,6 +88,40 @@
   margin-left: 0.45rem;
 }
 
+/* -- START -- Summary table */
+.display-results .results-summary-table {
+  width: 50%;
+  margin: 2rem 0;
+  text-align: left;
+  font-size: 1.6rem;
+
+  border-collapse: collapse;
+  /* border-radius: 0.5rem; */
+  overflow: hidden;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+}
+
+.results-summary-table tr td,
+.results-summary-table tr th {
+  padding: 0.8rem;
+}
+
+.results-summary-table tr th {
+  background-color: var(--main-orange);
+  color: var(--white);
+}
+
+.results-summary-table tr.summary-footer-row {
+  background-color: var(--main-orange);
+  color: var(--white);
+}
+
+.display-results .results-summary-table .data-row:nth-child(2n) {
+  background-color: #bababa;
+}
+
+/* -- END -- Summary table */
+
 .display-results-list {
   display: flex;
   flex-direction: column;

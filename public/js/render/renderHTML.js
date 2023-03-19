@@ -64,6 +64,40 @@ function calendarMonthSelectorRow(date, monthString) {
   return html;
 }
 
+function transactionSummaryTable(summaryData) {
+  let tableDataRowHtml = "";
+  let totalNumber = 0;
+  for (let key in summaryData) {
+    tableDataRowHtml += `                        
+      <tr class="data-row">
+        <td>${key}</td>
+        <td>${summaryData[key]}</td>
+        <td>N/A</td>
+      </tr>`;
+    totalNumber += summaryData[key];
+  }
+  const html =
+    `
+  <table class="results-summary-table">
+      <tr>
+          <th>Source Websites</th>
+          <th>Daily Number</th>
+          <th>Average Number</th>
+      </tr>
+      ` +
+    tableDataRowHtml +
+    `
+      <tr class="summary-footer-row">
+          <td>Total</td>
+          <td class="summary-daily-total">${totalNumber}</td>
+          <td class="summary-daily-avg">N/A</td>
+      </tr>
+  </table>
+  `;
+
+  return html;
+}
+
 function transactionResultListItem(transaction) {
   // Generate the Google search URL
   const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(
@@ -95,4 +129,5 @@ export default {
   calendarWeek,
   calendarMonthSelectorRow,
   transactionResultListItem,
+  transactionSummaryTable,
 };

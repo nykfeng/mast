@@ -155,13 +155,11 @@ export function createTransactionSummary(data) {
       summaryData[transaction.hostName]++;
     }
   });
-  console.log("summary data is ");
-  console.log(summaryData);
 
-  for (let key in summaryData) {
-    console.log(`${key} has ${summaryData[key]} transactions`);
-   
-  }
+  displayResultEl.insertAdjacentHTML(
+    "afterbegin",
+    render.transactionSummaryTable(summaryData)
+  );
 }
 
 export function createErrorModal(event) {
