@@ -63,8 +63,7 @@
   border: black 0.1rem solid;
   color: var(--white);
   font-weight: bold;
-
-  background: none;
+  background-color: var(--title-gray);
   cursor: pointer;
   position: absolute;
   left: -5%;
