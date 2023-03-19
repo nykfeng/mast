@@ -125,7 +125,7 @@ async function scraper(dateStr) {
   }
   const queryStr = "?date=" + dateStr;
   const data = await getResults.transactionResults(queryStr);
-  renderDownload.storeDataToBeDownloaded(data, dateStr)
+  renderDownload.storeDataToBeDownloaded(data, dateStr);
   return data;
 }
 
@@ -142,6 +142,26 @@ export function createTransactionList(data) {
       render.transactionResultListItem(transaction)
     );
   });
+}
+
+export function createTransactionSummary(data) {
+  const displayResultEl = document.querySelector(".display-results");
+  let summaryData = {};
+
+  data.forEach((transaction) => {
+    if (!summaryData[transaction.hostName]) {
+      summaryData[transaction.hostName] = 1;
+    } else {
+      summaryData[transaction.hostName]++;
+    }
+  });
+  console.log("summary data is ");
+  console.log(summaryData);
+
+  for (let key in summaryData) {
+    console.log(`${key} has ${summaryData[key]} transactions`);
+   
+  }
 }
 
 export function createErrorModal(event) {

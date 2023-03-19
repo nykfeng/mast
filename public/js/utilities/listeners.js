@@ -2,6 +2,7 @@ import timer from "./timer.js";
 import fetching from "./create.js";
 import { updateCalendar } from "./create.js";
 import { createTransactionList } from "./create.js";
+import { createTransactionSummary } from "./create.js";
 import { createErrorModal } from "./create.js";
 import { createConsole } from "./create.js";
 import animate from "./animation.js";
@@ -123,6 +124,8 @@ function runScraperBtn() {
     // otherwise, run scraper and disable other buttons
     state.disableTransactionBtns(runBtn);
     const data = await fetching.scraper(currentDateStr);
+    // create transaction summary table
+    createTransactionSummary(data);
     // create the list of transaction
     createTransactionList(data);
     state.enableTransactionBtns(runBtn);
