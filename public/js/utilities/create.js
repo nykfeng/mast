@@ -146,7 +146,13 @@ export function createTransactionList(data) {
 
 export function createTransactionSummary(data) {
   const displayResultEl = document.querySelector(".display-results");
+  const resultsSummaryTable = document.querySelector(".results-summary-table");
   let summaryData = {};
+
+  // remove table if it already exists from previous run
+  if (resultsSummaryTable) {
+    resultsSummaryTable.remove();
+  }
 
   data.forEach((transaction) => {
     if (!summaryData[transaction.hostName]) {
