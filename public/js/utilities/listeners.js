@@ -11,7 +11,6 @@ import validate from "./validate.js";
 import renderDownload from "../render/renderDownload.js";
 import { wsConnect } from "../state/wsConnection.js";
 
-
 // status bar minimize and maximize buttons
 function statusMinimizeAndMaximizeBtns() {
   const minMaxBtns = document.querySelectorAll(
@@ -184,6 +183,22 @@ function modalClose() {
   });
 }
 
+function websiteSettingBySite() {
+  const websiteListEls = document.querySelectorAll(
+    "#source-website-list ul li"
+  );
+
+  websiteListEls.forEach((websiteListEl) => {
+    websiteListEl.addEventListener("click", async function () {
+      const websiteName = this.getAttribute("website-name");
+      const data = await fetching.webConfig(websiteName);
+
+      console.log("From server");
+      console.log(data);
+    });
+  });
+}
+
 export default {
   statusMinimizeAndMaximizeBtns,
   statusRefreshBtns,
@@ -191,6 +206,7 @@ export default {
   calendarPrevNextBtns,
   runScraperBtn,
   downloadResultBtn,
+  websiteSettingBySite,
   modalOpen,
   modalClose,
 };

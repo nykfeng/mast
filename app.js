@@ -70,8 +70,15 @@ app.get("/source-website-settings", (req, res) => {
   });
 });
 
-app.get("/websiteConfiguration", (req, res) => {
-  res.json(webConfig);
+
+app.get("/websiteConfig", (req, res) => {
+  console.log("getting website config [REQUEST] for ", req.query.websiteName);
+  const requestedWebsiteName = req.query.websiteName;
+
+  const foundWebConfig = webConfig.find(
+    (web) => web.name === requestedWebsiteName
+  );
+  res.send(foundWebConfig);
 });
 
 app.get("/webStatus", async (req, res) => {
@@ -84,7 +91,7 @@ app.get("/graphStatsDailyTransactionNumber", async (req, res) => {
 });
 
 app.get("/scrape-now", async (req, res) => {
-  console.log(req.query.date);
+  console.log("getting scraper [REQUEST] for ", req.query.date);
   const selectedDate = new Date(req.query.date);
   const data = await scraping(selectedDate, socket);
   await transactions.createTransactions(selectedDate, data);

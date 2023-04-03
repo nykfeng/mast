@@ -31,8 +31,11 @@ function listeners() {
   listening.calendarDayClick();
   listening.calendarPrevNextBtns();
 
+  // transaction results section
   listening.runScraperBtn();
   listening.downloadResultBtn();
+
+
 
   listening.modalOpen();
   listening.modalClose();

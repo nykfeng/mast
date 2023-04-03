@@ -1,6 +1,7 @@
 import getStatus from "../request/getStatus.js";
 import getStats from "../request/getStatistics.js";
 import getResults from "../request/getResults.js";
+import getWebConfig from "../request/getWebConfig.js";
 import render from "../render/renderHTML.js";
 import renderModal from "../render/renderModal.js";
 import renderGraph from "../render/renderGraph.js";
@@ -129,6 +130,13 @@ async function scraper(dateStr) {
   return data;
 }
 
+async function webConfig(websiteName) {
+  const queryStr = "?websiteName=" + websiteName;
+  const data = await getWebConfig.websiteConfigBySite(queryStr);
+
+  return data;
+}
+
 export function createTransactionList(data) {
   //remove current transaction list, if any
   const transactionListEl = document.querySelector(".display-results-list");
@@ -239,6 +247,7 @@ export default {
   calendarMonthCard,
   calendarDateCard,
   scraper,
+  webConfig,
   createErrorModal,
   createConsole,
   updateConsoleContent,
