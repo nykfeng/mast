@@ -5,11 +5,15 @@
   height: calc(100vh - var(--headerHeight));
 }
 
+.add-new-website {
+  margin: 1rem 0;
+}
+
 #source-website-list {
   width: 30%;
   height: 100%;
   padding: 2rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 1.5;
 
   overflow: auto;
@@ -22,13 +26,12 @@
 #source-website-list ul {
   display: flex;
   flex-direction: column;
-  /* gap: 1rem; */
-  padding-left: 1rem;
+  padding: 0.75rem 0 0.75rem 1rem;
 }
 
 #source-website-list ul li {
   list-style: none;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 
   display: inline-block;
   color: rgb(65, 65, 65);
@@ -42,11 +45,11 @@
   background-color: rgb(73, 162, 252);
   color: aliceblue;
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 #source-website-list ul li:active {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 #source-website-list ul li[active="true"] {
@@ -63,3 +66,54 @@
 #source-website-list ul li:hover p.website-name {
   padding-left: 1.5rem;
 }
+
+/* ---- START - new website button ---- */
+.add-new-website button {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #5adaff 0,
+    #5468ff 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+.add-new-website button:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.add-new-website button:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.add-new-website button:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
+/* ---- END - new website button ---- */

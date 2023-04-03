@@ -1,6 +1,5 @@
 @import "root.css";
 
-/* specific styles */
 html {
   scroll-behavior: smooth;
 }
@@ -37,6 +36,13 @@ main {
   grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
   row-gap: 8rem;
+}
+
+.horizontal-line {
+  border: none;
+  height: 0.1rem;
+  background-color: #ddd;
+  background-image: linear-gradient(to right, #ccc, #ddd, #ccc);
 }
 
 /* ---- START ---- header nav bar user action  ---- */

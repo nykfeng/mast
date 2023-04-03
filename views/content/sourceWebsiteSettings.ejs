@@ -1,18 +1,23 @@
 <% layout("/layouts/boilerplateHome.ejs") %>
 
     <section id="source-website-setting-content">
-
         <div id="source-website-list">
+            <div class="add-new-website">
+                <button>+ New Website</button>
+            </div>
+            <div class="current-websites">
+                <p>Current tracking websites:</p>
+            </div>
+            <div class="horizontal-line"></div>
             <ul>
                 <% data.forEach((website)=> { %>
-                    <li class="list-item">
+                    <li class="list-item" website-name=<%=website.name%>>
                         <p class="website-name">
                             <%= website.name%>
                         </p>
                     </li>
                     <% }); %>
             </ul>
-
         </div>
 
 
