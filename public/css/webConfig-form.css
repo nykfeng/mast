@@ -1,0 +1,56 @@
+/* Style for the form container */
+.form-container {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Style for the form */
+.webConfig-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  font-size: 1.6rem;
+}
+
+.webConfig-form > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 5rem;
+}
+
+.webConfig-form input[type="text"],
+.webConfig-form input[type="url"],
+.webConfig-form input[type="number"],
+.webConfig-form input[type="checkbox"] {
+  border: none;
+  padding: 0.8rem;
+  background-color: #f0f0f0;
+  flex-grow: 1;
+}
+
+/* Style for the submit button */
+form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Style for the submit button hover state */
+form button[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+/* Style for the form error messages */
+.form-error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}

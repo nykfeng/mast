@@ -3,6 +3,8 @@
   margin: 0 auto;
   background-color: rgb(129, 144, 168);
   height: calc(100vh - var(--headerHeight));
+
+  display: flex;
 }
 
 .add-new-website {
@@ -117,3 +119,8 @@
   transform: translateY(2px);
 }
 /* ---- END - new website button ---- */
+
+/* ---- START - Form container ---- */
+#source-website-settings {
+  width: 100%;
+}

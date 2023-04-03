@@ -22,7 +22,93 @@
 
 
 
-        <div id="source-website-settings"></div>
+        <div id="source-website-settings">
+            <form class="form-container webConfig-form">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="prnewswire">
+                </div>
+                <div>
+                    <label for="domain">Domain:</label>
+                    <input type="text" id="domain" name="domain" value="prnewswire.com">
+                </div>
+                <div>
+                    <label for="entryUrl">Entry URL:</label>
+                    <input type="text" id="entryUrl" name="entryUrl"
+                        value="https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/">
+                </div>
+                <div>
+                    <label for="hasPagination">Has Pagination:</label>
+                    <input type="checkbox" id="hasPagination" name="hasPagination" checked>
+                </div>
+                <div>
+                    <label for="hasForeignLanguage">Has Foreign Language:</label>
+                    <input type="checkbox" id="hasForeignLanguage" name="hasForeignLanguage" checked>
+                </div>
+                <div>
+                    <label for="requireClickNextPage">Require Click Next Page:</label>
+                    <input type="checkbox" id="requireClickNextPage" name="requireClickNextPage">
+                </div>
+                <div>
+                    <label for="paginationType">Pagination Type:</label>
+                    <select id="paginationType" name="paginationType">
+                        <option value="queryString" selected>Query String</option>
+                        <option value="template">Template</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="pagination.baseUrl">Pagination Base URL:</label>
+                    <input type="text" id="pagination.baseUrl" name="pagination.baseUrl"
+                        value="https://www.prnewswire.com/news-releases/financial-services-latest-news/acquisitions-mergers-and-takeovers-list/?">
+                </div>
+                <div>
+                    <label for="pagination.pageNumber">Pagination Page Number:</label>
+                    <input type="text" id="pagination.pageNumber" name="pagination.pageNumber" value="page=">
+                </div>
+                <div>
+                    <label for="pagination.pageSize">Pagination Page Size:</label>
+                    <input type="text" id="pagination.pageSize" name="pagination.pageSize" value="pagesize=">
+                </div>
+
+                <div>
+                    <label for="getSection">Get Section:</label>
+                    <input type="text" id="getSection" name="selectors.getSection" value=".arabiclistingcards">
+                </div>
+                <div>
+                    <label for="getHref">Get Href:</label>
+                    <input type="text" id="getHref" name="selectors.getHref" value="a.newsreleaseconsolidatelink">
+                </div>
+                <div>
+                    <label for="getDate">Get Date:</label>
+                    <input type="text" id="getDate" name="selectors.getDate" value=".card h3 small">
+                </div>
+                <div>
+                    <label for="getTitle">Get Title:</label>
+                    <input type="text" id="getTitle" name="selectors.getTitle" value=".card h3">
+                </div>
+                <div>
+                    <label for="getHrefAttribute">Get Href Attribute:</label>
+                    <input type="text" id="getHrefAttribute" name="selectorAttributes.getHref" value="href">
+                </div>
+                <div>
+                    <label for="getDateAttribute">Get Date Attribute:</label>
+                    <input type="text" id="getDateAttribute" name="selectorAttributes.getDate" value="textContent">
+                </div>
+                <div>
+                    <label for="getTitleAttribute">Get Title Attribute:</label>
+                    <input type="text" id="getTitleAttribute" name="selectorAttributes.getTitle" value="innerHTML">
+                </div>
+                <div>
+                    <label for="exclusionTypeList">Exclusion Type List:</label>
+                    <input type="text" id="exclusionTypeList" name="exclusionTypeList" value="language">
+                </div>
+                <div>
+                    <label for="exclusionLanguage">Exclusion Language:</label>
+                    <input type="text">
+                </div>
+
+            </form>
+        </div>
 
 
     </section>
