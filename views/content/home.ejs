@@ -1,226 +1,16 @@
 <% layout("/layouts/boilerplateHome.ejs") %>
 
-    <main id="home-content">
+    <body id="home-page-body">
+        <main id="home-content">
 
-        <!-- system status -->
-        <section id="system-status" class="status-container content-container">
-            <div class="content-container-title status-title ">
-                <h1>System Status:</h1>
-            </div>
-
-            <div class="content-container-btns">
-                <button class="refresh left-right" state="to-refresh" type="system-status" web-request="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                </button>
-
-                <button class="min-max left-right" state="to-min">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                    </svg>
-                </button>
-            </div>
-
-            <div class="alerts-grid container-collapsible">
-                <div class="alert" type="database-connection">
-                    <div class="alert-status">
-                        <div class="system-light system-light-red"></div>
-                    </div>
-                    <div class="system-alert-name">
-                        Database Connection
-                    </div>
+            <!-- system status -->
+            <section id="system-status" class="status-container content-container">
+                <div class="content-container-title status-title ">
+                    <h1>System Status:</h1>
                 </div>
 
-                <div class="alert">
-                    <div class="alert-status" type="scraping-bot">
-                        <div class="system-light system-light-green"></div>
-                    </div>
-                    <div class="system-alert-name">
-                        Scraping Bot
-                    </div>
-                </div>
-
-                <div class="alert">
-                    <div class="alert-status" type="logging-system">
-                        <div class="system-light system-light-yellow"></div>
-                    </div>
-                    <div class="system-alert-name">
-                        Logging System
-                    </div>
-                </div>
-            </div>
-
-            <div class="status-updated-time">
-                <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
-            </div>
-        </section>
-
-        <!-- source website status -->
-        <section id="source-website-status" class="status-container content-container">
-            <div class="content-container-title status-title ">
-                <h1>Source Website Status:</h1>
-            </div>
-
-            <div class="content-container-btns">
-                <button class="refresh right-left" state="to-refresh" type="website-status" web-request="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                </button>
-
-                <button class="min-max right-left" state="to-min">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                    </svg>
-                </button>
-            </div>
-
-
-            <div class="alerts-grid container-collapsible">
-
-            </div>
-
-            <div class="status-updated-time">
-                <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
-            </div>
-        </section>
-
-        <!-- daily transaction graph -->
-        <section id="daily-transaction-graph" class="graph-container content-container ">
-            <div class="graph-title content-container-title">
-                <h1>Daily Transaction Graph:</h1>
-            </div>
-
-            <div class="content-container-btns">
-                <button class="refresh left-right" state="to-refresh" type="system-status" web-request="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                </button>
-
-                <button class="min-max left-right" state="to-min">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                    </svg>
-                </button>
-            </div>
-
-
-            <div class="daily-transaction-graph container-collapsible">
-
-            </div>
-
-            <div class="status-updated-time">
-                <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
-            </div>
-
-        </section>
-
-        <!-- Results -->
-        <section id="transaction-results" class="results-container content-container">
-            <div class="results-title content-container-title">
-                <h1>M&A Transactions:</h1>
-            </div>
-
-            <div class="content-container-btns">
-                <button class="refresh left-right" state="to-refresh">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                </button>
-
-                <button class="min-max left-right" state="to-min">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
-                    </svg>
-                </button>
-            </div>
-
-
-            <div class="date-to-action-container">
-                <!-- date selection container -->
-                <div class="date-container">
-                    <div class="sub-title calendar-title">
-                        Select a date to start:
-                    </div>
-
-                    <div id="calendar">
-                        <div class="card">
-                            <div class="month">
-                                <div class="weekday-header">
-                                    <span>SUN</span>
-                                    <span>MON</span>
-                                    <span>TUE</span>
-                                    <span>WED</span>
-                                    <span>THU</span>
-                                    <span>FRI</span>
-                                    <span>SAT</span>
-                                </div>
-                            </div>
-                            <div class="date">
-                                <div id="monthName"></div>
-                                <div id="day"></div>
-                                <div class="date-bottom-field">
-                                    <div id="weekdayName"></div>
-                                    <div id="year"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-- action selection container -->
-                <div class="action-control-container">
-                    <div class="sub-title action-title">
-                        Select an action to view:
-                    </div>
-                    <div class="action-control">
-                        <div class="btn-container">
-                            <p><i class="fa-solid fa-circle-info"></i> Run scraper for the
-                                selected date<span class="selected-date"></span></p>
-                            <div class="btn-outter" state="active"><button class="run-scraper">Run Scraper</button>
-                            </div>
-                            <div class="loading-bar" state="inactive"></div>
-                        </div>
-                        <div class="btn-container">
-                            <p><i class="fa-solid fa-circle-info"></i> Pull from database for the selected date<span
-                                    class="selected-date"></span></p>
-                            <div class="btn-outter" state="active"><button class="from-database">Fetch DB</button></div>
-                            <div class="loading-bar" state="inactive"></div>
-                        </div>
-                        <div class="btn-container">
-                            <p><i class="fa-solid fa-circle-info"></i> Download the current transaction results</p>
-                            <div class="btn-outter" state="active"><button class="download">Download</button></div>
-                            <div class="loading-bar" state="inactive"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- set up a console style display when scraping -->
-            <div id="console" class="content-container">
-                <div class="sub-title">Console</div>
                 <div class="content-container-btns">
-                    <button class="refresh left-right" state="to-refresh" type="console" web-request="false">
+                    <button class="refresh left-right" state="to-refresh" type="system-status" web-request="true">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -236,39 +26,252 @@
                         </svg>
                     </button>
                 </div>
-                <div class="console-body container-collapsible">
+
+                <div class="alerts-grid container-collapsible">
+                    <div class="alert" type="database-connection">
+                        <div class="alert-status">
+                            <div class="system-light system-light-red"></div>
+                        </div>
+                        <div class="system-alert-name">
+                            Database Connection
+                        </div>
+                    </div>
+
+                    <div class="alert">
+                        <div class="alert-status" type="scraping-bot">
+                            <div class="system-light system-light-green"></div>
+                        </div>
+                        <div class="system-alert-name">
+                            Scraping Bot
+                        </div>
+                    </div>
+
+                    <div class="alert">
+                        <div class="alert-status" type="logging-system">
+                            <div class="system-light system-light-yellow"></div>
+                        </div>
+                        <div class="system-alert-name">
+                            Logging System
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+                <div class="status-updated-time">
+                    <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
+                </div>
+            </section>
 
-            <div class="display-results-container">
-                <div class="sub-title display-results-title">
-                    Transaction list:
+            <!-- source website status -->
+            <section id="source-website-status" class="status-container content-container">
+                <div class="content-container-title status-title ">
+                    <h1>Source Website Status:</h1>
                 </div>
 
-                <div class="display-results">
-                    <ul class="display-results-list"></ul>
+                <div class="content-container-btns">
+                    <button class="refresh right-left" state="to-refresh" type="website-status" web-request="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </button>
+
+                    <button class="min-max right-left" state="to-min">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                        </svg>
+                    </button>
                 </div>
-            </div>
-
-        </section>
 
 
-        <section id="modal">
-            <div class="content-container modal-content-container error-modal-container">
-                <div class="content-container-title modal-title error-title">
-                    <button class="cross-close-btn"><span class="close">&times;</span></button>
+                <div class="alerts-grid container-collapsible">
+
                 </div>
-                <div class="modal-detail">
+
+                <div class="status-updated-time">
+                    <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
                 </div>
-                <div class="modal-footer">
-                    <div class="btn-outter"><button class="close-modal-btn">Close</button></div>
+            </section>
+
+            <!-- daily transaction graph -->
+            <section id="daily-transaction-graph" class="graph-container content-container ">
+                <div class="graph-title content-container-title">
+                    <h1>Daily Transaction Graph:</h1>
                 </div>
-            </div>
-        </section>
 
-    </main>
+                <div class="content-container-btns">
+                    <button class="refresh left-right" state="to-refresh" type="system-status" web-request="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </button>
+
+                    <button class="min-max left-right" state="to-min">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
 
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="/js/index.js" type="module" defer></script>
+                <div class="daily-transaction-graph container-collapsible">
+
+                </div>
+
+                <div class="status-updated-time">
+                    <p>Last updated: <span class="minute">0</span> minute(s) ago</p>
+                </div>
+
+            </section>
+
+            <!-- Results -->
+            <section id="transaction-results" class="results-container content-container">
+                <div class="results-title content-container-title">
+                    <h1>M&A Transactions:</h1>
+                </div>
+
+                <div class="content-container-btns">
+                    <button class="refresh left-right" state="to-refresh">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </button>
+
+                    <button class="min-max left-right" state="to-min">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+
+
+                <div class="date-to-action-container">
+                    <!-- date selection container -->
+                    <div class="date-container">
+                        <div class="sub-title calendar-title">
+                            Select a date to start:
+                        </div>
+
+                        <div id="calendar">
+                            <div class="card">
+                                <div class="month">
+                                    <div class="weekday-header">
+                                        <span>SUN</span>
+                                        <span>MON</span>
+                                        <span>TUE</span>
+                                        <span>WED</span>
+                                        <span>THU</span>
+                                        <span>FRI</span>
+                                        <span>SAT</span>
+                                    </div>
+                                </div>
+                                <div class="date">
+                                    <div id="monthName"></div>
+                                    <div id="day"></div>
+                                    <div class="date-bottom-field">
+                                        <div id="weekdayName"></div>
+                                        <div id="year"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- action selection container -->
+                    <div class="action-control-container">
+                        <div class="sub-title action-title">
+                            Select an action to view:
+                        </div>
+                        <div class="action-control">
+                            <div class="btn-container">
+                                <p><i class="fa-solid fa-circle-info"></i> Run scraper for the
+                                    selected date<span class="selected-date"></span></p>
+                                <div class="btn-outter" state="active"><button class="run-scraper">Run Scraper</button>
+                                </div>
+                                <div class="loading-bar" state="inactive"></div>
+                            </div>
+                            <div class="btn-container">
+                                <p><i class="fa-solid fa-circle-info"></i> Pull from database for the selected date<span
+                                        class="selected-date"></span></p>
+                                <div class="btn-outter" state="active"><button class="from-database">Fetch DB</button>
+                                </div>
+                                <div class="loading-bar" state="inactive"></div>
+                            </div>
+                            <div class="btn-container">
+                                <p><i class="fa-solid fa-circle-info"></i> Download the current transaction results</p>
+                                <div class="btn-outter" state="active"><button class="download">Download</button></div>
+                                <div class="loading-bar" state="inactive"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- set up a console style display when scraping -->
+                <div id="console" class="content-container">
+                    <div class="sub-title">Console</div>
+                    <div class="content-container-btns">
+                        <button class="refresh left-right" state="to-refresh" type="console" web-request="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>
+                        </button>
+
+                        <button class="min-max left-right" state="to-min">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="console-body container-collapsible">
+                    </div>
+                </div>
+
+
+                <div class="display-results-container">
+                    <div class="sub-title display-results-title">
+                        Transaction list:
+                    </div>
+
+                    <div class="display-results">
+                        <ul class="display-results-list"></ul>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <section id="modal">
+                <div class="content-container modal-content-container error-modal-container">
+                    <div class="content-container-title modal-title error-title">
+                        <button class="cross-close-btn"><span class="close">&times;</span></button>
+                    </div>
+                    <div class="modal-detail">
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-outter"><button class="close-modal-btn">Close</button></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="/js/index.js" type="module" defer></script>
+    </body>

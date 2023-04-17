@@ -1,7 +1,7 @@
 #source-website-setting-content {
   width: 120rem;
   margin: 0 auto;
-  background-color: rgb(129, 144, 168);
+  background-color: rgb(167, 178, 201);
   height: calc(100vh - var(--headerHeight));
 
   display: flex;
