@@ -17,7 +17,7 @@
   position: relative;
   opacity: 0.5;
   transform: translateY(-150%);
-  transition: all 500ms ease-in;
+  transition: transform 500ms ease-in;
 }
 
 .alerts-grid[state="expanded"] {

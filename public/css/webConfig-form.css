@@ -2,11 +2,21 @@
   overflow: hidden;
 }
 
+.form-heading {
+  font-weight: bold;
+  font-style: italic;
+  border-bottom: 0.2rem solid #ddd;
+  background-color: #fff;
+  margin-bottom: 1.2rem;
+  font-size: 1.7rem;
+  padding: 0.3rem;
+}
+
 /* Style for the form container */
 .form-container {
   margin: 0 auto;
   max-width: 80rem;
-  padding: 2rem;
+  padding: 3rem 1rem;
 }
 
 /* Style for the form */
@@ -24,7 +34,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .webConfig-form input {
@@ -45,19 +55,22 @@
 }
 
 /* Style for the submit button */
-form button[type="submit"] {
+form [type="submit"] {
   background-color: #007bff;
   color: #fff;
-  padding: 10px 20px;
+  padding: 0.7rem 1.5rem;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
+
+  flex-grow: 0;
+  margin-top: 1.5rem;
 }
 
 /* Style for the submit button hover state */
-form button[type="submit"]:hover {
+form [type="submit"]:hover {
   background-color: #0062cc;
 }
 

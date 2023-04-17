@@ -36,11 +36,11 @@
 
 .content-container button.min-max[state="to-max"] {
   transform: rotate(180deg);
-  transition: all 500ms ease-in;
+  transition: transform 500ms ease-in;
 }
 
 .content-container button.min-max[state="to-min"] {
-  transition: all 500ms ease-in;
+  transition: transform 500ms ease-in;
 }
 
 .content-container:has(.alerts-grid[state="collpased"]) {

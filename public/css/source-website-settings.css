@@ -1,7 +1,7 @@
 #source-website-setting-content {
   width: 120rem;
   margin: 0 auto;
-  background-color: rgb(167, 178, 201);
+  background-color: rgb(200, 203, 212);
   height: calc(100vh - var(--headerHeight));
 
   display: flex;
@@ -39,12 +39,12 @@
   color: rgb(65, 65, 65);
   text-transform: uppercase;
   font-weight: bold;
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   transform: scale(1);
 }
 
 #source-website-list ul li:hover {
-  background-color: rgb(73, 162, 252);
+  background-color: #007bff;
   color: aliceblue;
   cursor: pointer;
   transform: scale(1.05);
