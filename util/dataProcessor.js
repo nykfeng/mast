@@ -192,10 +192,16 @@ module.exports.isNewsInEnglish = function (newsTitleStr) {
     // and the first element of that element ([0]) to get the language code.
     //  [ [ 'english', 0.5969230769230769 ],  [ 'hungarian', 0.407948717948718 ],]
   } catch (err) {
-    console.log("Error in detecting the news language");
+    console.log("================ Error in detecting the news language ================");
     console.log(err.message);
-    console.log("Error in reading news title: ", newsTitleStr);
-    console.log("language detect result: ", detector.detect(newsTitleStr, 1));
+    console.log(
+      "Error in reading news title of size[",
+      newsTitleStr.length,
+      "]",
+      ": ",
+      newsTitleStr
+    );
+    console.log("================ language detect result: ", detector.detect(newsTitleStr, 1), " ================");
     language = null;
   }
 
