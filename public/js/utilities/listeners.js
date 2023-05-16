@@ -199,6 +199,18 @@ function websiteSettingBySite() {
   });
 }
 
+function websiteSettingFormBtns() {
+  const editBtn = document.querySelector("form .form-submit #editButton");
+  const saveBtn = document.querySelector("form .form-submit #saveButton");
+
+  editBtn.addEventListener("click", () => {
+    const allInputEls = document.querySelectorAll(".webConfig-form input");
+    allInputEls.forEach((inputEl) => {
+      inputEl.disabled = false;
+    });
+  });
+}
+
 export default {
   statusMinimizeAndMaximizeBtns,
   statusRefreshBtns,
@@ -207,6 +219,7 @@ export default {
   runScraperBtn,
   downloadResultBtn,
   websiteSettingBySite,
+  websiteSettingFormBtns,
   modalOpen,
   modalClose,
 };

@@ -54,24 +54,35 @@
   min-height: 2.5rem;
 }
 
-/* Style for the submit button */
-form [type="submit"] {
-  background-color: #007bff;
+/* form bottom buttons */
+form .form-submit input {
   color: #fff;
-  padding: 0.7rem 1.5rem;
+  padding: 0.5em 1em;
   border: none;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   font-size: 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
   flex-grow: 0;
   margin-top: 1.5rem;
 }
 
-/* Style for the submit button hover state */
-form [type="submit"]:hover {
-  background-color: #0062cc;
+form .form-submit input:hover {
+  opacity: 0.8;
+}
+
+form .form-submit input:active {
+  transform: scale(1.02);
+}
+
+/* save change submit button */
+form [type="submit"] {
+  background-color: #007bff;
+}
+
+/* edit change button */
+form [type="button"] {
+  background-color: #4f4f4f;
 }
 
 /* Style for the form error messages */

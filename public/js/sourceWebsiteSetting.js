@@ -10,4 +10,5 @@ init();
 function listener() {
   // website settings
   listening.websiteSettingBySite();
+  listening.websiteSettingFormBtns();
 }
