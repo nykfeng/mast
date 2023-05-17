@@ -81,6 +81,17 @@
 /* ---- END ---- action control buttons for the selected date ---- */
 
 /* ---- START ---- transaction list item ---- */
+.display-results-date-title {
+  margin: 1rem 0;
+  padding: 1rem;
+  font-size: 1.6rem;
+  background-color: aliceblue;
+}
+
+.display-results-date-title span {
+  font-family: Inter, sans-serif;
+}
+
 .display-results-container {
   margin-left: 0.75rem;
 }
