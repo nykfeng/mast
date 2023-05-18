@@ -86,6 +86,8 @@
   padding: 1rem;
   font-size: 1.6rem;
   background-color: aliceblue;
+
+  display: none;
 }
 
 .display-results-date-title span {

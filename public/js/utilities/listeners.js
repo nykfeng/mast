@@ -115,18 +115,28 @@ function runScraperBtn() {
     // if the date is not validated, stop
     if (!validate.date(currentDateStr)) return;
 
+    // otherwise,
     // open console
     createConsole();
     // connect websocket and to display console text
     wsConnect();
 
-    // otherwise, run scraper and disable other buttons
+    // run scraper and disable other buttons
     state.disableTransactionBtns(runBtn);
-    const data = await fetching.scraper(currentDateStr);
-    // create transaction summary table
-    createTransactionSummary(data);
-    // create the list of transaction
-    createTransactionList(data);
+    let data;
+    try {
+      data = await fetching.scraper(currentDateStr);
+    } catch (err) {
+      console.log(err);
+      data = null;
+    }
+
+    if (data != null) {
+      // create transaction summary table
+      createTransactionSummary(data);
+      // create the list of transaction
+      createTransactionList(data);
+    }
     state.enableTransactionBtns(runBtn);
   });
 }
@@ -208,7 +218,13 @@ function websiteSettingFormBtns() {
     allInputEls.forEach((inputEl) => {
       inputEl.disabled = false;
     });
+    const selectEls = document.querySelectorAll(".webConfig-form select");
+    selectEls.forEach((selectEl) => {
+      selectEl.disabled = false;
+    });
   });
+
+  saveBtn.addEventListener("click", () => {});
 }
 
 export default {

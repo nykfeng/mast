@@ -142,6 +142,15 @@ export function createTransactionList(data) {
   const transactionListEl = document.querySelector(".display-results-list");
   transactionListEl.innerHTML = "";
 
+  // render result date title
+  const transactionResultDateTitleEl = document.querySelector(
+    ".display-results-date-title"
+  );
+  transactionResultDateTitleEl.style.display = "block";
+  transactionResultDateTitleEl.innerHTML = `Results for <span>${calendar.getMMDDYYYY(
+    new Date(data[0]?.date)
+  )}</span>`;
+
   // render each element on the list
   data.forEach((transaction) => {
     transaction.date = calendar.getMMDDYYYY(new Date(transaction.date));
