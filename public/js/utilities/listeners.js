@@ -152,9 +152,9 @@ function downloadResultBtn() {
     if (!resultListEl.hasChildNodes()) return;
 
     // get the date of the transactions
-    let dateStr = document
-      .querySelector("#calendar .date")
-      .getAttribute("date");
+    let dateStr = document.querySelector(
+      ".display-results-container .display-results-date-title span"
+    ).textContent;
     dateStr = dateStr.replaceAll("/", "-");
 
     // if there are results to download
