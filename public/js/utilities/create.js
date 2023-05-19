@@ -186,7 +186,7 @@ export function createTransactionSummary(data) {
 }
 
 export function createErrorModal(event) {
-  const { title, message, dateRangeFrom, dateRangeTo } = event.detail;
+  // const { title, message, dateRangeFrom, dateRangeTo } = event.detail;
 
   const modalEl = document.getElementById("modal");
   modalEl.style.display = "flex";
@@ -196,14 +196,24 @@ export function createErrorModal(event) {
   modalTitleEl.children[0].classList.contains("title-msg")
     ? modalTitleEl.children[0].remove()
     : "";
-  modalTitleEl.prepend(renderModal.errorTitle(title));
+  modalTitleEl.prepend(renderModal.errorTitle(event.detail.title));
 
   const modalDetailEl = modalEl.querySelector(".modal-detail");
   // remove the modal body details, if there is any
   modalDetailEl.innerHTML = "";
-  modalDetailEl.append(
-    ...renderModal.errorScraperDateRange(message, dateRangeFrom, dateRangeTo)
-  );
+
+  // check for error modal type and append appropriate details
+  if (event.detail.type === "date out of bound") {
+    modalDetailEl.append(
+      ...renderModal.errorScraperDateRange(
+        event.detail.message,
+        event.detail.dateRangeFrom,
+        event.detail.dateRangeTo
+      )
+    );
+  } else if (event.detail.type === "simple message") {
+    modalDetailEl.append(renderModal.errorBodyMessage(event.detail.message));
+  }
 }
 
 export function createConsole() {

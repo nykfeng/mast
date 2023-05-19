@@ -128,6 +128,14 @@ function runScraperBtn() {
       data = await fetching.scraper(currentDateStr);
     } catch (err) {
       console.log(err);
+      const errorModalEvent = new CustomEvent("error-modal", {
+        detail: {
+          title: "Failed to run Scraper",
+          message: err.message,
+          type: "simple message",
+        },
+      });
+      window.dispatchEvent(errorModalEvent);
       data = null;
     }
 
@@ -172,6 +180,8 @@ function downloadResultBtn() {
 function modalOpen() {
   window.addEventListener("error-modal", (event) => {
     createErrorModal(event);
+    console.log("Event detial from opening modal");
+    console.log(event);
   });
 }
 

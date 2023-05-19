@@ -25,14 +25,21 @@ function errorScraperDateRange(msg, dateStr1, dateStr2) {
   return [p1, p2];
 }
 
-function errorTitle(msg) {
+function errorTitle(titleMsg) {
   const p = document.createElement("p");
   p.classList.add("title-msg");
-  p.textContent = "Error: " + msg;
+  p.textContent = "Error: " + titleMsg;
+  return p;
+}
+
+function errorBodyMessage(bodyMsg) {
+  const p = document.createElement("p");
+  p.textContent = bodyMsg;
   return p;
 }
 
 export default {
   errorTitle,
+  errorBodyMessage,
   errorScraperDateRange,
 };

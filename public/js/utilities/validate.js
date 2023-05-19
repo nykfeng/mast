@@ -39,6 +39,7 @@ function date(dateStr) {
           "When running the scraper, date should be within the last 7 days.",
         dateRangeFrom: dateStr1,
         dateRangeTo: dateStr2,
+        type: "date out of bound",
       },
     });
     window.dispatchEvent(errorModalEvent);
