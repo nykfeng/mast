@@ -149,6 +149,45 @@ function runScraperBtn() {
   });
 }
 
+function fetchResultsFromDbBtn() {
+  const dbBtn = document.querySelector(
+    "#transaction-results button.from-database"
+  );
+  dbBtn.addEventListener("click", async () => {
+    const dateEl = document.querySelector("#calendar .date");
+    const currentDateStr = dateEl.getAttribute("date");
+
+    // if the date is not validated, stop
+    if (!validate.date(currentDateStr)) return;
+
+    // otherwise, send request to server and disable other buttons
+    state.disableTransactionBtns(dbBtn);
+    let data;
+    try {
+      data = await fetching.dbResults(currentDateStr);
+    } catch (err) {
+      console.log(err);
+      const errorModalEvent = new CustomEvent("error-modal", {
+        detail: {
+          title: "Failed to run Scraper",
+          message: err.message,
+          type: "simple message",
+        },
+      });
+      window.dispatchEvent(errorModalEvent);
+      data = null;
+    }
+
+    if (data != null) {
+      // create transaction summary table
+      createTransactionSummary(data);
+      // create the list of transaction
+      createTransactionList(data);
+    }
+    state.enableTransactionBtns(runBtn);
+  });
+}
+
 function downloadResultBtn() {
   const downloadBtn = document.querySelector(
     "#transaction-results button.download"
@@ -243,6 +282,7 @@ export default {
   calendarDayClick,
   calendarPrevNextBtns,
   runScraperBtn,
+  fetchResultsFromDbBtn,
   downloadResultBtn,
   websiteSettingBySite,
   websiteSettingFormBtns,

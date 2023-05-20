@@ -33,9 +33,8 @@ function listeners() {
 
   // transaction results section
   listening.runScraperBtn();
+  listening.fetchResultsFromDbBtn();
   listening.downloadResultBtn();
-
-
 
   listening.modalOpen();
   listening.modalClose();

@@ -1,30 +1,44 @@
-const transactionResults = async (dateQryStr) => {
+const transactionScraping = async (dateQryStr) => {
   const url = `/scrape-now${dateQryStr}`;
   try {
     const res = await fetch(url, {
       method: "GET",
     });
 
+    // if res status code != 200, respond status code text
     if (!res.ok) {
-      throw new Error("Network response was not OK");
+      throw new Error(res.statusText);
     }
 
     const data = await res.json();
     return data;
   } catch (error) {
-    // Handle the error
-    console.log("Logging");
-    console.log(error.message);
-    console.log("-----------------------");
-    console.error("Error:", error);
-    // You can either throw the error to be caught by the caller or return a default value
-    throw error; // Throw the error to be caught by the caller
-    // return null; // Return a default value
+    // Throw the error to be caught by the caller
+    throw error;
   }
 };
 
-const transactionFromDb = async (dateQryStr) => {};
+const transactionDbFetching = async (dateQryStr) => {
+  const url = `/fetch-db-results${dateQryStr}`;
+  try {
+    const res = await fetch(url, {
+      method: "GET",
+    });
+
+    // if res status code != 200, respond status code text
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    // Throw the error to be caught by the caller
+    throw error;
+  }
+};
 
 export default {
-  transactionResults,
+  transactionScraping,
+  transactionDbFetching,
 };

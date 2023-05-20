@@ -119,13 +119,25 @@ export function updateCalendar(selectedDate) {
   calendarDateCard(selectedDate);
 }
 
-async function scraper(dateStr) {
+function queryStringBuilder(dateStr) {
   if (!dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)) {
-    console.log("Date string error");
+    console.error("Scraper: Query String: Date string error");
     return;
   }
   const queryStr = "?date=" + dateStr;
-  const data = await getResults.transactionResults(queryStr);
+  return queryStr;
+}
+
+async function scraper(dateStr) {
+  const queryStr = queryStringBuilder(dateStr)
+  const data = await getResults.transactionScraping(queryStr);
+  renderDownload.storeDataToBeDownloaded(data, dateStr);
+  return data;
+}
+
+async function dbResults(dateStr) {
+  const queryStr = queryStringBuilder(dateStr)
+  const data = await getResults.transactionDbFetching(queryStr);
   renderDownload.storeDataToBeDownloaded(data, dateStr);
   return data;
 }
@@ -266,6 +278,7 @@ export default {
   calendarMonthCard,
   calendarDateCard,
   scraper,
+  dbResults,
   webConfig,
   createErrorModal,
   createConsole,
